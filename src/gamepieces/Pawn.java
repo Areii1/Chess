@@ -9,15 +9,49 @@ public class Pawn extends Gamepiece {
 	}
 	
 	public void move(int newX, int newY) {
+		if (isRetardMove(x, newX, y, newY)) return;
 		
-		if (y > 1 && y - newY == 1 && x - newX == 0) {
-			x = newX;
-			y = newY;
+		if (isAtStart(y) && isYDifferenceTwoOrLess(y, newY)) {
+			super.move(newX, newY);
+		}
+		else if (isYDifferenceOne(y, newY)) {
+			super.move(newX, newY);
 		}
 		
-		if (y == 7 && y - newY <= 2 && x - newX == 0) {
-			x = newX;
-			y = newY;
-		}
+	}
+	
+	private boolean isRetardMove(int x, int newX, int y, int newY) {
+		return isAtTheEnd(y) || 
+				isBackwards(y, newY) || 
+				isSideways(x, newX, y, newY) || 
+				isXDifferenceMoreThanOne(x, newX);
+	}
+	
+	private boolean isBackwards(int y, int newY) { 
+		return y - newY < 0;
+	}
+	
+	private boolean isAtTheEnd(int y) {
+		return y == 1;
+	}
+	
+	private boolean isYDifferenceOne(int y, int newY) {
+		return y - newY == 1;
+	}
+	
+	private boolean isAtStart(int y) {
+		return y == 7;
+	}
+	
+	private boolean isYDifferenceTwoOrLess(int y, int newY) {
+		return y - newY <= 2;
+	}
+	
+	private boolean isSideways(int x, int newX, int y, int newY) {
+		return x - newX != 0 && y == newY;
+	}
+	
+	private boolean isXDifferenceMoreThanOne(int x, int newX) {
+		return x - newX > 1;
 	}
 }

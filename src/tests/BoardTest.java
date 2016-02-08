@@ -11,18 +11,17 @@ public class BoardTest {
 		
 		Player player = new Player();
 		
-		Bishop bishop1 = new Bishop(3, 3, player);
-		Bishop bishop2 = new Bishop(5, 7, player);
 		Pawn pawn1 = new Pawn(8, 7, player);
+		Pawn pawn2 = new Pawn(1, 6, player);
 	
-		chessboard.addToBoard(bishop1);
-		chessboard.addToBoard(bishop2);
 		chessboard.addToBoard(pawn1);
+		chessboard.addToBoard(pawn2);
 		
 		chessboard.render();
 		System.out.println();
-		pawn1.move(2, 1);
-		pawn1.move(7, 7);
+		pawn1.move(2, 7);
+		pawn2.move(3, 4);
+		
 		chessboard.render();
 	}
 
