@@ -4,7 +4,6 @@ import game.*;
 
 public class Bishop extends Gamepiece {
 	
-	Type type;
 	
 	/* Constructor for a bishop gamepiece
 	 * 1. parameter row
@@ -13,7 +12,6 @@ public class Bishop extends Gamepiece {
 	 */
 	
 	public Bishop(int x, int y, Player player) {
-		super(x, y, player);
-		type = Type.BISHOP;
+		super(x, y, player, 'd');
 	}
 }

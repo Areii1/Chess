@@ -3,8 +3,8 @@ package game;
 public class Gamepiece {
 	protected int x;
 	protected int y;
-	protected Type type;
 	public Player player;
+	protected char type;
 	
 	
 	/*
@@ -13,13 +13,24 @@ public class Gamepiece {
 	 * 2. parameter column
 	 * 3. parameter Player
 	 */
-	public Gamepiece(int x, int y, Player player) {
+	public Gamepiece(int x, int y, Player player, char type) {
 		this.y = y;
 		this.x = x;
 		this.player = player;
+		this.type = type;
+		
 	}
 	
 	
+	
+	public char getType() {
+		return type;
+	}
+
+	public void setType(char type) {
+		this.type = type;
+	}
+
 	public int getX() {
 		return x;
 	}
@@ -34,14 +45,6 @@ public class Gamepiece {
 
 	public void setY(int y) {
 		this.y = y;
-	}
-
-	public Type getType() {
-		return type;
-	}
-
-	public void setType(Type type) {
-		this.type = type;
 	}
 
 	public Player getPlayer() {

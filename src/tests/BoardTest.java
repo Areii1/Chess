@@ -1,6 +1,7 @@
 package tests;
 
 import game.*;
+import gamepieces.*;
 
 public class BoardTest {
 	
@@ -10,9 +11,11 @@ public class BoardTest {
 		
 		Player player = new Player();
 		
-		Gamepiece pawn = new Gamepiece(1, 1 , player);
+		Bishop bishop1 = new Bishop(3, 3, player);
+		Bishop bishop2 = new Bishop(5, 7, player);
 	
-		chessboard.addToBoard(pawn);
+		chessboard.addToBoard(bishop1);
+		chessboard.addToBoard(bishop2);
 		
 		chessboard.render();
 	}
