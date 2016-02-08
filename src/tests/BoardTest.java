@@ -8,6 +8,12 @@ public class BoardTest {
 		
 		Chessboard chessboard = new Chessboard();
 		
+		Player player = new Player();
+		
+		Gamepiece pawn = new Gamepiece(1, 1 , player);
+	
+		chessboard.addToBoard(pawn);
+		
 		chessboard.render();
 	}
 

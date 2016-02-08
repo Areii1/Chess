@@ -1,15 +1,34 @@
 package game;
+import java.util.ArrayList;
 
 public class Chessboard {
 	
-//protected Square[] tiles = new Square[];
+	ArrayList<Gamepiece> gamepieces;
 	
+	
+	public Chessboard() {
+		gamepieces = new ArrayList<Gamepiece>();
+	}
+
+	// Draw a chessboard
 	public void render() {
-		for (int i = 0; i < 8; i++) {
-			for(int j = 0; j < 8; j++) {
-				System.out.print(" X ");
+		for (int y = 1; y <= 8; y++) {
+			for (int x = 1; x <= 8; x++) {
+				
+				for (Gamepiece gamepiece : gamepieces) {
+					if (gamepiece.getX() == x && gamepiece.getY() == y) {
+						System.out.print(" 0 ");
+					} 
+					else {
+						System.out.print(" X ");
+					}
+				}
 			}
 			System.out.println("");
 		}
+	}
+	
+	public void addToBoard(Gamepiece gamepiece) {
+		gamepieces.add(gamepiece);
 	}
 }
