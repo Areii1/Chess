@@ -18,9 +18,7 @@ public class Gamepiece {
 		this.x = x;
 		this.player = player;
 		this.type = type;
-		
 	}
-	
 	
 	
 	public char getType() {
@@ -54,5 +52,11 @@ public class Gamepiece {
 	public void setPlayer(Player player) {
 		this.player = player;
 	}
+	
+	
+	public void move(int x, int y) {
+		this.x = x;
+		this.y = y;
+	} 
 
 }

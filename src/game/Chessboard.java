@@ -14,7 +14,7 @@ public class Chessboard {
 	public void render() {
 		for (int y = 1; y <= 8; y++) {
 			for (int x = 1; x <= 8; x++) {
-				System.out.print(" " + renderGamepiece(x,y) + " ");
+				System.out.print(" " + renderGamepiece(x, y) + " ");
 			}
 			System.out.println("");
 		}
@@ -31,5 +31,25 @@ public class Chessboard {
 			}
 		}
 		return 'O';
+	}
+	
+	public void moveGamepiece(Gamepiece gamepiece, int x, int y) {
+		
+		if (tileHasGamepiece(x, y)) {
+			
+		}
+		else {
+			gamepiece.move(x, y);
+		}
+	}
+	
+	
+	private boolean tileHasGamepiece(int x, int y) {
+		for (Gamepiece gamepiece : gamepieces) {
+			if (gamepiece.getX() == x && gamepiece.getY() == y) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
