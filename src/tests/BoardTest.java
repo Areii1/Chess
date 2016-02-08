@@ -13,9 +13,11 @@ public class BoardTest {
 		
 		Bishop bishop1 = new Bishop(3, 3, player);
 		Bishop bishop2 = new Bishop(5, 7, player);
+		Pawn pawn1 = new Pawn(8, 8, player);
 	
 		chessboard.addToBoard(bishop1);
 		chessboard.addToBoard(bishop2);
+		chessboard.addToBoard(pawn1);
 		
 		chessboard.render();
 	}
