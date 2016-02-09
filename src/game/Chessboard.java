@@ -1,5 +1,6 @@
 package game;
 import java.util.ArrayList;
+import gamepieces.*;
 
 public class Chessboard {
 	
@@ -33,13 +34,20 @@ public class Chessboard {
 		return 'O';
 	}
 	
-	public void moveGamepiece(Gamepiece gamepiece, int x, int y) {
+	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
+		if (gamepiece instanceof Rook) {
+			for (int i = gamepiece.getY() - 1; i >= newY; i--) { 
+				if (tileHasGamepiece(newX, i)) {
+					return;
+				}
+			}
+		}
 		
-		if (tileHasGamepiece(x, y)) {
+		if (tileHasGamepiece(newX, newY)) {
 			
 		}
 		else {
-			gamepiece.move(x, y);
+			gamepiece.move(newX, newY);
 		}
 	}
 	

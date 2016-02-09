@@ -38,7 +38,9 @@ public class BoardTest {
 		chessboard.render();
 		System.out.println();
 		
-		chessboard.moveGamepiece(rook2, 8, 6);
+		chessboard.moveGamepiece(pawn5, 5, 6);
+		chessboard.moveGamepiece(rook2, 6, 6);
+		chessboard.moveGamepiece(rook1, 7, 8);
 		
 		chessboard.render();
 	}
