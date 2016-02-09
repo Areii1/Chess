@@ -71,9 +71,19 @@ public class Chessboard {
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece instanceof Rook) {
 			for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
-				if (tileHasGamepiece(newX, i)) {
-					return;
-				}
+				if (tileHasGamepiece(newX, i)) return;
+			}
+			
+			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+				if (tileHasGamepiece(newX, i)) return;
+			}
+			
+			for (int i = gamepiece.getX() + 1; i <= newX; i++) {
+				if (tileHasGamepiece(i, newY)) return;
+			}
+			
+			for (int i = gamepiece.getX() - 1; i >= newX; i--) {
+				if (tileHasGamepiece(i, newY)) return;
 			}
 		}
 		else if (gamepiece instanceof Bishop) {
