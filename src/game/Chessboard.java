@@ -69,25 +69,47 @@ public class Chessboard {
 	 * @param newY
 	 */
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
+//		ROOK
 		if (gamepiece instanceof Rook) {
+			
+			//upwards
 			for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
 				if (tileHasGamepiece(newX, i)) return;
 			}
 			
+			//downwards
 			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 				if (tileHasGamepiece(newX, i)) return;
 			}
 			
+			//rightwards
 			for (int i = gamepiece.getX() + 1; i <= newX; i++) {
 				if (tileHasGamepiece(i, newY)) return;
 			}
 			
+			//leftwards
 			for (int i = gamepiece.getX() - 1; i >= newX; i--) {
 				if (tileHasGamepiece(i, newY)) return;
 			}
 		}
+//		BISHOP
 		else if (gamepiece instanceof Bishop) {
 			
+			//northeast
+			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
+				if (tileHasGamepiece(gamepiece.getX() - i + 1, i)) return;
+			}
+			
+//			
+//			southwest TO DO
+//			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+//				if (tileHasGamepiece(gamepiece.getX() + i -1, i)) return;
+//			}
+			
+//			southeast TO DO
+//			for (int i = gamepiece.getX() + 1; i <= newX; i++) {
+//				if (tileHasGamepiece(gamepiece.getY() - i + 1, i)) return;
+//			}
 		}
 		
 		if (tileHasGamepiece(newX, newY)) {
