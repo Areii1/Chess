@@ -50,7 +50,7 @@ public class BoardTest {
 		
 		chessboard.render();
 		
-		
+		//jou
 	}
 
 }
