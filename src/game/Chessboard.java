@@ -13,9 +13,11 @@ public class Chessboard {
 
 	// Draw a chessboard
 	public void render() {
-		for (int y = 1; y <= 8; y++) {
+		for (int y = 8; y >= 1; y--) {
 			for (int x = 1; x <= 8; x++) {
+				
 				System.out.print(" " + renderGamepiece(x, y) + " ");
+				
 			}
 			System.out.println("");
 		}
@@ -34,16 +36,17 @@ public class Chessboard {
 		return 'o';
 	}
 	
+	
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece instanceof Rook) {
-			for (int i = gamepiece.getY() - 1; i >= newY; i--) { 
+			for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
 				if (tileHasGamepiece(newX, i)) {
 					return;
 				}
 			}
 		}
 		else if (gamepiece instanceof Bishop) {
-			// todo 
+			
 		}
 		
 		if (tileHasGamepiece(newX, newY)) {

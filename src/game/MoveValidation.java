@@ -3,23 +3,23 @@ package game;
 public class MoveValidation {
 	
 	public static boolean isBackwards(int y, int newY) { 
-		return y - newY < 0;
+		return y - newY > 0;
 	}
 	
 	public static boolean isAtTheEnd(int y) {
-		return y == 1;
+		return y == 8;
 	}
 	
 	public static boolean isYDifferenceOne(int y, int newY) {
-		return y - newY == 1;
+		return y - newY == -1;
 	}
 	
 	public static boolean isAtStart(int y) {
-		return y == 7;
+		return y == 2;
 	}
 	
 	public static boolean isYDifferenceTwoOrLess(int y, int newY) {
-		return y - newY <= 2;
+		return y - newY >= -2;
 	}
 	
 	public static boolean isSideways(int x, int newX, int y, int newY) {
@@ -27,7 +27,8 @@ public class MoveValidation {
 	}
 	
 	public static boolean isXDifferenceMoreThanOne(int x, int newX) {
-		return x - newX > 1;
+		return x - newX > 1 || x - newX < -1; 				
+//		Xdifference is not 1 or 0 or -1.
 	}
 	
 	public static boolean isXAndYChanged(int x, int newX, int y, int newY) {
