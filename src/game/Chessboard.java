@@ -7,13 +7,27 @@ public class Chessboard {
 	ArrayList<Gamepiece> gamepieces;
 	
 	
+	/** 	Default constructor
+	 * Default constructor for Chessboard class, creates an empty ArrayList of Gamepiece type objects.
+	 */
 	public Chessboard() {
 		gamepieces = new ArrayList<Gamepiece>();
 	}
 
-	// Draw a chessboard
+	
+	/** 	Method render
+	 * Draws a chessboard, searches every (x, y) coordinate (from 1 to 8) for a gamepiece. If the gamepieces ArrayList has a gamepiece on a given (x, y) coordinate,
+	 * it prints out the type of the gamepiece on the given coordinate. If no gamepiece is present on a given coordinate, the method prints an empty 'o' on the spot.
+	 * A = PAWN, B = ROOK, C = KNIGHT, D = BISHOP, E = KING, F = QUEEN.
+	 * no parameters
+	*/
 	public void render() {
+		int rowCounter = 8;
+		System.out.println("     1  2  3  4  5  6  7  8");
+		System.out.println("   ________________________");
 		for (int y = 8; y >= 1; y--) {
+			System.out.print(rowCounter + "  |");
+			rowCounter--;
 			for (int x = 1; x <= 8; x++) {
 				
 				System.out.print(" " + renderGamepiece(x, y) + " ");
@@ -23,10 +37,21 @@ public class Chessboard {
 		}
 	}
 	
+	/**		Method addToBoard
+	 * adds a gamepiece to gamepieces ArrayList
+	 * @param gamepiece
+	 */
 	public void addToBoard(Gamepiece gamepiece) {
 		gamepieces.add(gamepiece);
 	}
 	
+	
+	/**		Method renderGamepiece
+	 * If the given (x,y) coordinate matches, any of the gamepieces (x,y) coordinates it prints out the type of the gamepiece on the board (for example 'A').
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private char renderGamepiece(int x, int y) {
 		for (Gamepiece gamepiece : gamepieces) {
 			if (gamepiece.getX() == x && gamepiece.getY() == y) {
@@ -36,7 +61,13 @@ public class Chessboard {
 		return 'o';
 	}
 	
-	
+	/**		Method moveGamepiece
+	 * Changes the (x,y) coordinate of a gamepiece to a new coordinate (x,y), if and only if there are no existing gamepieces on that new coordinate
+	 * or on the path to that new coordinate. The condition varies between gamepieces (a rook moves with a different path than a bishop for example).
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 */
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece instanceof Rook) {
 			for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
@@ -57,7 +88,13 @@ public class Chessboard {
 		}
 	}
 	
-	
+	/**		Method tileHasGamepiece
+	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
+	 * returns true if any coordinates match, returns false if none match.
+	 * @param x
+	 * @param y
+	 * @return
+	 */
 	private boolean tileHasGamepiece(int x, int y) {
 		for (Gamepiece gamepiece : gamepieces) {
 			if (gamepiece.getX() == x && gamepiece.getY() == y) {
