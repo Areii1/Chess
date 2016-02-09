@@ -22,6 +22,9 @@ public class BoardTest {
 		
 		Rook rook1 = new Rook(1, 8, player);
 		Rook rook2 = new Rook(8, 8, player);
+		
+		Bishop bishop1 = new Bishop(3, 8, player);
+		Bishop bishop2 = new Bishop(6, 8, player);
 	
 		chessboard.addToBoard(pawn1);
 		chessboard.addToBoard(pawn2);
@@ -35,12 +38,15 @@ public class BoardTest {
 		chessboard.addToBoard(rook1);
 		chessboard.addToBoard(rook2);
 		
+		chessboard.addToBoard(bishop1);
+		chessboard.addToBoard(bishop2);
+		
 		chessboard.render();
 		System.out.println();
 		
-		chessboard.moveGamepiece(pawn5, 5, 6);
-		chessboard.moveGamepiece(rook2, 6, 6);
-		chessboard.moveGamepiece(rook1, 7, 8);
+		chessboard.moveGamepiece(bishop2, 2, 8);
+		
+		
 		
 		chessboard.render();
 	}

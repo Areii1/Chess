@@ -31,7 +31,7 @@ public class Chessboard {
 				return gamepiece.getType();
 			}
 		}
-		return 'O';
+		return 'o';
 	}
 	
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
@@ -41,6 +41,9 @@ public class Chessboard {
 					return;
 				}
 			}
+		}
+		else if (gamepiece instanceof Bishop) {
+			// todo 
 		}
 		
 		if (tileHasGamepiece(newX, newY)) {
