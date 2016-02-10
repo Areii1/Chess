@@ -13,7 +13,7 @@ public class Bishop extends Gamepiece {
 	 * @param player
 	 */
 	public Bishop(int x, int y, Player player) {
-		super(x, y, player, 'D');
+		super(x, y, player, 'B');
 	}
 	
 	

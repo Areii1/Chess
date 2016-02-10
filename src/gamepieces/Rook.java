@@ -13,7 +13,7 @@ public class Rook extends Gamepiece {
 	 * @param player
 	 */
 	public Rook(int x, int y, Player player) {
-		super(x, y, player, 'B');
+		super(x, y, player, 'T');
 	}
 	
 	

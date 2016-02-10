@@ -12,7 +12,7 @@ public class Pawn extends Gamepiece {
 	 * @param player
 	 */
 	public Pawn(int x, int y, Player player) {
-		super(x, y, player, 'A');
+		super(x, y, player, 'P');
 	}	
 	
 	
