@@ -69,6 +69,12 @@ public class Chessboard {
 	 * @param newY
 	 */
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
+//		PAWN
+		if (gamepiece instanceof Pawn) {
+			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
+				if (tileHasGamepiece(newX, i)) return;
+			}
+		}
 //		ROOK
 		if (gamepiece instanceof Rook) {
 			
