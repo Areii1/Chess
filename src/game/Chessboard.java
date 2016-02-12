@@ -98,25 +98,53 @@ public class Chessboard {
 				if (tileHasGamepiece(i, newY)) return;
 			}
 		}
-//		BISHOP
+		//BISHOP
 		else if (gamepiece instanceof Bishop) {
 			
-			//northeast
+			
+			//northwest
+			//detect if movement is northeast
+			if (newY - gamepiece.getY() == newX - gamepiece.getX() && (newY - gamepiece.getY() > 0)) {
+			//check every position in the northeast path for an existing gamepiece.
 			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
-				if (tileHasGamepiece(gamepiece.getX() - i + 1, i)) return;
+				int moveCounter = 1;
+				if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
+				moveCounter++;
+			}
 			}
 			
-//			
-//			southwest TO DO
-//			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
-//				if (tileHasGamepiece(gamepiece.getX() + i -1, i)) return;
-//			}
+			//southeast
+			//detect if movement is southeast
+			if (newY - gamepiece.getY() == newX - gamepiece.getX() && (newY - gamepiece.getY() < 0)) {
+			//check every position in the southeast path for an existing gamepiece.
+			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+				int moveCounter = 1;
+				if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
+				moveCounter++;
+			}
+			}
 			
-//			southeast TO DO
-//			for (int i = gamepiece.getX() + 1; i <= newX; i++) {
-//				if (tileHasGamepiece(gamepiece.getY() - i + 1, i)) return;
-//			}
-		}
+			//northeast
+			//detect if movement is northeast
+			if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() > 0)) {
+			//check every position in the northeast path for an existing gamepiece.
+			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
+				int moveCounter = 1;
+				if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
+				moveCounter++;
+			}
+			}
+			
+			//southwest
+			//detect if movement is southwest
+			if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() < 0)) {
+			//check every position in the southwest path for an existing gamepiece.
+			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+				int moveCounter = 1;
+				if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
+				moveCounter++;
+			}
+			}
 		
 		if (tileHasGamepiece(newX, newY)) {
 			
@@ -125,6 +153,7 @@ public class Chessboard {
 			gamepiece.move(newX, newY);
 		}
 	}
+}
 	
 	/**		Method tileHasGamepiece
 	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
