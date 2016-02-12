@@ -1,6 +1,7 @@
 package game;
 import java.util.ArrayList;
 import gamepieces.*;
+import static game.MoveValidation.*;
 
 public class Chessboard {
 	
@@ -23,8 +24,8 @@ public class Chessboard {
 	*/
 	public void render() {
 		int rowCounter = 8;
-		System.out.println("     1  2  3  4  5  6  7  8");
-		System.out.println("   ________________________");
+		
+		
 		for (int y = 8; y >= 1; y--) {
 			System.out.print(rowCounter + "  |");
 			rowCounter--;
@@ -35,6 +36,9 @@ public class Chessboard {
 			}
 			System.out.println("");
 		}
+		System.out.println("   ________________________");
+		System.out.println("     1  2  3  4  5  6  7  8");
+		System.out.println("");
 	}
 	
 	/**		Method addToBoard
@@ -78,80 +82,73 @@ public class Chessboard {
 //		ROOK
 		if (gamepiece instanceof Rook) {
 			
-			//upwards
+			// upwards
 			for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
 				if (tileHasGamepiece(newX, i)) return;
 			}
 			
-			//downwards
+			// downwards
 			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 				if (tileHasGamepiece(newX, i)) return;
 			}
 			
-			//rightwards
+			// rightwards
 			for (int i = gamepiece.getX() + 1; i <= newX; i++) {
 				if (tileHasGamepiece(i, newY)) return;
 			}
 			
-			//leftwards
+			// leftwards
 			for (int i = gamepiece.getX() - 1; i >= newX; i--) {
 				if (tileHasGamepiece(i, newY)) return;
 			}
 		}
-		//BISHOP
+		// BISHOP
 		else if (gamepiece instanceof Bishop) {
-			
-			
-			//northwest
-			//detect if movement is northeast
-			if (newY - gamepiece.getY() == newX - gamepiece.getX() && (newY - gamepiece.getY() > 0)) {
-			//check every position in the northeast path for an existing gamepiece.
-			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
-				int moveCounter = 1;
-				if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
-				moveCounter++;
-			}
+			// northwest
+			// detect if movement is northwest
+			if (isMovementNorthwest(gamepiece, newX, newY)) {
+				// check every position in the northwest path for an existing gamepiece.
+				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
+					int moveCounter = 1;
+					if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
+					moveCounter++;
+				}
 			}
 			
-			//southeast
-			//detect if movement is southeast
-			if (newY - gamepiece.getY() == newX - gamepiece.getX() && (newY - gamepiece.getY() < 0)) {
-			//check every position in the southeast path for an existing gamepiece.
-			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
-				int moveCounter = 1;
-				if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
-				moveCounter++;
-			}
-			}
-			
-			//northeast
-			//detect if movement is northeast
-			if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() > 0)) {
-			//check every position in the northeast path for an existing gamepiece.
-			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
-				int moveCounter = 1;
-				if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
-				moveCounter++;
-			}
+			// southeast
+			// detect if movement is southeast
+			if (isMovementSoutheast(gamepiece, newX, newY)) {
+				// check every position in the southeast path for an existing gamepiece.
+				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+					int moveCounter = 1;
+					if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
+					moveCounter++;
+				}
 			}
 			
-			//southwest
-			//detect if movement is southwest
-			if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() < 0)) {
-			//check every position in the southwest path for an existing gamepiece.
-			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
-				int moveCounter = 1;
-				if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
-				moveCounter++;
+			// northeast
+			// detect if movement is northeast
+			if (isMovementNortheast(gamepiece, newX, newY)) {
+				// check every position in the northeast path for an existing gamepiece.
+				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
+					int moveCounter = 1;
+					if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
+					moveCounter++;
+				}
 			}
-			}
-		
-		if (tileHasGamepiece(newX, newY)) {
 			
-		}
-		else {
-			gamepiece.move(newX, newY);
-		}
+			// southwest
+			// detect if movement is southwest
+			if (isMovementSouthwest(gamepiece, newX, newY)) {
+				// check every position in the southwest path for an existing gamepiece.
+				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+					int moveCounter = 1;
+					if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
+					moveCounter++;
+				}
+			}
+		// else, move the gamepiece to new coordinate
+		gamepiece.move(newX, newY);
 	}
 }
 	
@@ -170,4 +167,5 @@ public class Chessboard {
 		}
 		return false;
 	}
+	
 }

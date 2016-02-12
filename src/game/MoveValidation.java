@@ -112,4 +112,55 @@ public class MoveValidation {
 		return (x - newX == y - newY) || (x - newX == -(y - newY));
 	}
 
+	
+	/**		Method isMovementNorthwest
+	 * 		
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return 
+	 */
+	public static boolean isMovementNorthwest(Gamepiece gamepiece, int newX, int newY) {
+		if (newY - gamepiece.getY() == newX - gamepiece.getX() && (newY - gamepiece.getY() > 0)) return true;
+		return false;
+	}
+	
+	
+	/**		Method isMovementSoutheast
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementSoutheast(Gamepiece gamepiece, int newX, int newY) {
+		if (newY - gamepiece.getY() == newX - gamepiece.getX() && (newY - gamepiece.getY() < 0)) return true;
+		return false;
+	}
+	
+	
+	/**		Method isMovementNortheast
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementNortheast(Gamepiece gamepiece, int newX, int newY) {
+		if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() > 0)) return true;
+		return false;
+	}
+	
+	
+	/**		Method isMovementSouthwest
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementSouthwest(Gamepiece gamepiece, int newX, int newY) {
+		if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() < 0)) return true;
+		return false;
+	}
 }
