@@ -25,14 +25,24 @@ public class MoveValidation {
 	}
 	
 	
-	/**		Method isPawnAtStart
+	/**		Method isPawnAtStartPlayer1
 	 * returns true if a Pawn is at the start row y = 2, returns false if not.
 	 * Useful for pawn class
 	 * @param y
 	 * @return
 	 */
-	public static boolean isPawnAtStart(int y) {
+	public static boolean isPawnAtStartPlayer1(int y) {
 		return y == 2;
+	}
+	/**		Method isPawnAtStartPlayer2
+	 * returns true if a Pawn is at the start row y = 7, returns false if not.
+	 * Useful for pawn class
+	 * 
+	 * @param y
+	 * @return
+	 */
+	public static boolean isPawnAtStartPlayer2(int y) {
+		return y == 7;
 	}
 	
 	/**		Method isYDifferenceOne

@@ -20,15 +20,26 @@ public class Pawn extends Gamepiece {
 	 * Changes the (x, y) coordinate of the Pawn if the move is not retarded.
 	 */
 	public void move(int newX, int newY) {
-		if (isRetardMove(x, newX, y, newY)) return;
-		
-		if (isPawnAtStart(y) && isYDifferenceTwoOrLess(y, newY)) {
-			super.move(newX, newY);
+		if (player.getId() == 1){
+			if (isRetardMovePlayer1(x, newX, y, newY)) return;
+
+			if (isPawnAtStartPlayer1(y) && isYDifferenceTwoOrLess(y, newY)) {
+				super.move(newX, newY);
+			}
+			else if (isYDifferenceOne(y, newY)) {
+				super.move(newX, newY);
+			}
 		}
-		else if (isYDifferenceOne(y, newY)) {
-			super.move(newX, newY);
+		if (player.getId() == 2){
+			if (isRetardMovePlayer2(x, newX, y, newY)) return;
+
+			if (isPawnAtStartPlayer2(y) && isYDifferenceTwoOrLess(y, newY)) {
+				super.move(newX, newY);
+			}
+			else if (isYDifferenceOne(y, newY)) {
+				super.move(newX, newY);
+			}
 		}
-		
 	}
 	
 	/**		Method isRetardMove
@@ -39,9 +50,15 @@ public class Pawn extends Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	private boolean isRetardMove(int x, int newX, int y, int newY) {
+	private boolean isRetardMovePlayer1(int x, int newX, int y, int newY) {
 		return isAtTheEnd(y) || 
 				isBackwards(y, newY) || 
+				isSideways(x, newX, y, newY) || 
+				isXDifferenceMoreThanOne(x, newX);
+	}
+	private boolean isRetardMovePlayer2(int x, int newX, int y, int newY) {
+		return isAtTheEnd(y) || 
+				!isBackwards(y, newY) || 
 				isSideways(x, newX, y, newY) || 
 				isXDifferenceMoreThanOne(x, newX);
 	}
