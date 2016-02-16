@@ -80,30 +80,41 @@ public class Chessboard {
 			}
 		}
 //		ROOK
-		if (gamepiece instanceof Rook) {
-			
-			// upwards
-			for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
-				if (tileHasGamepiece(newX, i)) return;
+		else if (gamepiece instanceof Rook) {
+			System.out.println("moving a rook");
+			// North
+			if (isMovementNorth(gamepiece, newX, newY)) {
+				for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
+					if (tileHasGamepiece(newX, i)) return;
+				}
 			}
 			
-			// downwards
-			for (int i = gamepiece.getY() - 1; i >= newY; i--) {
-				if (tileHasGamepiece(newX, i)) return;
+			// South
+			if (isMovementSouth(gamepiece, newX, newY)) {
+				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
+					if (tileHasGamepiece(newX, i)) return;
+				}
 			}
 			
-			// rightwards
-			for (int i = gamepiece.getX() + 1; i <= newX; i++) {
-				if (tileHasGamepiece(i, newY)) return;
+			// West
+			if (isMovementWest(gamepiece, newX, newY)) {
+				for (int i = gamepiece.getX() + 1; i <= newX; i++) {
+					if (tileHasGamepiece(i, newY)) return;
+				}
 			}
 			
-			// leftwards
-			for (int i = gamepiece.getX() - 1; i >= newX; i--) {
-				if (tileHasGamepiece(i, newY)) return;
+			// East
+			if (isMovementEast(gamepiece, newX, newY)) {
+				for (int i = gamepiece.getX() - 1; i >= newX; i--) {
+					if (tileHasGamepiece(i, newY)) return;
+				}
 			}
+			
 		}
 		// BISHOP
+		
 		else if (gamepiece instanceof Bishop) {
+			System.out.println("moving a bishop");
 			// northwest
 			// detect if movement is northwest
 			if (isMovementNorthwest(gamepiece, newX, newY)) {
@@ -148,8 +159,9 @@ public class Chessboard {
 				}
 			}
 		// else, move the gamepiece to new coordinate
-		gamepiece.move(newX, newY);
+		
 	}
+		gamepiece.move(newX, newY);
 }
 	
 	/**		Method tileHasGamepiece

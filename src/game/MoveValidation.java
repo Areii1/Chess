@@ -163,4 +163,76 @@ public class MoveValidation {
 		if ((newY - gamepiece.getY()) + (newX - gamepiece.getX()) == 0 && (newY - gamepiece.getY() < 0)) return true;
 		return false;
 	}
+	
+	
+	
+	/**		Method isMovementNorth
+	 * 
+	 * Useful for rook class
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementNorth(Gamepiece gamepiece, int newX, int newY) {
+		if ((((newY - gamepiece.getY()) > 0) && ((newX - gamepiece.getX()) == 0))) {
+			System.out.println("movement is northward");
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	/**		Method isMovementSouth
+	 * 
+	 * Useful for rook class
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementSouth(Gamepiece gamepiece, int newX, int newY) {
+		if ((((newY - gamepiece.getY()) < 0) && ((newX - gamepiece.getX()) == 0))) {
+			System.out.println("movement is southward");
+			return true;
+		}
+		return false;
+	}
+	
+	
+	/**		Method isMovementEast
+	 * 
+	 * Useful for rook class
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementEast(Gamepiece gamepiece, int newX, int newY) {
+		if ((((newY - gamepiece.getY()) == 0) && ((newX - gamepiece.getX()) < 0))) {
+			System.out.println("movement is Eastward");
+			return true;
+		}
+		return false;
+	}
+	
+	
+	
+	/**		Method isMovementWest
+	 * 
+	 * Useful for rook class
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
+	public static boolean isMovementWest(Gamepiece gamepiece, int newX, int newY) {
+		if ((((newY - gamepiece.getY()) == 0) && ((newX - gamepiece.getX()) > 0))) {
+			System.out.println("movement is westward");
+			return true;
+		}
+		return false;
+	}
+	
 }
