@@ -1,7 +1,8 @@
 package gamepieces;
 
-import game.*;
 import static game.MoveValidation.*;
+import game.*;
+
 
 public class Knight extends Gamepiece {
 	
@@ -22,7 +23,7 @@ public class Knight extends Gamepiece {
 		super.move(newX, newY);
 	}
 	
-	public boolean isRetardMove(int x, int y, int newX, int newY) {
+	private boolean isRetardMove(int x, int y, int newX, int newY) {
 		if (isMovementTwoNorthOneWest(x, y, newX, newY)	|| 
 			isMovementTwoNorthOneEast(x, y, newX, newY) ||
 			isMovementOneNorthTwoWest(x, y, newX, newY) ||
