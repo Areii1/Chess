@@ -17,8 +17,6 @@ public class Queen extends Gamepiece{
 		
 	}
 	private boolean isRetardMove(int x, int y, int newX, int newY){
-		System.out.println(!isXAndYEvenChange(x, newX, y, newY));
-		System.out.println(isXAndYChanged(x, newX, y, newY));
 		return (!isXAndYEvenChange(x, newX, y, newY)&&
 				isXAndYChanged(x, newX, y, newY));
 	}
