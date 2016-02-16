@@ -235,4 +235,46 @@ public class MoveValidation {
 		return false;
 	}
 	
+	
+
+	
+	public static boolean isMovementTwoNorthOneEast (int x, int y, int newX, int newY) {
+		if ((((newY - y) == 2) && ((newX - x) == -1))) return true;
+		return false;
+	}
+	
+	public static boolean isMovementTwoNorthOneWest (int x, int y, int newX, int newY) {
+		if (((newY - y == 2) && ((newX - x) == 1))) return true;
+		return false;
+	}
+	
+	public static boolean isMovementOneNorthTwoWest (int x, int y, int newX, int newY) {
+		if (((newY - y) == 1) && ((newX - x) == 2)) return true;
+		return false;
+	}
+	
+	public static boolean isMovementOneNorthTwoEast (int x, int y, int newX, int newY) {
+		if (((newY - y) == 1) && ((newX - x) == -2)) return true;
+		return false;
+	}
+	
+	public static boolean isMovementTwoSouthOneEast (int x, int y, int newX, int newY) {
+		if (((newY - y) == -2) && ((newX - x) == -1)) return true;
+		return false;
+	}
+	
+	public static boolean isMovementTwoSouthOneWest (int x, int y, int newX, int newY) {
+		if (((newY - y) == -2) && ((newX - x) == 1)) return true;
+		return false;
+	}
+	
+	public static boolean isMovementOneSouthTwoEast (int x, int y, int newX, int newY) {
+		if (((newY - y) == -1) && ((newX - x) == -2)) return true;
+		return false;
+	}
+	
+	public static boolean isMovementOneSouthTwoWest (int x, int y, int newX, int newY) {
+		if (((newY - y) == -1) && ((newX - x) == 2)) return true;
+		return false;
+	}
 }

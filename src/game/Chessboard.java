@@ -75,6 +75,7 @@ public class Chessboard {
 	public void moveGamepiece(Gamepiece gamepiece, int newX, int newY) {
 //		PAWN
 		if (gamepiece instanceof Pawn) {
+			System.out.println("moving a pawn");
 			for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 				if (tileHasGamepiece(newX, i)) return;
 			}
@@ -109,10 +110,10 @@ public class Chessboard {
 					if (tileHasGamepiece(i, newY)) return;
 				}
 			}
-			
 		}
-		// BISHOP
 		
+		
+		// BISHOP
 		else if (gamepiece instanceof Bishop) {
 			System.out.println("moving a bishop");
 			// northwest
@@ -159,8 +160,13 @@ public class Chessboard {
 				}
 			}
 		// else, move the gamepiece to new coordinate
+		}
 		
-	}
+		else if (gamepiece instanceof Knight) {
+			System.out.println("moving a knight");
+		}
+		
+		
 		gamepiece.move(newX, newY);
 }
 	
