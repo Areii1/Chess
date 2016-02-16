@@ -23,20 +23,20 @@ public class Pawn extends Gamepiece {
 		if (player.getId() == 1){
 			if (isRetardMovePlayer1(x, newX, y, newY)) return;
 
-			if (isPawnAtStartPlayer1(y) && isYDifferenceTwoOrLess(y, newY)) {
+			if (isPawnAtStartPlayer1(y) && isMovementOneOrTwoNorth(x, y, newX, newY)) {
 				super.move(newX, newY);
 			}
-			else if (isYDifferenceOne(y, newY)) {
+			else if (isMovementOneNorth(x, y, newX, newY)) {
 				super.move(newX, newY);
 			}
 		}
 		if (player.getId() == 2){
 			if (isRetardMovePlayer2(x, newX, y, newY)) return;
 
-			if (isPawnAtStartPlayer2(y) && isYDifferenceTwoOrLess(y, newY)) {
+			if (isPawnAtStartPlayer2(y) && isMovementOneOrTwoSouth(x, y, newX, newY)) {
 				super.move(newX, newY);
 			}
-			else if (isYDifferenceOne(y, newY)) {
+			else if (isMovementOneSouth(x, y, newX, newY)) {
 				super.move(newX, newY);
 			}
 		}
@@ -51,13 +51,13 @@ public class Pawn extends Gamepiece {
 	 * @return
 	 */
 	private boolean isRetardMovePlayer1(int x, int newX, int y, int newY) {
-		return isAtTheEnd(y) || 
+		return isAtTheEndPlayer1(y) || 
 				isBackwards(y, newY) || 
 				isSideways(x, newX, y, newY) || 
 				isXDifferenceMoreThanOne(x, newX);
 	}
 	private boolean isRetardMovePlayer2(int x, int newX, int y, int newY) {
-		return isAtTheEnd(y) || 
+		return isAtTheEndPlayer2(y) || 
 				!isBackwards(y, newY) || 
 				isSideways(x, newX, y, newY) || 
 				isXDifferenceMoreThanOne(x, newX);

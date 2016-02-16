@@ -20,8 +20,19 @@ public class MoveValidation {
 	 * @param y
 	 * @return
 	 */
-	public static boolean isAtTheEnd(int y) {
+	public static boolean isAtTheEndPlayer1(int y) {
 		return y == 8;
+	}
+	
+	
+	/**		Method isAtTheEnd
+	 * returns true if a gamepiece is at the last row of the chessboard, returns false if not.
+	 * Useful for pawn class
+	 * @param y
+	 * @return
+	 */
+	public static boolean isAtTheEndPlayer2(int y) {
+		return y == 1;
 	}
 	
 	
@@ -321,6 +332,14 @@ public class MoveValidation {
 	}
 	public static boolean isMovementOneSouthOneWest(int x, int y, int newX, int newY){
 		if (newY - y == -1 && newX - x == -1) return true;
+		return false;
+	}
+	public static boolean isMovementOneOrTwoNorth(int x, int y, int newX, int newY){
+		if ((newY - y == 1 || newY - y == 2) && (newX - x == 0)) return true;
+		return false;
+	}
+	public static boolean isMovementOneOrTwoSouth(int x, int y, int newX, int newY){
+		if ((newY - y == -1 || newY - y == -2) && (newX - x == 0)) return true;
 		return false;
 	}
 }
