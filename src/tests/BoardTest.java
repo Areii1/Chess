@@ -8,6 +8,7 @@ public class BoardTest {
 	public static void main(String[] args) {
 		
 		Chessboard chessboard = new Chessboard();
+		//Chessboard.startNewGame(chessboard);
 		
 		Player player1 = new Player(1);
 		Player player2 = new Player(2);
@@ -46,7 +47,6 @@ public class BoardTest {
 		chessboard.addToBoard(knight1);
 		chessboard.addToBoard(knight2);
 		
-
 		Pawn pawn1p = new Pawn(1, 7, player2);
 		Pawn pawn2p = new Pawn(2, 7, player2);
 		Pawn pawn3p = new Pawn(3, 7, player2);
@@ -84,9 +84,17 @@ public class BoardTest {
 		chessboard.render();
 		System.out.println();
 		
-		chessboard.moveGamepiece(pawn2, 2, 5);
-		//chessboard.moveGamepiece(pawn1p, 1, 4);
-		//chessboard.moveGamepiece(pawn1p, 1, 4);
+		chessboard.moveGamepiece(pawn4, 4, 4);
+		chessboard.moveGamepiece(bishop1, 5, 3);
+		chessboard.moveGamepiece(king,	3, 1);
+		chessboard.moveGamepiece(knight1, 4, 2);
+		chessboard.moveGamepiece(knight1, 6, 1);
+		
+		//chessboard.moveGamepiece(king,	3, 1);
+		//chessboard.moveGamepiece(king,	2, 2);
+		//chessboard.moveGamepiece(queenp, 5, 6);
+		//chessboard.moveGamepiece(queenp, 8, 6);
+		//chessboard.moveGamepiece(queenp, 5, 3);
 		//chessboard.moveGamepiece(pawn6, 6, 5);
 
 		chessboard.render();

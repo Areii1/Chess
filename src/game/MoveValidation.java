@@ -257,7 +257,14 @@ public class MoveValidation {
 	}
 	
 	
-
+	/**		Method isMovement
+	 * 
+	 * Useful for knight class
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
 	
 	public static boolean isMovementTwoNorthOneEast(int x, int y, int newX, int newY) {
 		if ((((newY - y) == 2) && ((newX - x) == 1))) return true;
@@ -265,7 +272,7 @@ public class MoveValidation {
 	}
 	
 	public static boolean isMovementTwoNorthOneWest(int x, int y, int newX, int newY) {
-		if (((newY - y == 2) && ((newX - x) == -1))) return true;
+		if (((newY - y) == 2) && ((newX - x) == -1)) return true;
 		return false;
 	}
 	
@@ -299,6 +306,7 @@ public class MoveValidation {
 		return false;
 	}
 	
+	//
 	
 	
 	
@@ -342,5 +350,7 @@ public class MoveValidation {
 		if ((newY - y == -1 || newY - y == -2) && (newX - x == 0)) return true;
 		return false;
 	}
+	
+	
 }
 
