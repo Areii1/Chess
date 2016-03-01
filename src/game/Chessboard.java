@@ -82,7 +82,6 @@ public class Chessboard {
 				}
 			}
 			if (gamepiece.isMovementOneOrTwoSouth(gamepiece.getX(),gamepiece.getY(), newX, newY)){
-				System.out.println("etelä");
 				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 					if (tileHasGamepiece(newX, i)) return;
 				}
@@ -323,6 +322,14 @@ public class Chessboard {
 			}
 		}
 		return null;
+	}
+	
+	public void deleteGamepiece(int x, int y) {
+		for (int i = 0; i < gamepieces.size(); i++) {
+			if (gamepieces.get(i).getX() == x && gamepieces.get(i).getY() == y) {
+				gamepieces.remove(i);
+			}
+		}
 	}
 	
 	/**		Method startNewGame

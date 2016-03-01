@@ -262,7 +262,6 @@ public class Gamepiece {
 	 */
 	public boolean isMovementNorth(int newX, int newY) {
 		if ((((newY - y) > 0) && ((newX - x) == 0))) {
-			System.out.println("movement is northward");
 			return true;
 		}
 		return false;
@@ -315,7 +314,6 @@ public class Gamepiece {
 	 */
 	public boolean isMovementEast(int newX, int newY) {
 		if ((((newY - y) == 0) && ((newX - x) > 0))) {
-			System.out.println("movement is westward");
 			return true;
 		}
 		return false;
