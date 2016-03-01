@@ -87,7 +87,8 @@ public class BoardTest {
 		
 		
 		chessboard.moveGamepiece(pawn1, 1, 3);
-		
+		chessboard.moveGamepiece(pawn4, 4, 3);
+		chessboard.moveGamepiece(bishop1, 4, 2);
 //		player1Notice();
 		
 		chessboard.render();
