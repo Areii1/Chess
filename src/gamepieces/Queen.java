@@ -1,8 +1,5 @@
 package gamepieces;
 
-import static game.Gamepiece.isXAndYChanged;
-import static game.Gamepiece.isXAndYEvenChange;
-
 import game.*;
 
 public class Queen extends Gamepiece{

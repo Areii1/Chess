@@ -1,7 +1,6 @@
 package gamepieces;
 
 import game.*;
-import static game.Gamepiece.*;
 
 public class Pawn extends Gamepiece {
 	

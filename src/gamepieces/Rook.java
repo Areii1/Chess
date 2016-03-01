@@ -1,6 +1,5 @@
 package gamepieces;
 
-import static game.Gamepiece.*;
 import game.*;
 
 public class Rook extends Gamepiece {
