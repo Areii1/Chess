@@ -321,7 +321,7 @@ public class Chessboard {
 	 * @param y
 	 * @return
 	 */
-	private Gamepiece findGamepiece(int x, int y) {
+	public Gamepiece findGamepiece(int x, int y) {
 		for (Gamepiece gamepiece : gamepieces) {
 			if (gamepiece.getX() == x && gamepiece.getY() == y) {
 				return gamepiece;
