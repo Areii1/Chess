@@ -331,42 +331,42 @@ public class Gamepiece {
 	 * @return
 	 */
 	
-	public boolean isMovementTwoNorthOneEast(int x, int y, int newX, int newY) {
+	public boolean isMovementTwoNorthOneEast(int newX, int newY) {
 		if ((((newY - y) == 2) && ((newX - x) == 1))) return true;
 		return false;
 	}
 	
-	public boolean isMovementTwoNorthOneWest(int x, int y, int newX, int newY) {
+	public boolean isMovementTwoNorthOneWest(int newX, int newY) {
 		if (((newY - y) == 2) && ((newX - x) == -1)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneNorthTwoWest(int x, int y, int newX, int newY) {
+	public boolean isMovementOneNorthTwoWest(int newX, int newY) {
 		if (((newY - y) == 1) && ((newX - x) == -2)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneNorthTwoEast(int x, int y, int newX, int newY) {
+	public boolean isMovementOneNorthTwoEast(int newX, int newY) {
 		if (((newY - y) == 1) && ((newX - x) == 2)) return true;
 		return false;
 	}
 	
-	public boolean isMovementTwoSouthOneEast(int x, int y, int newX, int newY) {
+	public boolean isMovementTwoSouthOneEast(int newX, int newY) {
 		if (((newY - y) == -2) && ((newX - x) == 1)) return true;
 		return false;
 	}
 	
-	public boolean isMovementTwoSouthOneWest(int x, int y, int newX, int newY) {
+	public boolean isMovementTwoSouthOneWest(int newX, int newY) {
 		if (((newY - y) == -2) && ((newX - x) == -1)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouthTwoEast(int x, int y, int newX, int newY) {
+	public boolean isMovementOneSouthTwoEast(int newX, int newY) {
 		if (((newY - y) == -1) && ((newX - x) == 2)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouthTwoWest(int x, int y, int newX, int newY) {
+	public boolean isMovementOneSouthTwoWest(int newX, int newY) {
 		if (((newY - y) == -1) && ((newX - x) == -2)) return true;
 		return false;
 	}

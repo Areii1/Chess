@@ -76,9 +76,7 @@ public class Chessboard {
 		
 //PAWN
 		if (gamepiece instanceof Pawn) {
-			System.out.println("moving a pawn");
 			if (gamepiece.isMovementOneOrTwoNorth(gamepiece.getX(),gamepiece.getY(), newX, newY)){
-				System.out.println("pohjoinen");
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 					if (tileHasGamepiece(newX, i)) return;
 				}
@@ -92,7 +90,6 @@ public class Chessboard {
 		}
 //ROOK
 		else if (gamepiece instanceof Rook) {
-			System.out.println("moving a rook");
 			// North
 			if (gamepiece.isMovementNorth(newX, newY)) {
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) { 
@@ -125,7 +122,6 @@ public class Chessboard {
 		
 // BISHOP
 		else if (gamepiece instanceof Bishop) {
-			System.out.println("moving a bishop");
 			// northwest
 			// detect if movement is northwest
 			if (gamepiece.isMovementNortheast(newX, newY)) {
@@ -173,45 +169,44 @@ public class Chessboard {
 		}
 // Knight		
 		else if (gamepiece instanceof Knight) {
-			System.out.println("moving a knight");
 			// twoNorthOneEast
 			// detect if movement is twoNorthOneEast
-			if (gamepiece.isMovementTwoNorthOneEast(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementTwoNorthOneEast(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// TwoNorthOneWest
 			// detect if movement is TwoNorthOneWest
-			if (gamepiece.isMovementTwoNorthOneWest(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementTwoNorthOneWest(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// OneNorthTwoEast
 			// detect if movement is OneNorthTwoEast
-			if (gamepiece.isMovementOneNorthTwoEast(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementOneNorthTwoEast(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// OneNorthTwoEast
 			// detect if movement is OneNorthTwoEast
-			if (gamepiece.isMovementOneNorthTwoWest(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementOneNorthTwoWest(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// TwoSouthOneEast
 			// detect if movement is TwoSouthOneEast
-			if (gamepiece.isMovementTwoSouthOneEast(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementTwoSouthOneEast(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// TwoSouthOneWest
 			// detect if movement is TwoSouthOneWest
-			if (gamepiece.isMovementTwoSouthOneWest(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementTwoSouthOneWest(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// OneSouthTwoEast
 			// detect if movement is OneSouthTwoEast
-			if (gamepiece.isMovementOneSouthTwoEast(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementOneSouthTwoEast(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 			// OneSouthTwoWest
 			// detect if movement is OneSouthTwoWest
-			if (gamepiece.isMovementOneSouthTwoWest(gamepiece.getX() ,gamepiece.getY() , newX, newY)){
+			if (gamepiece.isMovementOneSouthTwoWest(newX, newY)){
 				if (tileHasGamepiece(newX, newY))return;
 			}
 		}
