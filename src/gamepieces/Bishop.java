@@ -1,6 +1,6 @@
 package gamepieces;
 
-import static game.MoveValidation.*;
+import static game.Gamepiece.*;
 import game.*;
 
 public class Bishop extends Gamepiece {

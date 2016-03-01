@@ -1,7 +1,7 @@
 package game;
 import java.util.ArrayList;
 import gamepieces.*;
-import static game.MoveValidation.*;
+import static game.Gamepiece.*;
 
 public class Chessboard {
 	
@@ -107,14 +107,14 @@ public class Chessboard {
 			}
 			
 			// West
-			if (isMovementWest(gamepiece, newX, newY)) {
+			if (isMovementEast(gamepiece, newX, newY)) {
 				for (int i = gamepiece.getX() + 1; i <= newX; i++) {
 					if (tileHasGamepiece(i, newY)) return;
 				}
 			}
 			
 			// East
-			if (isMovementEast(gamepiece, newX, newY)) {
+			if (isMovementWest(gamepiece, newX, newY)) {
 				for (int i = gamepiece.getX() - 1; i >= newX; i--) {
 					if (tileHasGamepiece(i, newY)) return;
 				}
@@ -127,7 +127,7 @@ public class Chessboard {
 			System.out.println("moving a bishop");
 			// northwest
 			// detect if movement is northwest
-			if (isMovementNorthwest(gamepiece, newX, newY)) {
+			if (isMovementNortheast(gamepiece, newX, newY)) {
 				// check every position in the northwest path for an existing gamepiece.
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 					int moveCounter = 1;
@@ -138,7 +138,7 @@ public class Chessboard {
 			
 			// southeast
 			// detect if movement is southeast
-			if (isMovementSoutheast(gamepiece, newX, newY)) {
+			if (isMovementSouthwest(gamepiece, newX, newY)) {
 				// check every position in the southeast path for an existing gamepiece.
 				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 					int moveCounter = 1;
@@ -149,7 +149,7 @@ public class Chessboard {
 			
 			// northeast
 			// detect if movement is northeast
-			if (isMovementNortheast(gamepiece, newX, newY)) {
+			if (isMovementNorthwest(gamepiece, newX, newY)) {
 				// check every position in the northeast path for an existing gamepiece.
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 					int moveCounter = 1;
@@ -160,7 +160,7 @@ public class Chessboard {
 			
 			// southwest
 			// detect if movement is southwest
-			if (isMovementSouthwest(gamepiece, newX, newY)) {
+			if (isMovementSoutheast(gamepiece, newX, newY)) {
 				// check every position in the southwest path for an existing gamepiece.
 				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 					int moveCounter = 1;
@@ -220,7 +220,7 @@ public class Chessboard {
 		else if (gamepiece instanceof Queen || gamepiece instanceof King){
 			// northwest
 			// detect if movement is northwest
-			if (isMovementNorthwest(gamepiece, newX, newY)) {
+			if (isMovementNortheast(gamepiece, newX, newY)) {
 				// check every position in the northwest path for an existing gamepiece.
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 					int moveCounter = 1;
@@ -231,7 +231,7 @@ public class Chessboard {
 
 			// southeast
 			// detect if movement is southeast
-			if (isMovementSoutheast(gamepiece, newX, newY)) {
+			if (isMovementSouthwest(gamepiece, newX, newY)) {
 				// check every position in the southeast path for an existing gamepiece.
 				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 					int moveCounter = 1;
@@ -242,7 +242,7 @@ public class Chessboard {
 
 			// northeast
 			// detect if movement is northeast
-			if (isMovementNortheast(gamepiece, newX, newY)) {
+			if (isMovementNorthwest(gamepiece, newX, newY)) {
 				// check every position in the northeast path for an existing gamepiece.
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 					int moveCounter = 1;
@@ -253,7 +253,7 @@ public class Chessboard {
 
 			// southwest
 			// detect if movement is southwest
-			if (isMovementSouthwest(gamepiece, newX, newY)) {
+			if (isMovementSoutheast(gamepiece, newX, newY)) {
 				// check every position in the southwest path for an existing gamepiece.
 				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 					int moveCounter = 1;
@@ -277,14 +277,14 @@ public class Chessboard {
 			}
 
 			// West
-			if (isMovementWest(gamepiece, newX, newY)) {
+			if (isMovementEast(gamepiece, newX, newY)) {
 				for (int i = gamepiece.getX() + 1; i <= newX; i++) {
 					if (tileHasGamepiece(i, newY)) return;
 				}
 			}
 
 			// East
-			if (isMovementEast(gamepiece, newX, newY)) {
+			if (isMovementWest(gamepiece, newX, newY)) {
 				for (int i = gamepiece.getX() - 1; i >= newX; i--) {
 					if (tileHasGamepiece(i, newY)) return;
 				}

@@ -1,7 +1,7 @@
 package gamepieces;
 
 import game.*;
-import static game.MoveValidation.*;
+import static game.Gamepiece.*;
 
 public class Pawn extends Gamepiece {
 	
@@ -52,14 +52,14 @@ public class Pawn extends Gamepiece {
 	 */
 	private boolean isRetardMovePlayer1(int x, int newX, int y, int newY) {
 		return isAtTheEndPlayer1(y) || 
-				isBackwards(y, newY) || 
-				isSideways(x, newX, y, newY) || 
+				isMovementSouth(y, newY) || 
+				isMovementWestOrEast(x, newX, y, newY) || 
 				isXDifferenceMoreThanOne(x, newX);
 	}
 	private boolean isRetardMovePlayer2(int x, int newX, int y, int newY) {
 		return isAtTheEndPlayer2(y) || 
-				!isBackwards(y, newY) || 
-				isSideways(x, newX, y, newY) || 
+				!isMovementSouth(y, newY) || 
+				isMovementWestOrEast(x, newX, y, newY) || 
 				isXDifferenceMoreThanOne(x, newX);
 	}
 	

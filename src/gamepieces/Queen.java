@@ -1,7 +1,7 @@
 package gamepieces;
 
-import static game.MoveValidation.isXAndYChanged;
-import static game.MoveValidation.isXAndYEvenChange;
+import static game.Gamepiece.isXAndYChanged;
+import static game.Gamepiece.isXAndYEvenChange;
 
 import game.*;
 

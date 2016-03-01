@@ -1,7 +1,10 @@
 package tests;
 
+import javax.swing.JOptionPane;
+
 import game.*;
 import gamepieces.*;
+import userDialog.*;
 
 public class BoardTest {
 	
@@ -82,7 +85,10 @@ public class BoardTest {
 		
 		chessboard.render();
 		
+		
 		chessboard.moveGamepiece(pawn1, 1, 3);
+		
+//		player1Notice();
 		
 		chessboard.render();
 		
@@ -92,5 +98,12 @@ public class BoardTest {
 		
 	}
 	
+	public void player1Notice() {
+		JOptionPane.showMessageDialog(null, "Player 1 it is your turn");
+	}
+	
+	public void player2Notice() {
+		JOptionPane.showMessageDialog(null, "Player 2 it is your turn");
+	}
 
 }
