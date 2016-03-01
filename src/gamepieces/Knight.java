@@ -12,8 +12,8 @@ public class Knight extends Gamepiece {
 	 * @param y
 	 * @param player
 	 */
-	public Knight(int x, int y, Player player) {
-		super(x, y, player, 'N');
+	public Knight(int x, int y, Player player, char type) {
+		super(x, y, player, type);
 	}
 	
 	

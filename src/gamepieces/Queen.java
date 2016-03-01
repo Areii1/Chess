@@ -7,8 +7,8 @@ import game.*;
 
 public class Queen extends Gamepiece{
 	
-	public Queen(int x, int y, Player player) {
-		super(x, y, player, 'Q');
+	public Queen(int x, int y, Player player, char type) {
+		super(x, y, player, type);
 	}
 	public void move(int newX, int newY) {
 		if (isRetardMove(x, y, newX, newY)) return;

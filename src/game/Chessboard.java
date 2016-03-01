@@ -319,22 +319,22 @@ public class Chessboard {
 		Player player1 = new Player(1);
 		Player player2 = new Player(2);
 		
-		Pawn pawn1 = new Pawn(1, 2, player1);
-		Pawn pawn2 = new Pawn(2, 2, player1);
-		Pawn pawn3 = new Pawn(3, 2, player1);
-		Pawn pawn4 = new Pawn(4, 2, player1);
-		Pawn pawn5 = new Pawn(5, 2, player1);
-		Pawn pawn6 = new Pawn(6, 2, player1);
-		Pawn pawn7 = new Pawn(7, 2, player1);
-		Pawn pawn8 = new Pawn(8, 2, player1);
-		Rook rook1 = new Rook(1, 1, player1);
-		Rook rook2 = new Rook(8, 1, player1);
-		King king = new King(4, 1, player1);
-		Bishop bishop1 = new Bishop(3, 1, player1);
-		Bishop bishop2 = new Bishop(6, 1, player1);
-		Queen queen = new Queen(5,1,player1);
-		Knight knight1 = new Knight(2,1,player1);
-		Knight knight2 = new Knight(7,1,player1); 
+		Pawn pawn1 = new Pawn(1, 2, player1, 'P');
+		Pawn pawn2 = new Pawn(2, 2, player1, 'P');
+		Pawn pawn3 = new Pawn(3, 2, player1, 'P');
+		Pawn pawn4 = new Pawn(4, 2, player1, 'P');
+		Pawn pawn5 = new Pawn(5, 2, player1, 'P');
+		Pawn pawn6 = new Pawn(6, 2, player1, 'P');
+		Pawn pawn7 = new Pawn(7, 2, player1, 'P');
+		Pawn pawn8 = new Pawn(8, 2, player1, 'P');
+		Rook rook1 = new Rook(1, 1, player1, 'T');
+		Rook rook2 = new Rook(8, 1, player1, 'T');
+		King king = new King(4, 1, player1, 'K');
+		Bishop bishop1 = new Bishop(3, 1, player1, 'B');
+		Bishop bishop2 = new Bishop(6, 1, player1, 'B');
+		Queen queen = new Queen(5,1,player1, 'Q');
+		Knight knight1 = new Knight(2,1,player1, 'N');
+		Knight knight2 = new Knight(7,1,player1, 'N'); 
 	
 		chessboard.addToBoard(pawn1);
 		chessboard.addToBoard(pawn2);
@@ -353,22 +353,22 @@ public class Chessboard {
 		chessboard.addToBoard(knight1);
 		chessboard.addToBoard(knight2);
 		
-		Pawn pawn1p = new Pawn(1, 7, player2);
-		Pawn pawn2p = new Pawn(2, 7, player2);
-		Pawn pawn3p = new Pawn(3, 7, player2);
-		Pawn pawn4p = new Pawn(4, 7, player2);
-		Pawn pawn5p = new Pawn(5, 7, player2);
-		Pawn pawn6p = new Pawn(6, 7, player2);
-		Pawn pawn7p = new Pawn(7, 7, player2);
-		Pawn pawn8p = new Pawn(8, 7, player2);
-		Rook rook1p = new Rook(1, 8, player2);
-		Rook rook2p = new Rook(8, 8, player2);
-		King kingp = new King(4, 8, player2);
-		Bishop bishop1p = new Bishop(3, 8, player2);
-		Bishop bishop2p = new Bishop(6, 8, player2);
-		Queen queenp = new Queen(5,8,player2);
-		Knight knight1p = new Knight(2,8,player2);
-		Knight knight2p = new Knight(7,8,player2);
+		Pawn pawn1p = new Pawn(1, 7, player2, 'p');
+		Pawn pawn2p = new Pawn(2, 7, player2, 'p');
+		Pawn pawn3p = new Pawn(3, 7, player2, 'p');
+		Pawn pawn4p = new Pawn(4, 7, player2, 'p');
+		Pawn pawn5p = new Pawn(5, 7, player2, 'p');
+		Pawn pawn6p = new Pawn(6, 7, player2, 'p');
+		Pawn pawn7p = new Pawn(7, 7, player2, 'p');
+		Pawn pawn8p = new Pawn(8, 7, player2, 'p');
+		Rook rook1p = new Rook(1, 8, player2, 't');
+		Rook rook2p = new Rook(8, 8, player2, 't');
+		King kingp = new King(4, 8, player2, 'k');
+		Bishop bishop1p = new Bishop(3, 8, player2, 'b');
+		Bishop bishop2p = new Bishop(6, 8, player2, 'b');
+		Queen queenp = new Queen(5,8,player2, 'q');
+		Knight knight1p = new Knight(2,8,player2, 'n');
+		Knight knight2p = new Knight(7,8,player2, 'n');
 		
 		chessboard.addToBoard(pawn1p);
 		chessboard.addToBoard(pawn2p);
@@ -386,5 +386,7 @@ public class Chessboard {
 		chessboard.addToBoard(queenp);
 		chessboard.addToBoard(knight1p);
 		chessboard.addToBoard(knight2p);
+		
+		chessboard.render();
 	}
 }

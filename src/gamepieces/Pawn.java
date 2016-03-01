@@ -11,8 +11,8 @@ public class Pawn extends Gamepiece {
 	 * @param y
 	 * @param player
 	 */
-	public Pawn(int x, int y, Player player) {
-		super(x, y, player, 'P');
+	public Pawn(int x, int y, Player player, char type) {
+		super(x, y, player, type);
 	}	
 	
 	
