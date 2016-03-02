@@ -85,7 +85,7 @@ public class Gamepiece {
 	 * @param y
 	 * @return
 	 */
-	public boolean isAtTheEndPlayer1(int y) {
+	public boolean isAtTheEndPlayer1() {
 		return y == 8;
 	}
 	
@@ -96,7 +96,7 @@ public class Gamepiece {
 	 * @param y
 	 * @return
 	 */
-	public boolean isAtTheEndPlayer2(int y) {
+	public boolean isAtTheEndPlayer2() {
 		return y == 1;
 	}
 	
@@ -107,7 +107,7 @@ public class Gamepiece {
 	 * @param y
 	 * @return
 	 */
-	public boolean isPawnAtStartPlayer1(int y) {
+	public boolean isPawnAtStartPlayer1() {
 		return y == 2;
 	}
 	/**		Method isPawnAtStartPlayer2
@@ -117,33 +117,9 @@ public class Gamepiece {
 	 * @param y
 	 * @return
 	 */
-	public boolean isPawnAtStartPlayer2(int y) {
+	public boolean isPawnAtStartPlayer2() {
 		return y == 7;
 	}
-	
-	/**		Method isYDifferenceOne
-	 * returns true if the upward movement equals 1, returns false if not.
-	 * Useful for pawn class
-	 * @param y
-	 * @param newY
-	 * @return
-	 */
-	public boolean isMovementOneNorth(int y, int newY) {
-		return y - newY == -1;
-	}
-	
-	
-	/**		Method isYDifferenceTwoOrLess
-	 * returns true if the upward movement is two or less, returns false if not.
-	 * Useful for pawn class.
-	 * @param y
-	 * @param newY
-	 * @return
-	 */
-	public boolean isMovementOneOrTwoNorth(int y, int newY) {
-		return y - newY >= -2;
-	}
-	
 	
 	/**		Method isSideways
 	 * returns true if horizontal movement is detected, but no vertical movement is present, returns false if not.
@@ -154,7 +130,7 @@ public class Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementWestOrEast(int x, int newX, int y, int newY) {
+	public boolean isMovementWestOrEast(int newX, int newY) {
 		return x - newX != 0 && y == newY;
 	}
 	
@@ -166,7 +142,7 @@ public class Gamepiece {
 	 * @param newX
 	 * @return
 	 */
-	public boolean isXDifferenceMoreThanOne(int x, int newX) {
+	public boolean isXDifferenceMoreThanOne(int newX) {
 		return x - newX > 1 || x - newX < -1; 				
 	}
 	
@@ -180,7 +156,7 @@ public class Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isXAndYChanged(int x, int newX, int y, int newY) {
+	public boolean isXAndYChanged(int newX, int newY) {
 		return x - newX != 0 && y - newY != 0;
 	}
 	
@@ -194,7 +170,7 @@ public class Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isXAndYEvenChange(int x, int newX, int y, int newY) {
+	public boolean isXAndYEvenChange(int newX, int newY) {
 		return (x - newX == y - newY) || (x - newX == -(y - newY));
 	}
 
@@ -279,7 +255,6 @@ public class Gamepiece {
 	 */
 	public boolean isMovementSouth(int newX, int newY) {
 		if ((((newY - y) < 0) && ((newX - x) == 0))) {
-			System.out.println("movement is southward");
 			return true;
 		}
 		return false;
@@ -296,7 +271,6 @@ public class Gamepiece {
 	 */
 	public boolean isMovementWest(int newX, int newY) {
 		if ((((newY - y) == 0) && ((newX - x) < 0))) {
-			System.out.println("movement is Eastward");
 			return true;
 		}
 		return false;
@@ -373,44 +347,44 @@ public class Gamepiece {
 	
 	
 	
-	public boolean isMovementOneNorth(int x, int y, int newX, int newY) {
+	public boolean isMovementOneNorth(int newX, int newY) {
 		if ((newY - y == 1) && ((newX - x) == 0)) return true;
 		return false;
 	}
-	public boolean isMovementOneSouth(int x, int y, int newX, int newY){
+	public boolean isMovementOneSouth(int newX, int newY){
 		if (newY - y == -1 && newX - x == 0) return true;
 		return false;
 	}
-	public boolean isMovementOneWest(int x, int y, int newX, int newY){
+	public boolean isMovementOneWest(int newX, int newY){
 		if (newY - y == 0 && newX - x == 1) return true;
 		return false;
 	}
-	public boolean isMovementOneEast(int x, int y, int newX, int newY){
+	public boolean isMovementOneEast(int newX, int newY){
 		if (newY - y == 0 && newX - x == -1) return true;
 		return false;
 	}
-	public boolean isMovementOneNorthOneEast(int x, int y, int newX, int newY){
+	public boolean isMovementOneNorthOneEast(int newX, int newY){
 		if (newY - y == 1 && newX - x == 1) return true;
 		return false;
 	}
-	public boolean isMovementOneNorthOneWest(int x, int y, int newX, int newY){
+	public boolean isMovementOneNorthOneWest(int newX, int newY){
 		if (newY - y == 1 && newX - x == -1) return true;
 		return false;
 	}
-	public boolean isMovementOneSouthOneEast(int x, int y, int newX, int newY){
+	public boolean isMovementOneSouthOneEast(int newX, int newY){
 		if (newY - y == -1 && newX - x == 1) return true;
 		return false;
 	}
-	public boolean isMovementOneSouthOneWest(int x, int y, int newX, int newY){
+	public boolean isMovementOneSouthOneWest(int newX, int newY){
 		if (newY - y == -1 && newX - x == -1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneOrTwoNorth(int x, int y, int newX, int newY){
+	public boolean isMovementOneOrTwoNorth(int newX, int newY){
 		if ((newY - y == 1 || newY - y == 2) && (newX - x == 0)) return true;
 		return false;
 	}
-	public boolean isMovementOneOrTwoSouth(int x, int y, int newX, int newY){
+	public boolean isMovementOneOrTwoSouth(int newX, int newY){
 		if ((newY - y == -1 || newY - y == -2) && (newX - x == 0)) return true;
 		return false;
 	}

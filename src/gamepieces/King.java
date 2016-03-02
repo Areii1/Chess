@@ -17,21 +17,21 @@ public class King extends Gamepiece {
 
 	
 	public void move(int newX, int newY) {
-		if (isRetardMove(x, y, newX, newY)) return;
+		if (isRetardMove(newX, newY)) return;
 		
 		super.move(newX, newY);
 		
 	}
 	
-	private boolean isRetardMove(int x, int y, int newX, int newY) {
-			if (isMovementOneNorth(x, y, newX, newY)||
-				isMovementOneSouth(x, y, newX, newY)||
-				isMovementOneWest(x, y, newX, newY)||
-				isMovementOneEast(x, y, newX, newY)||
-				isMovementOneNorthOneEast(x, y, newX, newY)||
-				isMovementOneNorthOneWest(x, y, newX, newY)||
-				isMovementOneSouthOneEast(x, y, newX, newY)||
-				isMovementOneSouthOneWest(x, y, newX, newY))return false;
+	private boolean isRetardMove(int newX, int newY) {
+			if (isMovementOneNorth(newX, newY)||
+				isMovementOneSouth(newX, newY)||
+				isMovementOneWest(newX, newY)||
+				isMovementOneEast(newX, newY)||
+				isMovementOneNorthOneEast(newX, newY)||
+				isMovementOneNorthOneWest(newX, newY)||
+				isMovementOneSouthOneEast(newX, newY)||
+				isMovementOneSouthOneWest(newX, newY))return false;
 		return true;
 	}
 

@@ -76,12 +76,12 @@ public class Chessboard {
 		
 //PAWN
 		if (gamepiece instanceof Pawn) {
-			if (gamepiece.isMovementOneOrTwoNorth(gamepiece.getX(),gamepiece.getY(), newX, newY)){
+			if (gamepiece.isMovementOneOrTwoNorth(newX, newY)){
 				for (int i = gamepiece.getY() + 1; i <= newY; i++) {
 					if (tileHasGamepiece(newX, i)) return;
 				}
 			}
-			if (gamepiece.isMovementOneOrTwoSouth(gamepiece.getX(),gamepiece.getY(), newX, newY)){
+			if (gamepiece.isMovementOneOrTwoSouth(newX, newY)){
 				for (int i = gamepiece.getY() - 1; i >= newY; i--) {
 					if (tileHasGamepiece(newX, i)) return;
 				}

@@ -20,7 +20,7 @@ public class Bishop extends Gamepiece {
 	 * Changes the (x,y) coordinate of the bishop if the move is not retarded.
 	 */
 	public void move(int newX, int newY) {
-		if (isRetardMove(x, newX, y, newY)) return;
+		if (isRetardMove(newX, newY)) return;
 		
 		super.move(newX, newY);
 	}
@@ -34,7 +34,7 @@ public class Bishop extends Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	private boolean isRetardMove(int x, int newX, int y, int newY) {
-		return !isXAndYEvenChange(x, newX, y, newY);
+	private boolean isRetardMove(int newX, int newY) {
+		return !isXAndYEvenChange(newX, newY);
 	}
 }
