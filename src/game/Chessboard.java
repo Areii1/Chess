@@ -2,8 +2,12 @@ package game;
 import java.util.ArrayList;
 import gamepieces.*;
 
-public class Chessboard {
+
+public class Chessboard{
 	
+	/**
+	 * 
+	 */
 	ArrayList<Gamepiece> gamepieces;
 	
 	
