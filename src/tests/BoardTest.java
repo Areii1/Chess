@@ -25,8 +25,8 @@ public class BoardTest {
 		chessboard.startNewGame();
 		
 		
-//		saveGame(gamepieces);
-//		loadGame(gamepieces);
+		chessboard.save();
+//		chessboard.loadGame();
 	}
 	
 	public static void player1Notice() {
@@ -61,42 +61,5 @@ public class BoardTest {
 		int newY = Integer.parseInt(textY);
 		return newY;
 	}
-	
-	
-	public static void saveGame(Serializable object){
-		
-		try{
-			FileOutputStream fos = new FileOutputStream("Test.ser");
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(object);
-			oos.flush();
-			oos.close();
-			fos.close();
-			System.out.println("Chessboard is saved in TestOutput.sav");
-		}
-		catch(IOException e){
-			e.printStackTrace();
-		}
-	}
-	public static void loadGame(Serializable object){
-		
-		try{
-			FileInputStream fis = new FileInputStream("Test.ser");
-			ObjectInputStream ois = new ObjectInputStream(fis);
-			object = (Gamepiece) ois.readObject();
-			ois.close();
-			fis.close();
-		}
-		catch(IOException i){
-			i.printStackTrace();
-			return;
-		}
-		catch(ClassNotFoundException c){
-			System.out.println("Class not found");
-			c.printStackTrace();
-			return;
-		}
-		
-	}
-	
+
 }

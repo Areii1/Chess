@@ -1,10 +1,23 @@
 package game;
+import java.io.FileInputStream;
+
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
+
+
 import gamepieces.*;
 
 
-public class Chessboard{
+public class Chessboard implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 
 	 */
@@ -415,4 +428,48 @@ public class Chessboard{
 		
 		render();
 	}
+public void save(){
+	saveGame(gamepieces);
+}
+/*public void load(){
+	loadGame()
+}*/
+public static void saveGame(ArrayList<Gamepiece> object){
+		
+		
+	
+		try{
+			FileOutputStream fos = new FileOutputStream("Test.ser");
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			oos.writeObject(object);
+			oos.flush();
+			oos.close();
+			fos.close();
+			System.out.println("Chessboard is saved in Test.ser");
+		}
+		catch(IOException ioe){
+			ioe.printStackTrace();
+		}
+	}
+/*public static void loadGame(ArrayList<Gamepiece> object){
+		
+		try{
+			FileInputStream fis = new FileInputStream("Test.ser");
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			object = (ArrayList<Gamepiece>) ois.readObject();
+			ois.close();
+			fis.close();
+		}
+		catch(IOException i){
+			i.printStackTrace();
+			return;
+		}
+		catch(ClassNotFoundException c){
+			System.out.println("Class not found");
+			c.printStackTrace();
+			return;
+		}
+		
+	}*/
+	
 }
