@@ -6,7 +6,6 @@ public class Gamepiece implements Serializable{
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
 	protected int x;
 	protected int y;
 	public Player player;
