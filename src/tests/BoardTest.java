@@ -18,14 +18,22 @@ public class BoardTest {
 	public static void main(String[] args) {
 		
 		Chessboard chessboard = new Chessboard();
-
-//		player1Notice();
-//		chessboard.moveGamepiece(findGamepiece(askForCurrentXCoordinate(), askForCurrentYCoordinate), askForNewXCoordinate(), askForNewYCoordinate());
-		
 		chessboard.startNewGame();
 		
 		
-		chessboard.save();
+		int counter = 0;
+		while (counter < 10) {
+		player1Notice();
+		chessboard.moveGamepiece(askForCurrentXCoordinate(), askForCurrentYCoordinate(),
+				askForNewXCoordinate(), askForNewYCoordinate());
+		
+		player2Notice();
+		chessboard.moveGamepiece(askForCurrentXCoordinate(), askForCurrentYCoordinate(),
+				askForNewXCoordinate(), askForNewYCoordinate());
+		counter ++;
+		}
+		
+//		chessboard.save();
 //		chessboard.loadGame();
 	}
 	
@@ -61,5 +69,6 @@ public class BoardTest {
 		int newY = Integer.parseInt(textY);
 		return newY;
 	}
+	
 
 }
