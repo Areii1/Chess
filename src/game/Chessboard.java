@@ -431,9 +431,9 @@ public class Chessboard implements Serializable{
 public void save(){
 	saveGame(gamepieces);
 }
-/*public void load(){
-	loadGame()
-}*/
+public void load(){
+	gamepieces = loadGame();
+}
 public static void saveGame(ArrayList<Gamepiece> object){
 		
 		
@@ -451,25 +451,27 @@ public static void saveGame(ArrayList<Gamepiece> object){
 			ioe.printStackTrace();
 		}
 	}
-/*public static void loadGame(ArrayList<Gamepiece> object){
+public static ArrayList<Gamepiece> loadGame(){
 		
+		ArrayList<Gamepiece> object = new ArrayList<>();
 		try{
 			FileInputStream fis = new FileInputStream("Test.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			object = (ArrayList<Gamepiece>) ois.readObject();
 			ois.close();
 			fis.close();
+			return object;
 		}
 		catch(IOException i){
 			i.printStackTrace();
-			return;
+			return null;
 		}
 		catch(ClassNotFoundException c){
 			System.out.println("Class not found");
 			c.printStackTrace();
-			return;
+			return null;
 		}
 		
-	}*/
+	}
 	
 }
