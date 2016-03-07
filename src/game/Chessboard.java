@@ -92,117 +92,49 @@ public class Chessboard implements Serializable{
 	public void moveGamepiece(int gamepieceX,int gamepieceY, int newX, int newY) {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
 		
-//PAWN
 		if (gamepiece instanceof Pawn) {
-			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY) ){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			if (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)){
+			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY) ||
+				(gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-//ROOK
 		else if (gamepiece instanceof Rook) {
-			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			if (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			if (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY)) {
+			if ((gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY)) ) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-// BISHOP
 		else if (gamepiece instanceof Bishop) {
-			if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) {
+			if ((gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY) ||
+				(gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)))) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			
-			if (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			if (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			if (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-		}
-// KNIGHT		
+		}	
 		else if (gamepiece instanceof Knight) {
-			if (gamepiece.isMovementTwoNorthOneEast(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			if (gamepiece.isMovementTwoNorthOneWest(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementOneNorthTwoEast(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementOneNorthTwoWest(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementTwoSouthOneEast(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementTwoSouthOneWest(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementOneSouthTwoEast(newX, newY)){
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementOneSouthTwoWest(newX, newY)){
+			if (gamepiece.isMovementTwoNorthOneEast(newX, newY) ||
+				(gamepiece.isMovementTwoNorthOneWest(newX, newY)) ||
+				(gamepiece.isMovementOneNorthTwoEast(newX, newY)) ||
+				(gamepiece.isMovementOneNorthTwoWest(newX, newY)) ||
+				(gamepiece.isMovementTwoSouthOneEast(newX, newY)) ||
+				(gamepiece.isMovementTwoSouthOneWest(newX, newY)) ||
+				(gamepiece.isMovementOneSouthTwoEast(newX, newY)) ||
+				(gamepiece.isMovementOneSouthTwoWest(newX, newY))) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-// QUEEN or KING	
 		else if (gamepiece instanceof Queen || gamepiece instanceof King){
-			
-			if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-
-			if (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY)) {
+			if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY) ||
+				(gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) ||
+				(gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
