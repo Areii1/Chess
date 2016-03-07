@@ -113,5 +113,33 @@ public class KingTest {
 		assertEquals(4, king.getX());
 		assertEquals(1, king.getY());
 	}
+	
+	@Test
+	public void canPlayer1KingCaptureGamepiece() {
+		chessboard.deleteGamepiece(5, 2);
+		chessboard.deleteGamepiece(5, 7);
+		chessboard.moveGamepiece(5, 8, 5, 2);
+		
+		chessboard.moveGamepiece(4, 1, 5, 2);
+		
+		king = chessboard.findGamepiece(5, 2);
+		
+		assertEquals(5, king.getX());
+		assertEquals(2, king.getY());
+	}
+	
+	@Test
+	public void canPlayer2KingCaptureGamepiece() {
+		chessboard.deleteGamepiece(5, 2);
+		chessboard.deleteGamepiece(5, 7);
+		chessboard.moveGamepiece(5, 1, 5, 7);
+		
+		chessboard.moveGamepiece(4, 8, 5, 7);
+		
+		king = chessboard.findGamepiece(5, 7);
+		
+		assertEquals(5, king.getX());
+		assertEquals(7, king.getY());
+	}
 
 }

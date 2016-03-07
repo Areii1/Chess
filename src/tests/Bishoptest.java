@@ -139,10 +139,31 @@ public class Bishoptest {
 		assertEquals(1, bishop.getY());
 	}
 	
+	@Test
+	public void canPlayer1BishopCaptureGamepiece() {
+		chessboard.deleteGamepiece(4, 2);
+		chessboard.deleteGamepiece(4, 7);
+		chessboard.moveGamepiece(3, 1, 7, 5);
+		chessboard.moveGamepiece(7, 5, 5, 7);
+		
+		bishop = chessboard.findGamepiece(5, 7);
+		
+		assertEquals(5, bishop.getX());
+		assertEquals(7, bishop.getY());
+	}
 	
-	
-	
-	
-	
+	@Test
+	public void canPlayer2BishopCaptureGamepiece() {
+		chessboard.deleteGamepiece(4, 2);
+		chessboard.deleteGamepiece(4, 7);
+		
+		chessboard.moveGamepiece(3, 8, 7, 4);
+		chessboard.moveGamepiece(7, 4, 5, 2);
+		
+		bishop = chessboard.findGamepiece(5, 2);
+		
+		assertEquals(5, bishop.getX());
+		assertEquals(2, bishop.getY());
+	}
 
 }

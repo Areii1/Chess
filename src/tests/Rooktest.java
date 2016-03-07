@@ -166,5 +166,32 @@ public class Rooktest {
 		
 		rook = chessboard.findGamepiece(1, 1);
 		
+		//No assertequals??
+	}
+	
+	@Test
+	public void canPlayer1RookCaptureGamepiece() {
+		chessboard.deleteGamepiece(1, 2);
+		chessboard.deleteGamepiece(1, 7);
+		
+		chessboard.moveGamepiece(1, 1, 1, 8);
+		
+		rook = chessboard.findGamepiece(1, 8);
+		
+		assertEquals(1, rook.getX());
+		assertEquals(8, rook.getY());
+	}
+	
+	@Test
+	public void canPlayer2RookCaptureGamepiece() {
+		chessboard.deleteGamepiece(1, 2);
+		chessboard.deleteGamepiece(1, 7);
+		
+		chessboard.moveGamepiece(1, 8, 1, 1);
+		
+		rook = chessboard.findGamepiece(1, 1);
+		
+		assertEquals(1, rook.getX());
+		assertEquals(1, rook.getY());
 	}
 }

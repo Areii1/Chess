@@ -19,9 +19,15 @@ public class BoardTest {
 		
 		Chessboard chessboard = new Chessboard();
 		chessboard.startNewGame();
+		chessboard.deleteGamepiece(1, 2);
+		chessboard.deleteGamepiece(2, 2);
+		chessboard.deleteGamepiece(1, 7);
+		chessboard.deleteGamepiece(2, 7);
+		chessboard.render();
 		
 		
-		/*int counter = 0;
+		
+		int counter = 0;
 		while (counter < 10) {
 		player1Notice();
 		chessboard.moveGamepiece(askForCurrentXCoordinate(), askForCurrentYCoordinate(),
@@ -31,15 +37,17 @@ public class BoardTest {
 		chessboard.moveGamepiece(askForCurrentXCoordinate(), askForCurrentYCoordinate(),
 				askForNewXCoordinate(), askForNewYCoordinate());
 		counter ++;
-		}*/
+		}
 		
 		
-		chessboard.moveGamepiece(1, 2, 1, 3);
+		/*chessboard.moveGamepiece(1, 2, 1, 3);
 		chessboard.save();
 		
 		chessboard.moveGamepiece(1, 3, 1, 4);
-		chessboard.load();
+		chessboard.load();1
 		chessboard.render();
+		
+		*/
 	}
 	
 	public static void player1Notice() {
