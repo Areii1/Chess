@@ -88,239 +88,125 @@ public class Chessboard implements Serializable{
 	 * @param newX
 	 * @param newY
 	 */
+	
 	public void moveGamepiece(int gamepieceX,int gamepieceY, int newX, int newY) {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
 		
 //PAWN
 		if (gamepiece instanceof Pawn) {
-			if (gamepiece.isMovementOneOrTwoNorth(newX, newY)){
-				for (int i = gamepiece.getY() + 1; i < newY; i++) {
-					if (tileHasGamepiece(newX, i)) return;
-				}
+			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY) ){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			if (gamepiece.isMovementOneOrTwoSouth(newX, newY)){
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					if (tileHasGamepiece(newX, i)) return;
-				}
+			if (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
 //ROOK
 		else if (gamepiece instanceof Rook) {
-			// North
-			if (gamepiece.isMovementNorth(newX, newY)) {
-				for (int i = gamepiece.getY() + 1; i < newY; i++) { 
-					if (tileHasGamepiece(newX, i)) return;
-				}
+			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 			
-			// South
-			if (gamepiece.isMovementSouth(newX, newY)) {
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					if (tileHasGamepiece(newX, i)) return;
-				}
+			if (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) {
+				captureOrIgnoreOrMove(gamepiece, newX, newY);
+			}
+
+			if (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 			
-			// West
-			if (gamepiece.isMovementEast(newX, newY)) {
-				for (int i = gamepiece.getX() + 1; i < newX; i++) {
-					if (tileHasGamepiece(i, newY)) return;
-				}
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
-			}
-			
-			// East
-			if (gamepiece.isMovementWest(newX, newY)) {
-				for (int i = gamepiece.getX() - 1; i > newX; i--) {
-					if (tileHasGamepiece(i, newY)) return;
-				}
+			if (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-		
-		
 // BISHOP
 		else if (gamepiece instanceof Bishop) {
-			// northwest
-			// detect if movement is northwest
-			if (gamepiece.isMovementNortheast(newX, newY)) {
-				// check every position in the northwest path for an existing gamepiece.
-				for (int i = gamepiece.getY() + 1; i < newY; i++) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 			
-			// southeast
-			// detect if movement is southeast
-			if (gamepiece.isMovementSouthwest(newX, newY)) {
-				// check every position in the southeast path for an existing gamepiece.
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 			
-			// northeast
-			// detect if movement is northeast
-			if (gamepiece.isMovementNorthwest(newX, newY)) {
-				// check every position in the northeast path for an existing gamepiece.
-				for (int i = gamepiece.getY() + 1; i < newY; i++) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 			
-			// southwest
-			// detect if movement is southwest
-			if (gamepiece.isMovementSoutheast(newX, newY)) {
-				// check every position in the southwest path for an existing gamepiece.
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-		// else, move the gamepiece to new coordinate
 		}
-// Knight		
+// KNIGHT		
 		else if (gamepiece instanceof Knight) {
-			// twoNorthOneEast
-			// detect if movement is twoNorthOneEast
 			if (gamepiece.isMovementTwoNorthOneEast(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// TwoNorthOneWest
-			// detect if movement is TwoNorthOneWest
+			
 			if (gamepiece.isMovementTwoNorthOneWest(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// OneNorthTwoEast
-			// detect if movement is OneNorthTwoEast
+
 			if (gamepiece.isMovementOneNorthTwoEast(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// OneNorthTwoEast
-			// detect if movement is OneNorthTwoEast
+
 			if (gamepiece.isMovementOneNorthTwoWest(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// TwoSouthOneEast
-			// detect if movement is TwoSouthOneEast
+
 			if (gamepiece.isMovementTwoSouthOneEast(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// TwoSouthOneWest
-			// detect if movement is TwoSouthOneWest
+
 			if (gamepiece.isMovementTwoSouthOneWest(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// OneSouthTwoEast
-			// detect if movement is OneSouthTwoEast
+
 			if (gamepiece.isMovementOneSouthTwoEast(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// OneSouthTwoWest
-			// detect if movement is OneSouthTwoWest
+
 			if (gamepiece.isMovementOneSouthTwoWest(newX, newY)){
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-		
-
-// Queen or King	
+// QUEEN or KING	
 		else if (gamepiece instanceof Queen || gamepiece instanceof King){
-			// northwest
-			// detect if movement is northwest
-			if (gamepiece.isMovementNortheast(newX, newY)) {
-				// check every position in the northwest path for an existing gamepiece.
-				for (int i = gamepiece.getY() + 1; i < newY; i++) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
-					moveCounter++;
-				}
+			
+			if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 
-			// southeast
-			// detect if movement is southeast
-			if (gamepiece.isMovementSouthwest(newX, newY)) {
-				// check every position in the southeast path for an existing gamepiece.
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 
-			// northeast
-			// detect if movement is northeast
-			if (gamepiece.isMovementNorthwest(newX, newY)) {
-				// check every position in the northeast path for an existing gamepiece.
-				for (int i = gamepiece.getY() + 1; i < newY; i++) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 
-			// southwest
-			// detect if movement is southwest
-			if (gamepiece.isMovementSoutheast(newX, newY)) {
-				// check every position in the southwest path for an existing gamepiece.
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					int moveCounter = 1;
-					if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return;
-					moveCounter++;
-				}
+			if (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
-			// else, move the gamepiece to new coordinate
-			// North
-			if (gamepiece.isMovementNorth(newX, newY)) {
-				for (int i = gamepiece.getY() + 1; i < newY; i++) { 
-					if (tileHasGamepiece(newX, i)) return;
-				}
+			
+			if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 
-			// South
-			if (gamepiece.isMovementSouth(newX, newY)) {
-				for (int i = gamepiece.getY() - 1; i > newY; i--) {
-					if (tileHasGamepiece(newX, i)) return;
-				}
+			if (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 
-			// West
-			if (gamepiece.isMovementEast(newX, newY)) {
-				for (int i = gamepiece.getX() + 1; i < newX; i++) {
-					if (tileHasGamepiece(i, newY)) return;
-				}
+			if (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 
-			// East
-			if (gamepiece.isMovementWest(newX, newY)) {
-				for (int i = gamepiece.getX() - 1; i > newX; i--) {
-					if (tileHasGamepiece(i, newY)) return;
-				}
+			if (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-}
+	}
 	
 	/**		Method tileHasGamepiece
 	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
@@ -341,11 +227,7 @@ public class Chessboard implements Serializable{
 	private boolean isEnemyUnit(Gamepiece gamepiece, int newX, int newY) {
 		Gamepiece possibleEnemy = findGamepiece(newX, newY);
 		
-		if (gamepiece.getPlayer().getId() == 1 && 
-			possibleEnemy.getPlayer().getId() == 2 ||
-			
-			gamepiece.getPlayer().getId() == 2 && 
-			possibleEnemy.getPlayer().getId() == 1) return true;
+		if (gamepiece.getPlayer().getId() != possibleEnemy.getPlayer().getId()) return true;
 		
 		else return false;
 	}
@@ -381,6 +263,71 @@ public class Chessboard implements Serializable{
 			return;
 		}
 	}
+	
+	private boolean isNorthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getY() + 1; i < newY; i++) { 
+			if (tileHasGamepiece(newX, i)) return true;
+		}
+		return false;
+	}
+	
+	private boolean isSouthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getY() - 1; i > newY; i--) {
+			if (tileHasGamepiece(newX, i)) return true;
+		}
+		return false;
+	}
+	
+	private boolean isWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getX() - 1; i > newX; i--) {
+			if (tileHasGamepiece(i, newY)) return true;
+		}
+		return false;
+	}
+	
+	private boolean isEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getX() + 1; i < newX; i++) {
+			if (tileHasGamepiece(i, newY)) return true;
+		}
+		return false;
+	}
+	
+	private boolean isNorthEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getY() + 1; i < newY; i++) {
+			int moveCounter = 1;
+			if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return true;
+			moveCounter++;
+		}
+		return false;
+	}
+	
+	private boolean isNorthWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getY() + 1; i < newY; i++) {
+			int moveCounter = 1;
+			if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return true;
+			moveCounter++;
+		}
+		return false;
+	}
+	
+	private boolean isSouthWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getY() - 1; i > newY; i--) {
+			int moveCounter = 1;
+			if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return true;
+			moveCounter++;
+		}
+		return false;
+	}
+	
+	private boolean isSouthEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		for (int i = gamepiece.getY() - 1; i > newY; i--) {
+			int moveCounter = 1;
+			if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return true;
+			moveCounter++;
+		}
+		return false;
+	}
+	
 	
 	
 	/** 	Method findGamepiece
