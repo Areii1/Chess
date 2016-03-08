@@ -14,23 +14,25 @@ import gamepieces.*;
 
 public class Chessboard implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	/**
-	 * 
-	 */
+	private boolean gameOver;
 	ArrayList<Gamepiece> gamepieces;
-	
-	
+
 	/** 	Default constructor
 	 * Default constructor for Chessboard class, creates an empty ArrayList of Gamepiece type objects.
 	 */
 	public Chessboard() {
 		gamepieces = new ArrayList<Gamepiece>();
+		gameOver = false;
+	}
+	
+	public boolean isGameOver() {
+		return gameOver;
 	}
 
+	public void setGameOver(boolean gameOver) {
+		this.gameOver = gameOver;
+	}
 	
 	/** 	Method render
 	 * Draws a chessboard, searches every (x, y) coordinate (from 1 to 8) for a gamepiece. If the gamepieces ArrayList has a gamepiece on a given (x, y) coordinate,
