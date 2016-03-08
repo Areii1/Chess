@@ -1,10 +1,10 @@
 package tests;
 
 import javax.swing.JOptionPane;
-import game.*;
+
+import game.Chessboard;
 
 public class BoardTest {
-	
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
 		chessboard.startNewGame();
@@ -33,8 +33,25 @@ public class BoardTest {
 	}
 
 	public static int askForCoordinate(String message) {
-		String userInput = JOptionPane.showInputDialog(null, message);
-		int value = Integer.parseInt(userInput);
+		int value = 0;
+		try {
+			while (value < 1 || value > 8) {
+				String userInput = JOptionPane.showInputDialog(null, message);
+				if (userInput == null || (userInput != null && ("".equals(userInput)))) {
+					return 0;
+				}
+				
+				else {
+					value = Integer.parseInt(userInput);
+				}
+
+			}
+		}
+		catch (NumberFormatException e) {
+			System.out.println("Give a number");
+		}
+		
+		
 		return value;
 	}
 }
