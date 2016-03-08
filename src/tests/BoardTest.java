@@ -7,7 +7,9 @@ import game.Chessboard;
 public class BoardTest {
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
-		chessboard.startNewGame();
+		
+		playerNotice("Do you want to start a new game or load old game?");
+		chessboard.newGame(askNewOrLoad("Press 1 to play a new game or press 2 to load old."));
 		chessboard.render();
 		
 		int counter = 0;
@@ -30,6 +32,25 @@ public class BoardTest {
 	
 	public static void playerNotice(String message) {
 		JOptionPane.showMessageDialog(null, message);
+	}
+	
+	public static int askNewOrLoad(String message){
+		int value = 0;
+		try {
+			while (value < 1 || value > 2){
+				String userInput = JOptionPane.showInputDialog(null, message);
+				if ( userInput == null || (userInput!= null && ("".equals(userInput)))){
+					return 0;
+				}
+				else {
+					value = Integer.parseInt(userInput);
+				}
+			}
+		}
+			catch (NumberFormatException e) {
+				System.out.println("Give a number");
+			}
+			return value;
 	}
 
 	public static int askForCoordinate(String message) {

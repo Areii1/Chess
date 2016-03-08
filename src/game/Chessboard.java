@@ -376,6 +376,15 @@ public class Chessboard implements Serializable {
 		saveGame(gamepieces);
 	}
 	
+	public void newGame(int a){
+		if(a == 1){
+			startNewGame();
+		}
+		if(a == 2){
+			load();
+		}
+	}
+	
 	public void load() {
 		gamepieces = loadGame();
 	}
