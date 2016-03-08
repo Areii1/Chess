@@ -108,6 +108,7 @@ public class Chessboard implements Serializable{
 		else if ((gamepiece instanceof Queen || gamepiece instanceof King) && isQueenOrKingMovementValid(gamepiece, newX, newY)) {
 			captureOrIgnoreOrMove(gamepiece, newX, newY);
 		}
+	
 		render();
 	}
 	
@@ -275,9 +276,19 @@ public class Chessboard implements Serializable{
 	public void deleteGamepiece(int x, int y) {
 		for (int i = 0; i < gamepieces.size(); i++) {
 			if (gamepieces.get(i).getX() == x && gamepieces.get(i).getY() == y) {
+				if (isGamepieceKing(gamepieces.get(i))) {
+					gameOver = true;
+				}
 				gamepieces.remove(i);
 			}
 		}
+	}
+	
+	private boolean isGamepieceKing(Gamepiece gamepiece) {
+		if (gamepiece instanceof King) {
+			return true;
+		}
+		return false;
 	}
 	
 	/**		Method startNewGame

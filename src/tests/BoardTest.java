@@ -9,19 +9,22 @@ public class BoardTest {
 		Chessboard chessboard = new Chessboard();
 		chessboard.startNewGame();
 		chessboard.render();
-
+		
+		int counter = 0;
 		while (!chessboard.isGameOver()) {
-			playerNotice("Player1 it is your turn!");
-			chessboard.moveGamepiece(askForCoordinate("Player1: Give the x value of the gamepiece you want to move"),
-					askForCoordinate("Player1: Give the y value of the gamepiece you want to move"),
-					askForCoordinate("Player1: Assign a new x value for the given gamepiece"),
-					askForCoordinate("Player1: Assign a new x value for the given gamepiece"));;
-			
-			playerNotice("Player2 it is your turn!");
-			chessboard.moveGamepiece(askForCoordinate("Player2: Give the x value of the gamepiece you want to move"),
-					askForCoordinate("Player2: Give the y value of the gamepiece you want to move"),
-					askForCoordinate("Player2: Assign a new x value for the given gamepiece"),
-					askForCoordinate("Player2: Assign a new x value for the given gamepiece"));
+			String player;
+			if (counter % 2 == 0) {
+				player = "player1";
+			}
+			else {
+				player = "player2";
+			}
+			playerNotice(player + ": it is your turn!");
+			chessboard.moveGamepiece(askForCoordinate(player + ": Give the x value of the gamepiece you want to move"),
+					askForCoordinate(player + ": Give the y value of the gamepiece you want to move"),
+					askForCoordinate(player + ": Assign a new x value for the given gamepiece"),
+					askForCoordinate(player + ": Assign a new x value for the given gamepiece"));
+			counter++;
 		}
 	}
 	
