@@ -11,6 +11,7 @@ import game.Gamepiece;
 public class QueenTest {
 	
 	private Chessboard chessboard;
+	
 	private Gamepiece queen;
 	
 	@Before
@@ -21,7 +22,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void canMoveFourNorth(){
+	public void canMoveFourNorth() {
 		chessboard.deleteGamepiece(5, 2);
 		chessboard.moveGamepiece(5, 1, 5, 5);
 		
@@ -33,7 +34,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void canMoveFourSouth(){
+	public void canMoveFourSouth() {
 		chessboard.deleteGamepiece(5, 7);
 		chessboard.moveGamepiece(5, 8, 5, 4);
 		
@@ -45,7 +46,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void canMoveTwoEast(){
+	public void canMoveTwoEast() {
 		chessboard.deleteGamepiece(6, 1);
 		chessboard.deleteGamepiece(7, 1);
 		chessboard.moveGamepiece(5, 1, 7, 1);
@@ -58,7 +59,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void canMoveTwoWest(){
+	public void canMoveTwoWest() {
 		chessboard.deleteGamepiece(4, 1);
 		chessboard.deleteGamepiece(3, 1);
 		chessboard.moveGamepiece(5, 1, 3, 1);
@@ -71,7 +72,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void canMoveThreeNorthEast(){
+	public void canMoveThreeNorthEast() {
 		chessboard.deleteGamepiece(6, 2);
 		chessboard.moveGamepiece(5, 1, 8, 4);
 		
@@ -83,7 +84,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void canMoveThreeNorthWest(){
+	public void canMoveThreeNorthWest() {
 		chessboard.deleteGamepiece(4, 2);
 		chessboard.moveGamepiece(5, 1, 2, 4);
 		
@@ -96,7 +97,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void cantMoveNorthWhenBlocked(){
+	public void cantMoveNorthWhenBlocked() {
 		chessboard.moveGamepiece(5, 1, 5, 4);
 		
 		queen = chessboard.findGamepiece(5, 1);
@@ -107,7 +108,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void cantMoveSouthWhenBlocked(){
+	public void cantMoveSouthWhenBlocked() {
 		chessboard.moveGamepiece(5, 8, 5, 4);
 		
 		queen = chessboard.findGamepiece(5, 8);
@@ -118,7 +119,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void cantMoveWestWhenBlocked(){
+	public void cantMoveWestWhenBlocked() {
 		chessboard.moveGamepiece(5, 1, 2, 1);
 		
 		queen = chessboard.findGamepiece(5, 1);
@@ -129,7 +130,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void cantMoveEastWhenBlocked(){
+	public void cantMoveEastWhenBlocked() {
 		chessboard.moveGamepiece(5, 1, 7, 1);
 		
 		queen = chessboard.findGamepiece(5, 1);
@@ -139,7 +140,7 @@ public class QueenTest {
 	}
 	
 	@Test
-	public void cantMoveNorthEastWhenBlockded(){
+	public void cantMoveNorthEastWhenBlockded() {
 		chessboard.moveGamepiece(5, 1, 7, 3);
 		
 		queen = chessboard.findGamepiece(5, 1);
@@ -150,7 +151,7 @@ public class QueenTest {
 	
 	
 	@Test 
-	public void cantMoveNorthWestWhenBlocked(){
+	public void cantMoveNorthWestWhenBlocked() {
 		chessboard.moveGamepiece(5, 1, 3, 3);
 		
 		queen = chessboard.findGamepiece(5, 1);
@@ -161,7 +162,7 @@ public class QueenTest {
 	
 	
 	@Test
-	public void cantSkipColumn(){
+	public void cantSkipColumn() {
 		chessboard.deleteGamepiece(5, 2);
 		chessboard.deleteGamepiece(6, 2);
 		chessboard.deleteGamepiece(7, 2);

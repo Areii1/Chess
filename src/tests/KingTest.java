@@ -10,6 +10,7 @@ import org.junit.Test;
 public class KingTest {
 	
 	private Chessboard chessboard;
+	
 	private Gamepiece king;
 	
 	@Before
@@ -19,7 +20,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void canMoveNorth(){
+	public void canMoveNorth() {
 		chessboard.deleteGamepiece(4, 2);
 		chessboard.moveGamepiece(4, 1, 4, 2);
 		
@@ -30,7 +31,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void canMoveSouth(){
+	public void canMoveSouth() {
 		chessboard.deleteGamepiece(4, 7);
 		chessboard.moveGamepiece(4, 8, 4, 7);
 		
@@ -41,7 +42,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void canMoveEast(){
+	public void canMoveEast() {
 		chessboard.deleteGamepiece(5, 1);
 		chessboard.moveGamepiece(4, 1, 5, 1);
 		
@@ -52,7 +53,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void canMoveWest(){
+	public void canMoveWest() {
 		chessboard.deleteGamepiece(3, 1);
 		chessboard.moveGamepiece(4, 1, 3, 1);
 		
@@ -63,7 +64,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void canMoveNorthEast(){
+	public void canMoveNorthEast() {
 		chessboard.deleteGamepiece(5, 2);
 		chessboard.moveGamepiece(4, 1, 5, 2);
 		
@@ -74,7 +75,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void canMoveNorthWest(){
+	public void canMoveNorthWest() {
 		chessboard.deleteGamepiece(3, 2);
 		chessboard.moveGamepiece(4, 1, 3, 2);
 		
@@ -85,7 +86,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void cantMoveNorthWhenBlocked(){
+	public void cantMoveNorthWhenBlocked() {
 		chessboard.moveGamepiece(4, 1, 4, 2);
 		
 		king = chessboard.findGamepiece(4, 1);
@@ -95,7 +96,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void cantMoweEastWhenBlocked(){
+	public void cantMoweEastWhenBlocked() {
 		chessboard.moveGamepiece(4, 1, 5, 1);
 		
 		king = chessboard.findGamepiece(4, 1);
@@ -105,7 +106,7 @@ public class KingTest {
 	}
 	
 	@Test
-	public void cantMoweWestWhenBlocked(){
+	public void cantMoweWestWhenBlocked() {
 		chessboard.moveGamepiece(4, 1, 3, 1);
 		
 		king = chessboard.findGamepiece(4, 1);

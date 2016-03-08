@@ -10,6 +10,7 @@ import game.Gamepiece;
 public class KnightTest {
 	
 	private Chessboard chessboard;
+	
 	private Gamepiece knight;
 	
 	
@@ -21,7 +22,7 @@ public class KnightTest {
 	
 	
 	@Test
-	public void canMoveTwoNorthOneWest(){
+	public void canMoveTwoNorthOneWest() {
 		chessboard.moveGamepiece(2, 1, 3, 3);
 		
 		knight = chessboard.findGamepiece(3, 3);
@@ -32,7 +33,7 @@ public class KnightTest {
 	
 	
 	@Test
-	public void canMoveTwoNorthOneEast(){
+	public void canMoveTwoNorthOneEast() {
 		chessboard.moveGamepiece(2, 1, 1, 3);
 		
 		knight = chessboard.findGamepiece(1, 3);
@@ -43,7 +44,7 @@ public class KnightTest {
 	
 	
 	@Test
-	public void canMoveTwoSouthOneWest(){
+	public void canMoveTwoSouthOneWest() {
 		chessboard.moveGamepiece(2, 8, 3, 6);
 		
 		knight = chessboard.findGamepiece(3, 6);
@@ -53,7 +54,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void canMoveTwoSouthOneEast(){
+	public void canMoveTwoSouthOneEast() {
 		chessboard.moveGamepiece(2, 8, 1, 6);
 		
 		knight = chessboard.findGamepiece(1, 6);
@@ -64,7 +65,7 @@ public class KnightTest {
 	
 	
 	@Test
-	public void canMoveTwoWestOneNorth(){
+	public void canMoveTwoWestOneNorth() {
 		chessboard.moveGamepiece(7, 1, 6, 3);
 		chessboard.moveGamepiece(6, 3, 4, 4);
 		
@@ -76,7 +77,7 @@ public class KnightTest {
 	}
 	
 	@Test
-	public void canMoveTwoEastOneNorth(){
+	public void canMoveTwoEastOneNorth() {
 		chessboard.moveGamepiece(7, 1, 6, 3);
 		chessboard.moveGamepiece(6, 3, 4, 4);
 		chessboard.moveGamepiece(4, 4, 6, 5);
@@ -90,7 +91,7 @@ public class KnightTest {
 	
 	
 	@Test
-	public void cantMoveWhenTitleIsBlocked(){
+	public void cantMoveWhenTitleIsBlocked() { 
 		chessboard.moveGamepiece(3, 2, 3, 3);
 		chessboard.moveGamepiece(2, 1, 3, 3);
 		

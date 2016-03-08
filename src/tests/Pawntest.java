@@ -10,6 +10,7 @@ import org.junit.Test;
 public class Pawntest {
 	
 	private Chessboard chessboard;
+	
 	private Gamepiece pawn;
 	
 	@Before

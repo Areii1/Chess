@@ -1,4 +1,5 @@
 package game;
+
 import java.io.FileInputStream;
 
 import java.io.FileOutputStream;
@@ -12,10 +13,12 @@ import java.util.ArrayList;
 import gamepieces.*;
 
 
-public class Chessboard implements Serializable{
-	
+public class Chessboard implements Serializable {
+
 	private static final long serialVersionUID = 1L;
+	
 	private boolean gameOver;
+	
 	ArrayList<Gamepiece> gamepieces;
 
 	/** 	Default constructor
@@ -90,7 +93,7 @@ public class Chessboard implements Serializable{
 	 * @param newX
 	 * @param newY
 	 */
-	public void moveGamepiece(int gamepieceX,int gamepieceY, int newX, int newY) {
+	public void moveGamepiece(int gamepieceX, int gamepieceY, int newX, int newY) {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
 		
 		if (gamepiece instanceof Pawn && isPawnMovementValid(gamepiece, newX, newY)) {
@@ -119,10 +122,10 @@ public class Chessboard implements Serializable{
 	}
 	
 	private boolean isRookMovementValid(Gamepiece gamepiece, int newX, int newY) {
-		if ((gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return true;
+		if ((gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return true;
 		return false;
 	}
 	
@@ -294,7 +297,7 @@ public class Chessboard implements Serializable{
 	/**		Method startNewGame
 	 * 
 	 */
-	public void startNewGame(){
+	public void startNewGame() {
 		Player player1 = new Player(1);
 		Player player2 = new Player(2);
 		
@@ -311,9 +314,9 @@ public class Chessboard implements Serializable{
 		King king = new King(4, 1, player1, 'K');
 		Bishop bishop1 = new Bishop(3, 1, player1, 'B');
 		Bishop bishop2 = new Bishop(6, 1, player1, 'B');
-		Queen queen = new Queen(5,1,player1, 'Q');
-		Knight knight1 = new Knight(2,1,player1, 'N');
-		Knight knight2 = new Knight(7,1,player1, 'N'); 
+		Queen queen = new Queen(5, 1, player1, 'Q');
+		Knight knight1 = new Knight(2, 1, player1, 'N');
+		Knight knight2 = new Knight(7, 1, player1, 'N'); 
 	
 		addToBoard(pawn1);
 		addToBoard(pawn2);
@@ -345,9 +348,9 @@ public class Chessboard implements Serializable{
 		King kingp = new King(4, 8, player2, 'k');
 		Bishop bishop1p = new Bishop(3, 8, player2, 'b');
 		Bishop bishop2p = new Bishop(6, 8, player2, 'b');
-		Queen queenp = new Queen(5,8,player2, 'q');
-		Knight knight1p = new Knight(2,8,player2, 'n');
-		Knight knight2p = new Knight(7,8,player2, 'n');
+		Queen queenp = new Queen(5, 8, player2, 'q');
+		Knight knight1p = new Knight(2, 8, player2, 'n');
+		Knight knight2p = new Knight(7, 8, player2, 'n');
 		
 		addToBoard(pawn1p);
 		addToBoard(pawn2p);
@@ -368,16 +371,17 @@ public class Chessboard implements Serializable{
 		
 		render();
 	}
-	public void save(){
+	
+	public void save() {
 		saveGame(gamepieces);
 	}
 	
-	public void load(){
+	public void load() {
 		gamepieces = loadGame();
 	}
 	
-	public static void saveGame(ArrayList<Gamepiece> object){
-		try{
+	public static void saveGame(ArrayList<Gamepiece> object) {
+		try {
 			FileOutputStream fos = new FileOutputStream("Test.ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(object);
@@ -386,14 +390,14 @@ public class Chessboard implements Serializable{
 			fos.close();
 			System.out.println("Chessboard is saved in Test.ser");
 		}
-		catch(IOException ioe){
+		catch (IOException ioe) {
 			ioe.printStackTrace();
 		}
 	}
 	
-	public static ArrayList<Gamepiece> loadGame(){
+	public static ArrayList<Gamepiece> loadGame() {
 		ArrayList<Gamepiece> object = new ArrayList<>();
-		try{
+		try {
 			FileInputStream fis = new FileInputStream("Test.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
 			object = (ArrayList<Gamepiece>) ois.readObject();
@@ -401,11 +405,11 @@ public class Chessboard implements Serializable{
 			fis.close();
 			return object;
 		}
-		catch(IOException i){
+		catch (IOException i) {
 			i.printStackTrace();
 			return null;
 		}
-		catch(ClassNotFoundException c){
+		catch (ClassNotFoundException c) {
 			System.out.println("Class not found");
 			c.printStackTrace();
 			return null;

@@ -9,6 +9,7 @@ import game.Gamepiece;
 
 public class Bishoptest {
 	private Chessboard chessboard;
+	
 	private Gamepiece bishop;
 	
 	@Before
@@ -18,7 +19,7 @@ public class Bishoptest {
 	}
 	
 	@Test
-	public void canMoveTwoWestTwoNorth () {
+	public void canMoveTwoWestTwoNorth() {
 		chessboard.deleteGamepiece(2, 2);
 		chessboard.moveGamepiece(3, 1, 1, 3);
 		
@@ -29,7 +30,7 @@ public class Bishoptest {
 	}
 	
 	@Test
-	public void canMoveTwoEastTwoNorth () {
+	public void canMoveTwoEastTwoNorth() {
 		chessboard.deleteGamepiece(7, 2);
 		chessboard.moveGamepiece(6, 1, 8, 3);
 		
@@ -40,7 +41,7 @@ public class Bishoptest {
 	}
 	
 	@Test
-	public void canMoveThreeEastThreeSouth () {
+	public void canMoveThreeEastThreeSouth() {
 		chessboard.deleteGamepiece(4, 7);
 		chessboard.moveGamepiece(3, 8, 6, 5);
 		
@@ -52,7 +53,7 @@ public class Bishoptest {
 	
 	
 	@Test
-	public void canMoveFiveWestFiveSouth () {
+	public void canMoveFiveWestFiveSouth() {
 		chessboard.deleteGamepiece(5, 7);
 		chessboard.moveGamepiece(6, 8, 1, 3);
 		
@@ -63,7 +64,7 @@ public class Bishoptest {
 	}
 	
 	@Test
-	public void canNotMoveFourWestFiveSouth () {
+	public void canNotMoveFourWestFiveSouth() {
 		chessboard.deleteGamepiece(5, 7);
 		chessboard.deleteGamepiece(4, 7);
 		chessboard.deleteGamepiece(8, 7);

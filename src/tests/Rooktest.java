@@ -10,6 +10,7 @@ import game.Gamepiece;
 public class Rooktest {
 
 	private Chessboard chessboard;
+	
 	private Gamepiece rook;
 	
 	@Before
@@ -20,7 +21,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canMoveTwoNorth () {
+	public void canMoveTwoNorth() {
 		chessboard.deleteGamepiece(1, 2);
 		chessboard.moveGamepiece(1, 1, 1, 3);
 		
@@ -32,7 +33,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canMoveTwoSouth(){
+	public void canMoveTwoSouth() {
 		chessboard.deleteGamepiece(1, 7);
 		chessboard.moveGamepiece(1, 8, 1, 6);
 		
@@ -63,7 +64,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canMoveSixWest(){
+	public void canMoveSixWest() {
 		chessboard.deleteGamepiece(1, 1);
 		chessboard.deleteGamepiece(2, 1);
 		chessboard.deleteGamepiece(3, 1);
@@ -100,7 +101,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canNotMoveSixEastWhenBlocked(){
+	public void canNotMoveSixEastWhenBlocked() {
 		chessboard.deleteGamepiece(3, 1);
 		chessboard.deleteGamepiece(4, 1);
 		chessboard.deleteGamepiece(5, 1);
@@ -118,7 +119,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canNotMoveFourNorthWhenBlocked(){
+	public void canNotMoveFourNorthWhenBlocked() {
 		chessboard.moveGamepiece(1, 1, 1, 4);
 		
 		rook = chessboard.findGamepiece(1, 1);
@@ -129,7 +130,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canNotMoveFourSouthWhenBlocked(){
+	public void canNotMoveFourSouthWhenBlocked() {
 		chessboard.moveGamepiece(1, 8, 1, 5);
 		
 		rook = chessboard.findGamepiece(1, 8);
@@ -140,7 +141,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canNotMoveDiagonally(){
+	public void canNotMoveDiagonally() {
 		chessboard.deleteGamepiece(2, 1);
 		chessboard.deleteGamepiece(2, 2);
 		chessboard.deleteGamepiece(2, 3);
@@ -156,7 +157,7 @@ public class Rooktest {
 	
 	
 	@Test
-	public void canNotSkipColumn(){
+	public void canNotSkipColumn() {
 		chessboard.deleteGamepiece(2, 1);
 		chessboard.deleteGamepiece(2, 2);
 		chessboard.deleteGamepiece(2, 3);

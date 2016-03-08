@@ -23,14 +23,14 @@ public class Knight extends Gamepiece {
 	}
 	
 	private boolean isRetardMove(int x, int y, int newX, int newY) {
-		if (isMovementTwoNorthOneWest(newX, newY)	|| 
-			isMovementTwoNorthOneEast(newX, newY) ||
-			isMovementOneNorthTwoWest(newX, newY) ||
-			isMovementOneNorthTwoEast(newX, newY) ||
-			isMovementTwoSouthOneWest(newX, newY) ||
-			isMovementTwoSouthOneEast(newX, newY) ||
-			isMovementOneSouthTwoWest(newX, newY) ||
-			isMovementOneSouthTwoEast(newX, newY)) return false;
+		if (isMovementTwoNorthOneWest(newX, newY)
+			|| isMovementTwoNorthOneEast(newX, newY) 
+			|| isMovementOneNorthTwoWest(newX, newY) 
+			|| isMovementOneNorthTwoEast(newX, newY) 
+			|| isMovementTwoSouthOneWest(newX, newY) 
+			|| isMovementTwoSouthOneEast(newX, newY) 
+			|| isMovementOneSouthTwoWest(newX, newY) 
+			|| isMovementOneSouthTwoEast(newX, newY)) return false;
 		return true;
 	}
 }

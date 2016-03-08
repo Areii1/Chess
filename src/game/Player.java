@@ -2,7 +2,7 @@ package game;
 
 import java.io.Serializable;
 
-public class Player implements Serializable{
+public class Player implements Serializable {
 	
 	private int id;
 

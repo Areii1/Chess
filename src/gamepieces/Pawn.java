@@ -19,7 +19,7 @@ public class Pawn extends Gamepiece {
 	 * Changes the (x, y) coordinate of the Pawn if the move is not retarded.
 	 */
 	public void move(int newX, int newY) {
-		if (player.getId() == 1){
+		if (player.getId() == 1) {
 			if (isRetardMovePlayer1(newX, newY)) return;
 
 			if (isPawnAtStartPlayer1() && isMovementOneOrTwoNorth(newX, newY)) {
@@ -29,7 +29,7 @@ public class Pawn extends Gamepiece {
 				super.move(newX, newY);
 			}
 		}
-		if (player.getId() == 2){
+		if (player.getId() == 2) {
 			if (isRetardMovePlayer2(newX, newY)) return;
 
 			if (isPawnAtStartPlayer2() && isMovementOneOrTwoSouth(newX, newY)) {
@@ -50,17 +50,16 @@ public class Pawn extends Gamepiece {
 	 * @return
 	 */
 	private boolean isRetardMovePlayer1(int newX, int newY) {
-		return isAtTheEndPlayer1() || 
-				isMovementSouth(newX, newY) || 
-				isMovementWestOrEast(newX, newY) || 
-				isXDifferenceMoreThanOne(newX);
+		return isAtTheEndPlayer1() 
+				|| isMovementSouth(newX, newY) 
+				|| isMovementWestOrEast(newX, newY) 
+				|| isXDifferenceMoreThanOne(newX);
 	}
+	
 	private boolean isRetardMovePlayer2(int newX, int newY) {
-		return isAtTheEndPlayer2() || 
-				!isMovementSouth(newX, newY) || 
-				isMovementWestOrEast(newX, newY) || 
-				isXDifferenceMoreThanOne(newX);
-	}
-	
-	
+		return isAtTheEndPlayer2() 
+				|| !isMovementSouth(newX, newY) 
+				|| isMovementWestOrEast(newX, newY) 
+				|| isXDifferenceMoreThanOne(newX);
+	}	
 }

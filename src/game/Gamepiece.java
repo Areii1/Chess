@@ -2,13 +2,16 @@ package game;
 
 import java.io.Serializable;
 
-public class Gamepiece implements Serializable{
+public class Gamepiece implements Serializable {
 	/**
 	 * 
 	 */
 	protected int x;
+	
 	protected int y;
+	
 	public Player player;
+	
 	protected char type;
 	
 	/**		CONSTRUCTOR
@@ -122,6 +125,7 @@ public class Gamepiece implements Serializable{
 	 * @param y
 	 * @return
 	 */
+	
 	public boolean isPawnAtStartPlayer2() {
 		return y == 7;
 	}
@@ -356,40 +360,48 @@ public class Gamepiece implements Serializable{
 		if ((newY - y == 1) && ((newX - x) == 0)) return true;
 		return false;
 	}
-	public boolean isMovementOneSouth(int newX, int newY){
+	
+	public boolean isMovementOneSouth(int newX, int newY) {
 		if (newY - y == -1 && newX - x == 0) return true;
 		return false;
 	}
-	public boolean isMovementOneWest(int newX, int newY){
+	
+	public boolean isMovementOneWest(int newX, int newY) {
 		if (newY - y == 0 && newX - x == 1) return true;
 		return false;
 	}
-	public boolean isMovementOneEast(int newX, int newY){
+	
+	public boolean isMovementOneEast(int newX, int newY) {
 		if (newY - y == 0 && newX - x == -1) return true;
 		return false;
 	}
-	public boolean isMovementOneNorthOneEast(int newX, int newY){
+	
+	public boolean isMovementOneNorthOneEast(int newX, int newY) {
 		if (newY - y == 1 && newX - x == 1) return true;
 		return false;
 	}
-	public boolean isMovementOneNorthOneWest(int newX, int newY){
+	
+	public boolean isMovementOneNorthOneWest(int newX, int newY) {
 		if (newY - y == 1 && newX - x == -1) return true;
 		return false;
 	}
-	public boolean isMovementOneSouthOneEast(int newX, int newY){
+	
+	public boolean isMovementOneSouthOneEast(int newX, int newY) {
 		if (newY - y == -1 && newX - x == 1) return true;
 		return false;
 	}
-	public boolean isMovementOneSouthOneWest(int newX, int newY){
+	
+	public boolean isMovementOneSouthOneWest(int newX, int newY) {
 		if (newY - y == -1 && newX - x == -1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneOrTwoNorth(int newX, int newY){
+	public boolean isMovementOneOrTwoNorth(int newX, int newY) {
 		if ((newY - y == 1 || newY - y == 2) && (newX - x == 0)) return true;
 		return false;
 	}
-	public boolean isMovementOneOrTwoSouth(int newX, int newY){
+	
+	public boolean isMovementOneOrTwoSouth(int newX, int newY) {
 		if ((newY - y == -1 || newY - y == -2) && (newX - x == 0)) return true;
 		return false;
 	}
