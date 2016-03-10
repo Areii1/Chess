@@ -267,9 +267,9 @@ public class Chessboard implements Serializable {
 	private void captureWithPawn(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece.getPlayer().getId() == 1) {
 //			PLAYER1 NORTHEAST
-			if (gamepiece.getX() + 1 == newX && gamepiece.getY() + 1 == newY) {
-				if (findGamepiece(gamepiece.getX() + 1, gamepiece.getY() + 1) != null) {
-					if (findGamepiece(gamepiece.getX() + 1, gamepiece.getY() + 1).getPlayer().getId() == 2) {
+			if (gamepiece.isMovementOneNorthOneEast(newX, newY)) {
+				if (findGamepiece(newX, newY) != null) {
+					if (findGamepiece(newX, newY).getPlayer().getId() == 2) {
 						deleteGamepiece(newX, newY);
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
@@ -279,9 +279,9 @@ public class Chessboard implements Serializable {
 			}
 			
 //			PLAYER1 NORTHWEST
-			else if (gamepiece.getX() - 1 == newX && gamepiece.getY() + 1 == newY) {
-				if (findGamepiece(gamepiece.getX() - 1, gamepiece.getY() + 1) != null) {
-					if (findGamepiece(gamepiece.getX() - 1, gamepiece.getY() + 1).getPlayer().getId() == 2) {
+			else if (gamepiece.isMovementOneNorthOneWest(newX, newY)) {
+				if (findGamepiece(newX, newY) != null) {
+					if (findGamepiece(newX, newY).getPlayer().getId() == 2) {
 						deleteGamepiece(newX, newY);
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
@@ -292,9 +292,9 @@ public class Chessboard implements Serializable {
 		}
 			else if (gamepiece.getPlayer().getId() == 2) {
 //			PLAYER2 SOUTHEAST
-			if (gamepiece.getX() + 1 == newX && gamepiece.getY() - 1 == newY) {
-				if (findGamepiece(gamepiece.getX() + 1, gamepiece.getY() - 1) != null) {
-					if (findGamepiece(gamepiece.getX() + 1, gamepiece.getY() - 1).getPlayer().getId() == 1) {
+			if (gamepiece.isMovementOneSouthOneEast(newX, newY)) {
+				if (findGamepiece(newX, newY) != null) {
+					if (findGamepiece(newX, newY).getPlayer().getId() == 1) {
 						deleteGamepiece(newX, newY);
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
@@ -303,9 +303,9 @@ public class Chessboard implements Serializable {
 				}
 			}
 //			PLAYER1 SOUTHWEST
-			else if (gamepiece.getX() - 1 == newX && gamepiece.getY() - 1 == newY) {
-				if (findGamepiece(gamepiece.getX() - 1, gamepiece.getY() - 1) != null) {
-					if (findGamepiece(gamepiece.getX() - 1, gamepiece.getY() - 1).getPlayer().getId() == 1) {
+			else if (gamepiece.isMovementOneSouthOneWest(newX, newY)) {
+				if (findGamepiece(newX, newY) != null) {
+					if (findGamepiece(newX, newY).getPlayer().getId() == 1) {
 						deleteGamepiece(newX, newY);
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
@@ -339,6 +339,12 @@ public class Chessboard implements Serializable {
 				}
 				gamepieces.remove(i);
 			}
+		}
+	}
+	
+	public void deleteAllGamepieces() {
+		for (Gamepiece gamepiece : gamepieces) {
+			gamepieces.remove(gamepiece);
 		}
 	}
 	
