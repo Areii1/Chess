@@ -8,7 +8,7 @@ public class BoardTest {
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
 		
-		playerNotice("Do you want to start a new game or load old game?");
+		playerNotice("Do you want to start a new game or load old game?", "Welcome");
 		chessboard.newGame(askNewOrLoad("Press 1 to play a new game or press 2 to load old."));
 		chessboard.render();
 		
@@ -21,7 +21,7 @@ public class BoardTest {
 			else {
 				player = "player2";
 			}
-			playerNotice(player + ": it is your turn!");
+			playerNotice("It is your turn!", player);
 			chessboard.moveGamepiece(askForCoordinate(player + ": Give the x value of the gamepiece you want to move"),
 					askForCoordinate(player + ": Give the y value of the gamepiece you want to move"),
 					askForCoordinate(player + ": Assign a new x value for the given gamepiece"),
@@ -30,8 +30,8 @@ public class BoardTest {
 		}
 	}
 	
-	public static void playerNotice(String message) {
-		JOptionPane.showMessageDialog(null, message);
+	public static void playerNotice(String message, String player) {
+		JOptionPane.showMessageDialog(null, message, player, JOptionPane.PLAIN_MESSAGE);
 	}
 	
 	public static int askNewOrLoad(String message){
