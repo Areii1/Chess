@@ -97,7 +97,7 @@ public class Chessboard implements Serializable {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
 		
 		if (gamepiece instanceof Pawn) {
-			isPawnMovementOneDiagonalAndCapturingIsAllowed(gamepiece, newX, newY);
+			captureWithPawn(gamepiece, newX, newY);
 			if (gamepiece.getX() == newX && gamepiece.getY() == newY) return;
 			else if (gamepiece instanceof Pawn && isPawnMovementValid(gamepiece, newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
@@ -264,8 +264,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	
-	private void isPawnMovementOneDiagonalAndCapturingIsAllowed(Gamepiece gamepiece, int newX, int newY) {
-		if (!(gamepiece instanceof Pawn)) return;
+	private void captureWithPawn(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece.getPlayer().getId() == 1) {
 //			PLAYER1 NORTHEAST
 			if (gamepiece.getX() + 1 == newX && gamepiece.getY() + 1 == newY) {
@@ -275,7 +274,6 @@ public class Chessboard implements Serializable {
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
 						gamepiece.setY(newY);
-						return;
 					}
 				}
 			}
@@ -288,12 +286,11 @@ public class Chessboard implements Serializable {
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
 						gamepiece.setY(newY);
-						return;
 					}
 				}
 			}
 		}
-		else if (gamepiece.getPlayer().getId() == 2) {
+			else if (gamepiece.getPlayer().getId() == 2) {
 //			PLAYER2 SOUTHEAST
 			if (gamepiece.getX() + 1 == newX && gamepiece.getY() - 1 == newY) {
 				if (findGamepiece(gamepiece.getX() + 1, gamepiece.getY() - 1) != null) {
@@ -302,7 +299,6 @@ public class Chessboard implements Serializable {
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
 						gamepiece.setY(newY);
-						return;
 					}
 				}
 			}
@@ -314,12 +310,10 @@ public class Chessboard implements Serializable {
 						//Skipping normal move call, inorder to not run into Pawn class retardmove check
 						gamepiece.setX(newX);
 						gamepiece.setY(newY);
-						return;
 					}
 				}
 			}
 		}
-		return;
 	}
 	/** 	Method findGamepiece
 	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
