@@ -93,7 +93,7 @@ public class Gamepiece implements Serializable {
 	 * @param y
 	 * @return
 	 */
-	public boolean isAtTheEndPlayer1() {
+	protected boolean isAtTheEndPlayer1() {
 		return y == 8;
 	}
 	
@@ -104,7 +104,7 @@ public class Gamepiece implements Serializable {
 	 * @param y
 	 * @return
 	 */
-	public boolean isAtTheEndPlayer2() {
+	protected boolean isAtTheEndPlayer2() {
 		return y == 1;
 	}
 	
@@ -115,7 +115,7 @@ public class Gamepiece implements Serializable {
 	 * @param y
 	 * @return
 	 */
-	public boolean isPawnAtStartPlayer1() {
+	protected boolean isPawnAtStartPlayer1() {
 		return y == 2;
 	}
 	/**		Method isPawnAtStartPlayer2
@@ -126,7 +126,7 @@ public class Gamepiece implements Serializable {
 	 * @return
 	 */
 	
-	public boolean isPawnAtStartPlayer2() {
+	protected boolean isPawnAtStartPlayer2() {
 		return y == 7;
 	}
 	
@@ -139,7 +139,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementWestOrEast(int newX, int newY) {
+	protected boolean isMovementWestOrEast(int newX, int newY) {
 		return x - newX != 0 && y == newY;
 	}
 	
@@ -152,7 +152,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isXAndYChanged(int newX, int newY) {
+	protected boolean isXAndYChanged(int newX, int newY) {
 		return x - newX != 0 && y - newY != 0;
 	}
 	
@@ -166,7 +166,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isXAndYEvenChange(int newX, int newY) {
+	protected boolean isXAndYEvenChange(int newX, int newY) {
 		return (x - newX == y - newY) || (x - newX == -(y - newY));
 	}
 
@@ -178,7 +178,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return 
 	 */
-	public boolean isMovementNortheast(int newX, int newY) {
+	protected boolean isMovementNortheast(int newX, int newY) {
 		if (newY - y == newX - x && (newY - y > 0)) return true;
 		return false;
 	}
@@ -191,7 +191,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementSouthwest(int newX, int newY) {
+	protected boolean isMovementSouthwest(int newX, int newY) {
 		if (newY - y == newX - x && (newY - y < 0)) return true;
 		return false;
 	}
@@ -204,7 +204,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementNorthwest(int newX, int newY) {
+	protected boolean isMovementNorthwest(int newX, int newY) {
 		if ((newY - y) + (newX - x) == 0 && (newY - y > 0)) return true;
 		return false;
 	}
@@ -217,7 +217,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementSoutheast(int newX, int newY) {
+	protected boolean isMovementSoutheast(int newX, int newY) {
 		if ((newY - y) + (newX - x) == 0 && (newY - y < 0)) return true;
 		return false;
 	}
@@ -232,7 +232,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementNorth(int newX, int newY) {
+	protected boolean isMovementNorth(int newX, int newY) {
 		if ((((newY - y) > 0) && ((newX - x) == 0))) {
 			return true;
 		}
@@ -249,7 +249,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementSouth(int newX, int newY) {
+	protected boolean isMovementSouth(int newX, int newY) {
 		if ((((newY - y) < 0) && ((newX - x) == 0))) {
 			return true;
 		}
@@ -265,7 +265,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementWest(int newX, int newY) {
+	protected boolean isMovementWest(int newX, int newY) {
 		if ((((newY - y) == 0) && ((newX - x) < 0))) {
 			return true;
 		}
@@ -282,7 +282,7 @@ public class Gamepiece implements Serializable {
 	 * @param newY
 	 * @return
 	 */
-	public boolean isMovementEast(int newX, int newY) {
+	protected boolean isMovementEast(int newX, int newY) {
 		if ((((newY - y) == 0) && ((newX - x) > 0))) {
 			return true;
 		}
@@ -299,42 +299,42 @@ public class Gamepiece implements Serializable {
 	 * @return
 	 */
 	
-	public boolean isMovementTwoNorthOneEast(int newX, int newY) {
+	protected boolean isMovementTwoNorthOneEast(int newX, int newY) {
 		if ((((newY - y) == 2) && ((newX - x) == 1))) return true;
 		return false;
 	}
 	
-	public boolean isMovementTwoNorthOneWest(int newX, int newY) {
+	protected boolean isMovementTwoNorthOneWest(int newX, int newY) {
 		if (((newY - y) == 2) && ((newX - x) == -1)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneNorthTwoWest(int newX, int newY) {
+	protected boolean isMovementOneNorthTwoWest(int newX, int newY) {
 		if (((newY - y) == 1) && ((newX - x) == -2)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneNorthTwoEast(int newX, int newY) {
+	protected boolean isMovementOneNorthTwoEast(int newX, int newY) {
 		if (((newY - y) == 1) && ((newX - x) == 2)) return true;
 		return false;
 	}
 	
-	public boolean isMovementTwoSouthOneEast(int newX, int newY) {
+	protected boolean isMovementTwoSouthOneEast(int newX, int newY) {
 		if (((newY - y) == -2) && ((newX - x) == 1)) return true;
 		return false;
 	}
 	
-	public boolean isMovementTwoSouthOneWest(int newX, int newY) {
+	protected boolean isMovementTwoSouthOneWest(int newX, int newY) {
 		if (((newY - y) == -2) && ((newX - x) == -1)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouthTwoEast(int newX, int newY) {
+	protected boolean isMovementOneSouthTwoEast(int newX, int newY) {
 		if (((newY - y) == -1) && ((newX - x) == 2)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouthTwoWest(int newX, int newY) {
+	protected boolean isMovementOneSouthTwoWest(int newX, int newY) {
 		if (((newY - y) == -1) && ((newX - x) == -2)) return true;
 		return false;
 	}
@@ -343,61 +343,61 @@ public class Gamepiece implements Serializable {
 	
 	
 	
-	public boolean isMovementOneNorth(int newX, int newY) {
+	protected boolean isMovementOneNorth(int newX, int newY) {
 		if ((newY - y == 1) && ((newX - x) == 0)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouth(int newX, int newY) {
+	protected boolean isMovementOneSouth(int newX, int newY) {
 		if (newY - y == -1 && newX - x == 0) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneWest(int newX, int newY) {
+	protected boolean isMovementOneWest(int newX, int newY) {
 		if (newY - y == 0 && newX - x == 1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneEast(int newX, int newY) {
+	protected boolean isMovementOneEast(int newX, int newY) {
 		if (newY - y == 0 && newX - x == -1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneNorthOneEast(int newX, int newY) {
+	protected boolean isMovementOneNorthOneEast(int newX, int newY) {
 		if (newY - y == 1 && newX - x == 1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneNorthOneWest(int newX, int newY) {
+	protected boolean isMovementOneNorthOneWest(int newX, int newY) {
 		if (newY - y == 1 && newX - x == -1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouthOneEast(int newX, int newY) {
+	protected boolean isMovementOneSouthOneEast(int newX, int newY) {
 		if (newY - y == -1 && newX - x == 1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneSouthOneWest(int newX, int newY) {
+	protected boolean isMovementOneSouthOneWest(int newX, int newY) {
 		if (newY - y == -1 && newX - x == -1) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneOrTwoNorth(int newX, int newY) {
+	protected boolean isMovementOneOrTwoNorth(int newX, int newY) {
 		if ((newY - y == 1 || newY - y == 2) && (newX - x == 0)) return true;
 		return false;
 	}
 	
-	public boolean isMovementOneOrTwoSouth(int newX, int newY) {
+	protected boolean isMovementOneOrTwoSouth(int newX, int newY) {
 		if ((newY - y == -1 || newY - y == -2) && (newX - x == 0)) return true;
 		return false;
 	}
 	
-	public boolean isSouthMovementOverTwo(int newX, int newY) {
+	protected boolean isSouthMovementOverTwo(int newX, int newY) {
 		return newX - x == 0 && newY - y < -2;
 	}
 	
-	public boolean isNorthMovementOverTwo(int newX, int newY) {
+	protected boolean isNorthMovementOverTwo(int newX, int newY) {
 		return newX - x == 0 && newY - y > 2;
 	}
 
