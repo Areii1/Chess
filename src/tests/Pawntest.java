@@ -199,4 +199,21 @@ public class Pawntest {
 		assertEquals(5, pawn.getY());
 	}
 	
+	@Ignore
+	public void canBePromotedPlayer1() {
+		chessboard.deleteGamepiece(1, 7);
+		chessboard.deleteGamepiece(1, 8);
+		chessboard.moveGamepiece(1, 2, 1, 4);
+		chessboard.moveGamepiece(1, 4, 1, 5);
+		chessboard.moveGamepiece(1, 6, 1, 7);
+		chessboard.moveGamepiece(1, 6, 1, 8);
+		
+		pawn = chessboard.findGamepiece(1, 8);
+		
+		assertEquals(1, pawn.getX());
+		assertEquals(8, pawn.getY());
+		
+		
+	}
+	
 }
