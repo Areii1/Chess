@@ -128,7 +128,6 @@ public class Chessboard implements Serializable {
 				return captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-		render();
 		return false;
 	}
 	
@@ -192,6 +191,7 @@ public class Chessboard implements Serializable {
 	private boolean captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
 		if (isTileEmpty(newX, newY)) {
 			gamepiece.move(newX, newY);
+			render();
 			return true;
 		}
 		else if (hasTileOpponent(gamepiece, newX, newY)) {
@@ -199,12 +199,14 @@ public class Chessboard implements Serializable {
 				if (!gamepiece.isMovementOneOrTwoNorth(newX, newY) && !gamepiece.isMovementOneOrTwoSouth(newX, newY)) {
 					deleteGamepiece(newX, newY);
 					gamepiece.move(newX, newY);
+					render();
 					return true;
 				}
 			}
 			else {
 				deleteGamepiece(newX, newY);
 				gamepiece.move(newX, newY);
+				render();
 				return true;
 			}
 		}
