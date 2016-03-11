@@ -22,11 +22,17 @@ public class BoardTest {
 				player = "player2";
 			}
 			playerNotice("It is your turn!", player);
-			chessboard.moveGamepiece(askForCoordinate(player + ": Give the x value of the gamepiece you want to move"),
-					askForCoordinate(player + ": Give the y value of the gamepiece you want to move"),
-					askForCoordinate(player + ": Assign a new x value for the given gamepiece"),
-					askForCoordinate(player + ": Assign a new x value for the given gamepiece"));
+			boolean moves = false; 
+			while(moves==false){
+					int x = askForCoordinate(player + ": Give the x value of the gamepiece you want to move");
+					int y = askForCoordinate(player + ": Give the y value of the gamepiece you want to move");
+					int newx = askForCoordinate(player + ": Assign a new x value for the given gamepiece");
+					int newy = askForCoordinate(player + ": Assign a new y value for the given gamepiece");
+			moves = chessboard.moveGamepiece(x, y, newx, newy);
+			}
 			counter++;
+			
+			
 		}
 	}
 	

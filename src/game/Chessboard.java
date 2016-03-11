@@ -89,46 +89,47 @@ public class Chessboard implements Serializable {
 	 * @param newX
 	 * @param newY
 	 */
-	public void moveGamepiece(int gamepieceX, int gamepieceY, int newX, int newY) {
+	public boolean moveGamepiece(int gamepieceX, int gamepieceY, int newX, int newY) {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
 		
 		if (gamepiece instanceof Pawn) {
 			Pawn pawn = (Pawn) gamepiece;
 			if (!pawn.isRetardMove(newX, newY) && !isPawnMovementBlocked(pawn, newX, newY)) {
-				captureOrIgnoreOrMove(pawn, newX, newY);
+				return captureOrIgnoreOrMove(pawn, newX, newY);
 			}
 		}
 		else if (gamepiece instanceof Rook) {
 			Rook rook = (Rook) gamepiece;
 			if (!rook.isRetardMove(newX, newY) && !isRookMovementBlocked(rook, newX, newY)) {
-				captureOrIgnoreOrMove(rook, newX, newY);
+				return captureOrIgnoreOrMove(rook, newX, newY);
 			}
 		}
 		else if (gamepiece instanceof Bishop) {
 			Bishop bishop = (Bishop) gamepiece;
 			if (!bishop.isRetardMove(newX, newY) && !isBishopMovementBlocked(bishop, newX, newY)) {
-				captureOrIgnoreOrMove(bishop, newX, newY);
+				return captureOrIgnoreOrMove(bishop, newX, newY);
 			}
 		}
 		else if (gamepiece instanceof Knight) {
 			Knight knight = (Knight) gamepiece;
 			if (!knight.isRetardMove(newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
+				return captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
 		else if (gamepiece instanceof Queen) {
 			Queen queen = (Queen) gamepiece;
 			if (!queen.isRetardMove(newX, newY) && !isQueenMovementBlocked(gamepiece, newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
+				return captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
 		else if (gamepiece instanceof King) {
 			King king = (King) gamepiece;
 			if (!king.isRetardMove(newX, newY)) {
-				captureOrIgnoreOrMove(gamepiece, newX, newY);
+				return captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
 		render();
+		return false;
 	}
 	
 	private boolean isPawnMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
@@ -188,22 +189,26 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	
-	private void captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
+	private boolean captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
 		if (isTileEmpty(newX, newY)) {
 			gamepiece.move(newX, newY);
+			return true;
 		}
 		else if (hasTileOpponent(gamepiece, newX, newY)) {
 			if (gamepiece instanceof Pawn) {
 				if (!gamepiece.isMovementOneOrTwoNorth(newX, newY) && !gamepiece.isMovementOneOrTwoSouth(newX, newY)) {
 					deleteGamepiece(newX, newY);
 					gamepiece.move(newX, newY);
+					return true;
 				}
 			}
 			else {
 				deleteGamepiece(newX, newY);
 				gamepiece.move(newX, newY);
+				return true;
 			}
 		}
+		return false;
 	}
 	
 	private boolean isNorthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
