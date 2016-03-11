@@ -21,7 +21,7 @@ public class Chessboard implements Serializable {
 	
 	ArrayList<Gamepiece> gamepieces;
 
-	/** 	Default constructor
+	/** 	
 	 * Default constructor for Chessboard class, creates an empty ArrayList of Gamepiece type objects.
 	 */
 	public Chessboard() {
@@ -37,11 +37,8 @@ public class Chessboard implements Serializable {
 		this.gameOver = gameOver;
 	}
 	
-	/** 	Method render
-	 * Draws a chessboard, searches every (x, y) coordinate (from 1 to 8) for a gamepiece. If the gamepieces ArrayList has a gamepiece on a given (x, y) coordinate,
-	 * it prints out the type of the gamepiece on the given coordinate. If no gamepiece is present on a given coordinate, the method prints an empty 'o' on the spot.
-	 * A = PAWN, B = ROOK, C = KNIGHT, D = BISHOP, E = KING, F = QUEEN.
-	 * no parameters
+	/** 	
+	 * Draws a chessboard 
 	*/
 	public void render() {
 		int rowCounter = 8;
@@ -59,7 +56,7 @@ public class Chessboard implements Serializable {
 		System.out.println("");
 	}
 	
-	/**		Method addToBoard
+	/**		
 	 * adds a gamepiece to gamepieces ArrayList
 	 * @param gamepiece
 	 */
@@ -67,11 +64,11 @@ public class Chessboard implements Serializable {
 		gamepieces.add(gamepiece);
 	}
 	
-	/**		Method renderGamepiece
+	/**		
 	 * If the given (x,y) coordinate matches, any of the gamepieces (x,y) coordinates it prints out the type of the gamepiece on the board (for example 'A').
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return char
 	 */
 	private char renderGamepiece(int x, int y) {
 		for (Gamepiece gamepiece : gamepieces) {
@@ -82,12 +79,13 @@ public class Chessboard implements Serializable {
 		return 'o';
 	}
 	
-	/**		Method moveGamepiece
+	/**		
 	 * Changes the (x,y) coordinate of a gamepiece to a new coordinate (x,y), if and only if there are no existing gamepieces on that new coordinate
 	 * or on the path to that new coordinate. The condition varies between gamepieces (a rook moves with a different path than a bishop for example).
-	 * @param gamepiece
+	 * @param gamepieceX
 	 * @param newX
 	 * @param newY
+	 * @return boolean
 	 */
 	public boolean moveGamepiece(int gamepieceX, int gamepieceY, int newX, int newY) {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
@@ -130,14 +128,26 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
 	private boolean isPawnMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if (!gamepiece.isMovementNorth(newX, newY) && !gamepiece.isMovementSouth(newX, newY)) return false;
 		if ((gamepiece.isMovementOneOrTwoNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY))
 			|| (gamepiece.isMovementOneOrTwoSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) return false;
 		return true;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isRookMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if ((gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) 
 			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) 
@@ -145,7 +155,13 @@ public class Chessboard implements Serializable {
 			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return false;
 		return true;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return
+	 */
 	private boolean isBishopMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if ((gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) 
 			|| (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) 
@@ -153,7 +169,13 @@ public class Chessboard implements Serializable {
 			|| (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)))) return false;
 		return true;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isQueenMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY) 
 			|| (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) 
@@ -171,7 +193,7 @@ public class Chessboard implements Serializable {
 	 * returns true if any coordinates match, returns false if none match.
 	 * @param x
 	 * @param y
-	 * @return
+	 * @return boolean
 	 */
 	private boolean tileHasGamepiece(int x, int y) {
 		for (Gamepiece gamepiece : gamepieces) {
@@ -181,7 +203,13 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean hasTileOpponent(Gamepiece gamepiece, int newX, int newY) {
 		Gamepiece possibleEnemy = findGamepiece(newX, newY);
 		
@@ -196,7 +224,13 @@ public class Chessboard implements Serializable {
 			|| (gamepiece.isMovementSoutheast(newX, newY))
 			|| (gamepiece.isMovementSouthwest(newX, newY)));
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
 		if (isTileEmpty(newX, newY)) {
 			if (isPawnMovingDiagonally(gamepiece, newX, newY)) {
@@ -224,35 +258,65 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isNorthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getY() + 1; i < newY; i++) { 
 			if (tileHasGamepiece(newX, i)) return true;
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isSouthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getY() - 1; i > newY; i--) {
 			if (tileHasGamepiece(newX, i)) return true;
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getX() - 1; i > newX; i--) {
 			if (tileHasGamepiece(i, newY)) return true;
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getX() + 1; i < newX; i++) {
 			if (tileHasGamepiece(i, newY)) return true;
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isNorthEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getY() + 1; i < newY; i++) {
 			int moveCounter = 1;
@@ -261,7 +325,13 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isNorthWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getY() + 1; i < newY; i++) {
 			int moveCounter = 1;
@@ -270,7 +340,13 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
+	/**
+	 * 
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isSouthWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getY() - 1; i > newY; i--) {
 			int moveCounter = 1;
@@ -288,7 +364,7 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	/** 	Method findGamepiece
+	/** 	
 	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
 	 * returns the found gamepiece, if not found then return null
 	 * @param x
