@@ -178,7 +178,7 @@ public class Pawntest {
 	}
 	
 	@Test
-	public void canCaptureTwoNorthFromStartPlayer1() {
+	public void canNotCaptureTwoNorthFromStartPlayer1() {
 		chessboard.moveGamepiece(1, 7, 1, 5);
 		chessboard.moveGamepiece(1, 5, 1, 4);
 		chessboard.moveGamepiece(1, 2, 1, 4);
@@ -190,7 +190,7 @@ public class Pawntest {
 	}
 	
 	@Test
-	public void canCaptureTwoSouthFromStartPlayer2() {
+	public void canNotCaptureTwoSouthFromStartPlayer2() {
 		chessboard.moveGamepiece(1, 2, 1, 4);
 		chessboard.moveGamepiece(1, 4, 1, 5);
 		chessboard.moveGamepiece(1, 7, 1, 5);
@@ -201,5 +201,99 @@ public class Pawntest {
 		assertEquals(7, newPawn.getY());
 	}
 
+	@Test
+	public void canCaptureOneNorthOneWestInMidPosition(){
+		chessboard.moveGamepiece(5, 2, 5, 4);
+		chessboard.moveGamepiece(4, 7, 4, 5);
+		Gamepiece oldPawn = chessboard.findGamepiece(5, 4);
+		chessboard.moveGamepiece(5, 4, 4, 5);
+		
+		newPawn = chessboard.findGamepiece(4, 5);
+		
+		assertEquals(newPawn, oldPawn);
+	}
 	
+	@Test
+	public void canCaptureOneSouthOneWestInMidPosition(){
+		chessboard.moveGamepiece(5, 2, 5, 4);
+		chessboard.moveGamepiece(4, 7, 4, 5);
+		chessboard.moveGamepiece(5, 4, 4, 5);
+		chessboard.moveGamepiece(5, 7, 5, 6);
+		Gamepiece oldPawn = chessboard.findGamepiece(5, 6);
+		chessboard.moveGamepiece(5, 6, 4, 5);
+		
+		newPawn = chessboard.findGamepiece(4, 5);
+		
+		assertEquals(newPawn, oldPawn);
+	}
+	
+	@Test
+	public void canNotCaptureFriendlyOneSouth(){
+		Gamepiece oldPawn = chessboard.findGamepiece(1, 2);
+		chessboard.moveGamepiece(1, 2, 1, 1);
+		
+		newPawn = chessboard.findGamepiece(1, 2);
+		
+		assertEquals(newPawn, oldPawn);
+	}
+	
+	@Test
+	public void canNotCaptureFriendlyOneSouthOneEast(){
+		Gamepiece oldPawn = chessboard.findGamepiece(1, 2);
+		chessboard.moveGamepiece(1, 2, 2, 1);
+		
+		newPawn = chessboard.findGamepiece(1, 2);
+		
+		assertEquals(newPawn, oldPawn);
+	}
+	
+	@Test
+	public void canNotCaptureFriendlyOneNorth(){
+		Gamepiece oldPawn = chessboard.findGamepiece(1, 7);
+		chessboard.moveGamepiece(1, 7, 1, 8);
+		
+		newPawn = chessboard.findGamepiece(1, 7);
+		
+		assertEquals(newPawn, oldPawn);
+	}
+	
+	@Test
+	public void canNotCaptureFriendlyOneNorthOneWest(){
+		Gamepiece oldPawn = chessboard.findGamepiece(1, 7);
+		chessboard.moveGamepiece(1, 7, 2, 8);
+		
+		newPawn = chessboard.findGamepiece(1, 7);
+		
+		assertEquals(newPawn, oldPawn);
+		
+	}
+	
+	@Test
+	public void canNotCaptureOverFriendly(){
+		chessboard.moveGamepiece(1, 2, 1, 4);
+		
+		
+		chessboard.moveGamepiece(2, 2, 2, 4);
+		chessboard.moveGamepiece(2, 4, 2, 5);
+		
+		chessboard.moveGamepiece(3, 7, 3, 6);
+		Gamepiece oldPawn = chessboard.findGamepiece(1, 4);
+	
+		chessboard.moveGamepiece(1, 4, 3, 6);
+		
+		newPawn = chessboard.findGamepiece(1, 4);
+		
+		assertEquals(newPawn, oldPawn);
+	}
+	
+	@Test
+	public void canNotCaptureFromsStartPosition(){
+		Gamepiece oldPawn = chessboard.findGamepiece(1, 2);
+		chessboard.moveGamepiece(1, 2, 6, 7);
+		
+		
+		newPawn = chessboard.findGamepiece(1, 2);
+		
+		assertEquals(newPawn, oldPawn);
+	}
 }
