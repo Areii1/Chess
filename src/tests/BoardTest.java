@@ -7,7 +7,6 @@ import game.Chessboard;
 public class BoardTest {
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
-		
 		playerNotice("Do you want to start a new game or load old game?", "Welcome");
 		chessboard.newGame(askNewOrLoad("Press 1 to play a new game or press 2 to load old."));
 		chessboard.render();
@@ -24,6 +23,7 @@ public class BoardTest {
 			playerNotice("It is your turn!", player);
 			boolean gamepieceMoved = false; 
 			while (!gamepieceMoved) {
+				
 				int x = askForCoordinate(player + ": Give the x value of the gamepiece you want to move");
 				int y = askForCoordinate(player + ": Give the y value of the gamepiece you want to move");
 				int newx = askForCoordinate(player + ": Assign a new x value for the given gamepiece");
@@ -37,6 +37,7 @@ public class BoardTest {
 				}
 			}
 			counter++;
+			chessboard.save();
 		}
 	}
 	
@@ -62,21 +63,25 @@ public class BoardTest {
 			}
 			return value;
 	}
+	
 
 	public static int askForCoordinate(String message) {
 		int value = 0;
+		
 		try {
 			while (value < 1 || value > 8) {
 				String userInput = JOptionPane.showInputDialog(null, message);
 				if (userInput == null || (userInput != null && ("".equals(userInput)))) {
 					return 0;
 				}
-				
-				else {
+					if(Integer.parseInt(userInput)== 15){
+						System.exit(0);
+					}
+					else{
 					value = Integer.parseInt(userInput);
+					}
 				}
 
-			}
 		}
 		catch (NumberFormatException e) {
 			System.out.println("Give a number");
