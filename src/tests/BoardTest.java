@@ -28,7 +28,13 @@ public class BoardTest {
 				int y = askForCoordinate(player + ": Give the y value of the gamepiece you want to move");
 				int newx = askForCoordinate(player + ": Assign a new x value for the given gamepiece");
 				int newy = askForCoordinate(player + ": Assign a new y value for the given gamepiece");
+				
+				if ((chessboard.findGamepiece(x, y) != null
+					&& ((chessboard.findGamepiece(x, y).getPlayer().getId() == 1 && (counter % 2 == 0)) 
+					|| (chessboard.findGamepiece(x, y).getPlayer().getId() == 2 && (counter % 2 == 1)))))
+				{
 				gamepieceMoved = chessboard.moveGamepiece(x, y, newx, newy);
+				}
 			}
 			counter++;
 		}
