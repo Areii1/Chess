@@ -15,17 +15,6 @@ public class Rook extends Gamepiece {
 		super(x, y, player, type);
 	}
 	
-	
-	/**		Method move
-	 * Changes the (x,y) coordinate of the rook if the move is not retarded.
-	 */
-	public void move(int newX, int newY) {
-		if (isRetardMove(newX, newY)) return;
-		
-		super.move(newX, newY);
-	}
-	
-	
 	/**		Method isRetardMove
 	 * returns true if an illegal move was made, a rook can only move horizontally and vertically. Returns false if the move was legal.
 	 * @param x
@@ -34,7 +23,7 @@ public class Rook extends Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	private boolean isRetardMove(int newX, int newY) {
+	public boolean isRetardMove(int newX, int newY) {
 		return isXAndYChanged(newX, newY);
 	}
 }

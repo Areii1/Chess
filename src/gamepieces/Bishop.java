@@ -13,17 +13,6 @@ public class Bishop extends Gamepiece {
 		super(x, y, player, type);
 	}
 	
-	
-	/**		Method move
-	 * Changes the (x,y) coordinate of the bishop if the move is not retarded.
-	 */
-	public void move(int newX, int newY) {
-		if (isRetardMove(newX, newY)) return;
-		
-		super.move(newX, newY);
-	}
-	
-	
 	/**		Method isRetardMove
 	 * returns true if an illegal move was made, a bishop can only move diagonally. Returns false if the move was legal. 
 	 * @param x
@@ -32,7 +21,7 @@ public class Bishop extends Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	private boolean isRetardMove(int newX, int newY) {
+	public boolean isRetardMove(int newX, int newY) {
 		return !isXAndYEvenChange(newX, newY);
 	}
 }

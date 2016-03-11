@@ -8,16 +8,9 @@ public class Queen extends Gamepiece  {
 		super(x, y, player, type);
 	}
 	
-	public void move(int newX, int newY) {
-		if (isRetardMove(newX, newY)) return;
-		
-		super.move(newX, newY);
-		
-	}
-	
-	private boolean isRetardMove(int newX, int newY) {
-		return (!isXAndYEvenChange(newX, newY) 
-				&& isXAndYChanged(newX, newY));
+	public boolean isRetardMove(int newX, int newY) {
+		return !isXAndYEvenChange(newX, newY) 
+				&& isXAndYChanged(newX, newY);
 	}
 
 }

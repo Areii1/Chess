@@ -14,16 +14,8 @@ public class King extends Gamepiece {
 	public King(int x, int y, Player player, char type) {
 		super(x, y, player, type);
 	}
-
 	
-	public void move(int newX, int newY) {
-		if (isRetardMove(newX, newY)) return;
-		
-		super.move(newX, newY);
-		
-	}
-	
-	private boolean isRetardMove(int newX, int newY) {
+	public boolean isRetardMove(int newX, int newY) {
 			if (isMovementOneNorth(newX, newY)
 				|| isMovementOneSouth(newX, newY)
 				|| isMovementOneWest(newX, newY)

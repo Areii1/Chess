@@ -143,19 +143,6 @@ public class Gamepiece implements Serializable {
 		return x - newX != 0 && y == newY;
 	}
 	
-	
-	/**		Method isXDifferenceMoreThanOne
-	 * returns true if detected Eastward or westward movement is greater than one.
-	 * Useful for Rook class.
-	 * @param x
-	 * @param newX
-	 * @return
-	 */
-	public boolean isXDifferenceMoreThanOne(int newX) {
-		return x - newX > 1 || x - newX < -1; 				
-	}
-	
-	
 	/**		Method isXAndYChanged
 	 * returns true if both vertical or horizontal movement is present, returns false if not.
 	 * Useful for Bishop class.
@@ -404,6 +391,14 @@ public class Gamepiece implements Serializable {
 	public boolean isMovementOneOrTwoSouth(int newX, int newY) {
 		if ((newY - y == -1 || newY - y == -2) && (newX - x == 0)) return true;
 		return false;
+	}
+	
+	public boolean isSouthMovementOverTwo(int newX, int newY) {
+		return newX - x == 0 && newY - y < -2;
+	}
+	
+	public boolean isNorthMovementOverTwo(int newX, int newY) {
+		return newX - x == 0 && newY - y > 2;
 	}
 
 }

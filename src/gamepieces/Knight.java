@@ -15,14 +15,7 @@ public class Knight extends Gamepiece {
 		super(x, y, player, type);
 	}
 	
-	
-	public void move(int newX, int newY) {
-		if (isRetardMove(x, y, newX, newY)) return;
-		
-		super.move(newX, newY);
-	}
-	
-	private boolean isRetardMove(int x, int y, int newX, int newY) {
+	public boolean isRetardMove(int newX, int newY) {
 		if (isMovementTwoNorthOneWest(newX, newY)
 			|| isMovementTwoNorthOneEast(newX, newY) 
 			|| isMovementOneNorthTwoWest(newX, newY) 

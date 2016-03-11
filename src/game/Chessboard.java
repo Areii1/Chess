@@ -46,14 +46,11 @@ public class Chessboard implements Serializable {
 	public void render() {
 		int rowCounter = 8;
 		
-		
 		for (int y = 8; y >= 1; y--) {
 			System.out.print(rowCounter + "  |");
 			rowCounter--;
 			for (int x = 1; x <= 8; x++) {
-				
 				System.out.print(" " + renderGamepiece(x, y) + " ");
-				
 			}
 			System.out.println("");
 		}
@@ -69,7 +66,6 @@ public class Chessboard implements Serializable {
 	public void addToBoard(Gamepiece gamepiece) {
 		gamepieces.add(gamepiece);
 	}
-	
 	
 	/**		Method renderGamepiece
 	 * If the given (x,y) coordinate matches, any of the gamepieces (x,y) coordinates it prints out the type of the gamepiece on the board (for example 'A').
@@ -97,72 +93,76 @@ public class Chessboard implements Serializable {
 		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
 		
 		if (gamepiece instanceof Pawn) {
-			captureWithPawn(gamepiece, newX, newY);
-			if (gamepiece.getX() == newX && gamepiece.getY() == newY) return;
-			else if (gamepiece instanceof Pawn && isPawnMovementValid(gamepiece, newX, newY)) {
+			Pawn pawn = (Pawn) gamepiece;
+			if (!pawn.isRetardMove(newX, newY) && !isPawnMovementBlocked(pawn, newX, newY)) {
+				captureOrIgnoreOrMove(pawn, newX, newY);
+			}
+		}
+		else if (gamepiece instanceof Rook) {
+			Rook rook = (Rook) gamepiece;
+			if (!rook.isRetardMove(newX, newY) && !isRookMovementBlocked(rook, newX, newY)) {
+				captureOrIgnoreOrMove(rook, newX, newY);
+			}
+		}
+		else if (gamepiece instanceof Bishop) {
+			Bishop bishop = (Bishop) gamepiece;
+			if (!bishop.isRetardMove(newX, newY) && !isBishopMovementBlocked(bishop, newX, newY)) {
+				captureOrIgnoreOrMove(bishop, newX, newY);
+			}
+		}
+		else if (gamepiece instanceof Knight) {
+			Knight knight = (Knight) gamepiece;
+			if (!knight.isRetardMove(newX, newY)) {
 				captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
-		else if (gamepiece instanceof Rook && isRookMovementValid(gamepiece, newX, newY)) {
-			captureOrIgnoreOrMove(gamepiece, newX, newY);
+		else if (gamepiece instanceof Queen) {
+			Queen queen = (Queen) gamepiece;
+			if (!queen.isRetardMove(newX, newY) && !isQueenMovementBlocked(gamepiece, newX, newY)) {
+				captureOrIgnoreOrMove(gamepiece, newX, newY);
+			}
 		}
-		else if (gamepiece instanceof Bishop && isBishopMovementValid(gamepiece, newX, newY)) {
-			captureOrIgnoreOrMove(gamepiece, newX, newY);
+		else if (gamepiece instanceof King) {
+			King king = (King) gamepiece;
+			if (!king.isRetardMove(newX, newY)) {
+				captureOrIgnoreOrMove(gamepiece, newX, newY);
+			}
 		}
-		else if (gamepiece instanceof Knight && isKnightMovementValid(gamepiece, newX, newY)) {
-			captureOrIgnoreOrMove(gamepiece, newX, newY);
-		}
-		else if ((gamepiece instanceof Queen || gamepiece instanceof King) && isQueenOrKingMovementValid(gamepiece, newX, newY)) {
-			captureOrIgnoreOrMove(gamepiece, newX, newY);
-		}
-	
 		render();
 	}
 	
-	private boolean isPawnMovementValid(Gamepiece gamepiece, int newX, int newY) {
+	private boolean isPawnMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY) 
-			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) return true;
-		return false;
+			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) return false;
+		return true;
 	}
 	
-	private boolean isRookMovementValid(Gamepiece gamepiece, int newX, int newY) {
+	private boolean isRookMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if ((gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) 
 			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) 
 			|| (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return true;
-		return false;
+			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return false;
+		return true;
 	}
 	
-	private boolean isBishopMovementValid(Gamepiece gamepiece, int newX, int newY) {
-		if ((gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY) ||
-			(gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)))) return true;
-		return false;
+	private boolean isBishopMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		if ((gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY) 
+			|| (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)))) return false;
+		return true;
 	}
 	
-	private boolean isKnightMovementValid(Gamepiece gamepiece, int newX, int newY) {
-		if (gamepiece.isMovementTwoNorthOneEast(newX, newY) ||
-			(gamepiece.isMovementTwoNorthOneWest(newX, newY)) ||
-			(gamepiece.isMovementOneNorthTwoEast(newX, newY)) ||
-			(gamepiece.isMovementOneNorthTwoWest(newX, newY)) ||
-			(gamepiece.isMovementTwoSouthOneEast(newX, newY)) ||
-			(gamepiece.isMovementTwoSouthOneWest(newX, newY)) ||
-			(gamepiece.isMovementOneSouthTwoEast(newX, newY)) ||
-			(gamepiece.isMovementOneSouthTwoWest(newX, newY))) return true;
-		return false;
-	}
-	
-	private boolean isQueenOrKingMovementValid(Gamepiece gamepiece, int newX, int newY) {
-		if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY) ||
-			(gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) ||
-			(gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return true;
-		return false;
+	private boolean isQueenMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
+		if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY) 
+			|| (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) 
+			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return false;
+		return true;
 	}
 	
 	/**		Method tileHasGamepiece
@@ -181,22 +181,28 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	
-	private boolean isEnemyUnit(Gamepiece gamepiece, int newX, int newY) {
+	private boolean hasTileOpponent(Gamepiece gamepiece, int newX, int newY) {
 		Gamepiece possibleEnemy = findGamepiece(newX, newY);
 		
 		if (gamepiece.getPlayer().getId() != possibleEnemy.getPlayer().getId()) return true;
-		else return false;
+		return false;
 	}
 	
 	private void captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
-		if (findGamepiece(newX, newY) == null) {
+		if (isTileEmpty(newX, newY)) {
 			gamepiece.move(newX, newY);
-			return;
 		}
-		else if (isEnemyUnit(gamepiece, newX, newY)) {
-			deleteGamepiece(newX, newY);
-			gamepiece.move(newX, newY);
-			return;
+		else if (hasTileOpponent(gamepiece, newX, newY)) {
+			if (gamepiece instanceof Pawn) {
+				if (!gamepiece.isMovementOneOrTwoNorth(newX, newY) && !gamepiece.isMovementOneOrTwoSouth(newX, newY)) {
+					deleteGamepiece(newX, newY);
+					gamepiece.move(newX, newY);
+				}
+			}
+			else {
+				deleteGamepiece(newX, newY);
+				gamepiece.move(newX, newY);
+			}
 		}
 	}
 	
@@ -263,58 +269,6 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
-	private void captureWithPawn(Gamepiece gamepiece, int newX, int newY) {
-		if (gamepiece.getPlayer().getId() == 1) {
-//			PLAYER1 NORTHEAST
-			if (gamepiece.isMovementOneNorthOneEast(newX, newY)) {
-				if (findGamepiece(newX, newY) != null) {
-					if (findGamepiece(newX, newY).getPlayer().getId() == 2) {
-						deleteGamepiece(newX, newY);
-						//Skipping normal move call, inorder to not run into Pawn class retardmove check
-						gamepiece.setX(newX);
-						gamepiece.setY(newY);
-					}
-				}
-			}
-			
-//			PLAYER1 NORTHWEST
-			else if (gamepiece.isMovementOneNorthOneWest(newX, newY)) {
-				if (findGamepiece(newX, newY) != null) {
-					if (findGamepiece(newX, newY).getPlayer().getId() == 2) {
-						deleteGamepiece(newX, newY);
-						//Skipping normal move call, inorder to not run into Pawn class retardmove check
-						gamepiece.setX(newX);
-						gamepiece.setY(newY);
-					}
-				}
-			}
-		}
-			else if (gamepiece.getPlayer().getId() == 2) {
-//			PLAYER2 SOUTHEAST
-			if (gamepiece.isMovementOneSouthOneEast(newX, newY)) {
-				if (findGamepiece(newX, newY) != null) {
-					if (findGamepiece(newX, newY).getPlayer().getId() == 1) {
-						deleteGamepiece(newX, newY);
-						//Skipping normal move call, inorder to not run into Pawn class retardmove check
-						gamepiece.setX(newX);
-						gamepiece.setY(newY);
-					}
-				}
-			}
-//			PLAYER1 SOUTHWEST
-			else if (gamepiece.isMovementOneSouthOneWest(newX, newY)) {
-				if (findGamepiece(newX, newY) != null) {
-					if (findGamepiece(newX, newY).getPlayer().getId() == 1) {
-						deleteGamepiece(newX, newY);
-						//Skipping normal move call, inorder to not run into Pawn class retardmove check
-						gamepiece.setX(newX);
-						gamepiece.setY(newY);
-					}
-				}
-			}
-		}
-	}
 	/** 	Method findGamepiece
 	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
 	 * returns the found gamepiece, if not found then return null
@@ -329,6 +283,10 @@ public class Chessboard implements Serializable {
 			}
 		}
 		return null;
+	}
+	
+	private boolean isTileEmpty(int tileX, int tileY) {
+		return findGamepiece(tileX, tileY) == null;
 	}
 	
 	public void deleteGamepiece(int x, int y) {
@@ -349,10 +307,7 @@ public class Chessboard implements Serializable {
 	}
 	
 	private boolean isGamepieceKing(Gamepiece gamepiece) {
-		if (gamepiece instanceof King) {
-			return true;
-		}
-		return false;
+		return gamepiece instanceof King;
 	}
 	
 	/**		Method startNewGame
@@ -437,11 +392,11 @@ public class Chessboard implements Serializable {
 		saveGame(gamepieces);
 	}
 	
-	public void newGame(int a){
-		if(a == 1){
+	public void newGame(int a) {
+		if (a == 1) {
 			startNewGame();
 		}
-		if(a == 2){
+		if (a == 2) {
 			load();
 		}
 	}

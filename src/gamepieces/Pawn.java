@@ -15,32 +15,6 @@ public class Pawn extends Gamepiece {
 	}	
 	
 	
-	/**		Method move
-	 * Changes the (x, y) coordinate of the Pawn if the move is not retarded.
-	 */
-	public void move(int newX, int newY) {
-		if (player.getId() == 1) {
-			if (isRetardMovePlayer1(newX, newY)) return;
-
-			if (isPawnAtStartPlayer1() && isMovementOneOrTwoNorth(newX, newY)) {
-				super.move(newX, newY);
-			}
-			else if (isMovementOneNorth(newX, newY)) {
-				super.move(newX, newY);
-			}
-		}
-		if (player.getId() == 2) {
-			if (isRetardMovePlayer2(newX, newY)) return;
-
-			if (isPawnAtStartPlayer2() && isMovementOneOrTwoSouth(newX, newY)) {
-				super.move(newX, newY);
-			}
-			else if (isMovementOneSouth(newX, newY)) {
-				super.move(newX, newY);
-			}
-		}
-	}
-	
 	/**		Method isRetardMove
 	 * returns true if an illegal move is made, pawn can not move sideways, backwards etc. Returns false if it is a legal move. 
 	 * @param x
@@ -49,17 +23,19 @@ public class Pawn extends Gamepiece {
 	 * @param newY
 	 * @return
 	 */
-	private boolean isRetardMovePlayer1(int newX, int newY) {
-		return isAtTheEndPlayer1() 
-				|| isMovementSouth(newX, newY) 
-				|| isMovementWestOrEast(newX, newY) 
-				|| isXDifferenceMoreThanOne(newX);
+	public boolean isRetardMove(int newX, int newY) {
+		if (player.getId() == 1) {
+			return isAtTheEndPlayer1() 
+					|| isMovementSouth(newX, newY)
+					|| isMovementWestOrEast(newX, newY)
+					|| isNorthMovementOverTwo(newX, newY);
+		}
+		else {
+			return isAtTheEndPlayer2()
+				|| isMovementNorth(newX, newY)
+				|| isMovementWestOrEast(newX, newY)
+				|| isSouthMovementOverTwo(newX, newY);
+		} 
+			
 	}
-	
-	private boolean isRetardMovePlayer2(int newX, int newY) {
-		return isAtTheEndPlayer2() 
-				|| !isMovementSouth(newX, newY) 
-				|| isMovementWestOrEast(newX, newY) 
-				|| isXDifferenceMoreThanOne(newX);
-	}	
 }
