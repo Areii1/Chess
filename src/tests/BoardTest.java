@@ -8,6 +8,7 @@ public class BoardTest {
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
 		playerNotice("Do you want to start a new game or load old game?", "Welcome");
+		playerNotice("Btw, if you want ot quit, just write number 15", "Note");
 		chessboard.newGame(askNewOrLoad("Press 1 to play a new game or press 2 to load old."));
 		chessboard.render();
 		
