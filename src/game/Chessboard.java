@@ -132,8 +132,9 @@ public class Chessboard implements Serializable {
 	}
 	
 	private boolean isPawnMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		if (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY) 
-			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) return false;
+		if (!gamepiece.isMovementNorth(newX, newY) && !gamepiece.isMovementSouth(newX, newY)) return false;
+		if ((gamepiece.isMovementOneOrTwoNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY))
+			|| (gamepiece.isMovementOneOrTwoSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) return false;
 		return true;
 	}
 	
@@ -188,8 +189,19 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	
+	private boolean isPawnMovingDiagonally(Gamepiece gamepiece, int newX, int newY) {
+		return gamepiece instanceof Pawn
+			&& ((gamepiece.isMovementNortheast(newX, newY))
+			|| (gamepiece.isMovementNorthwest(newX, newY))
+			|| (gamepiece.isMovementSoutheast(newX, newY))
+			|| (gamepiece.isMovementSouthwest(newX, newY)));
+	}
+	
 	private boolean captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
 		if (isTileEmpty(newX, newY)) {
+			if (isPawnMovingDiagonally(gamepiece, newX, newY)) {
+				return false;
+			}
 			gamepiece.move(newX, newY);
 			render();
 			return true;
