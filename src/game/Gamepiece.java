@@ -338,7 +338,11 @@ public class Gamepiece implements Serializable {
 		if (((newY - y) == -1) && ((newX - x) == -2)) return true;
 		return false;
 	}
-
+	
+	//
+	
+	
+	
 	protected boolean isMovementOneNorth(int newX, int newY) {
 		if ((newY - y == 1) && ((newX - x) == 0)) return true;
 		return false;

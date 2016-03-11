@@ -96,7 +96,6 @@ public class Chessboard implements Serializable {
 			Pawn pawn = (Pawn) gamepiece;
 			if (!pawn.isRetardMove(newX, newY) && !isPawnMovementBlocked(pawn, newX, newY)) {
 				return captureOrIgnoreOrMove(pawn, newX, newY);
-				
 			}
 		}
 		else if (gamepiece instanceof Rook) {
@@ -129,6 +128,7 @@ public class Chessboard implements Serializable {
 				return captureOrIgnoreOrMove(gamepiece, newX, newY);
 			}
 		}
+		render();
 		return false;
 	}
 	
@@ -199,10 +199,6 @@ public class Chessboard implements Serializable {
 				if (!gamepiece.isMovementOneOrTwoNorth(newX, newY) && !gamepiece.isMovementOneOrTwoSouth(newX, newY)) {
 					deleteGamepiece(newX, newY);
 					gamepiece.move(newX, newY);
-					if ((gamepiece.isAtTheEndPlayer1() && gamepiece.getPlayer().getId() == 1) 
-						|| (gamepiece.isAtTheEndPlayer2() && gamepiece.getPlayer().getId() == 2)) {
-						promotePawn(gamepiece, newX, newY);
-					}
 					return true;
 				}
 			}
@@ -277,13 +273,6 @@ public class Chessboard implements Serializable {
 			moveCounter++;
 		}
 		return false;
-	}
-	
-	private void promotePawn(Gamepiece gamepiece, int x, int y) {
-		Queen queen = (Queen) gamepiece;
-		queen.setType('Q');
-		queen.setX(x);
-		queen.setY(y);
 	}
 	/** 	Method findGamepiece
 	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.

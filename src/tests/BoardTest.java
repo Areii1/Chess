@@ -10,6 +10,7 @@ public class BoardTest {
 		
 		playerNotice("Do you want to start a new game or load old game?", "Welcome");
 		chessboard.newGame(askNewOrLoad("Press 1 to play a new game or press 2 to load old."));
+		chessboard.render();
 		
 		int counter = 0;
 		while (!chessboard.isGameOver()) {
@@ -29,8 +30,9 @@ public class BoardTest {
 					int newy = askForCoordinate(player + ": Assign a new y value for the given gamepiece");
 			moves = chessboard.moveGamepiece(x, y, newx, newy);
 			}
-			chessboard.render();
 			counter++;
+			
+			
 		}
 	}
 	
