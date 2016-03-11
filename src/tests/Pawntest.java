@@ -287,13 +287,18 @@ public class Pawntest {
 	}
 	
 	@Test
-	public void canNotCaptureFromsStartPosition(){
+	public void canNotCaptureMoreThanOneTileAway(){
 		Gamepiece oldPawn = chessboard.findGamepiece(1, 2);
 		chessboard.moveGamepiece(1, 2, 6, 7);
-		
 		
 		newPawn = chessboard.findGamepiece(1, 2);
 		
 		assertEquals(newPawn, oldPawn);
+	}
+	
+	@Test
+	public void canNotCaptureOverEnemy(){
+		chessboard.moveGamepiece(2, 7, 2, 5);
+		chessboard.moveGamepiece(3, 7, 3, 6);
 	}
 }

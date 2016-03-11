@@ -400,5 +400,25 @@ public class Gamepiece implements Serializable {
 	protected boolean isNorthMovementOverTwo(int newX, int newY) {
 		return newX - x == 0 && newY - y > 2;
 	}
+	
+	protected boolean isMovementOverOneNorthOneEast(int newX, int newY) {
+		if (newY - y > 1 && newX - x > 1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOverOneNorthOneWest(int newX, int newY) {
+		if (newY - y > 1 && newX - x < -1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOverOneSouthOneEast(int newX, int newY) {
+		if (newY - y < -1 && newX - x > 1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOverOneSouthOneWest(int newX, int newY) {
+		if (newY - y < -1 && newX - x < -1) return true;
+		return false;
+	}
 
 }

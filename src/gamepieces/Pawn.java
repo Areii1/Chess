@@ -28,14 +28,18 @@ public class Pawn extends Gamepiece {
 			return isAtTheEndPlayer1() 
 					|| isMovementSouth(newX, newY)
 					|| isMovementWestOrEast(newX, newY)
-					|| isNorthMovementOverTwo(newX, newY);
+					|| isNorthMovementOverTwo(newX, newY)
+					|| isMovementOverOneNorthOneEast(newX, newY)
+					|| isMovementOverOneNorthOneWest(newX, newY);
 		}
 		else {
 			return isAtTheEndPlayer2()
-				|| isMovementNorth(newX, newY)
-				|| isMovementWestOrEast(newX, newY)
-				|| isSouthMovementOverTwo(newX, newY);
+					|| isMovementNorth(newX, newY)
+					|| isMovementWestOrEast(newX, newY)
+					|| isSouthMovementOverTwo(newX, newY)
+					|| isMovementOverOneSouthOneEast(newX, newY)
+					|| isMovementOverOneSouthOneWest(newX, newY);
 		} 
-			
+
 	}
 }
