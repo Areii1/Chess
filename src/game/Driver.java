@@ -1,10 +1,10 @@
-package tests;
+package game;
 
 import javax.swing.JOptionPane;
 
 import game.Chessboard;
 
-public class BoardTest {
+public class Driver {
 	public static void main(String[] args) {
 		Chessboard chessboard = new Chessboard();
 		playerNotice("Do you want to start a new game or load old game?", "Welcome");
