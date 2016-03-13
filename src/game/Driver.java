@@ -41,11 +41,20 @@ public class Driver {
 			chessboard.save();
 		}
 	}
-	
+	/** 	Method playerNotice
+	 * 
+	 * @param message
+	 * @param player
+	 */
 	public static void playerNotice(String message, String player) {
 		JOptionPane.showMessageDialog(null, message, player, JOptionPane.PLAIN_MESSAGE);
 	}
-	
+	/** 	Method askNewOrLoad
+	 * Method uses the JOptionPane for sending a message to the user.
+	 * Method has a numberFormatException.
+	 * @param message
+	 * @return int
+	 */
 	public static int askNewOrLoad(String message){
 		int value = 0;
 		try {
@@ -64,7 +73,12 @@ public class Driver {
 			}
 			return value;
 	}
-	
+	/**
+	 * Method uses the JOptionpane for asking the coordinates from the user.
+	 * Method has a numberFormatException.
+	 * @param message
+	 * @return int
+	 */
 
 	public static int askForCoordinate(String message) {
 		int value = 0;

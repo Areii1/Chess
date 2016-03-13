@@ -128,12 +128,12 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	/**
-	 * 
+	/** 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isPawnMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if (!gamepiece.isMovementNorth(newX, newY) && !gamepiece.isMovementSouth(newX, newY)) return false;
@@ -142,7 +142,7 @@ public class Chessboard implements Serializable {
 		return true;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -156,11 +156,11 @@ public class Chessboard implements Serializable {
 		return true;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	private boolean isBishopMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		if ((gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) 
@@ -170,7 +170,7 @@ public class Chessboard implements Serializable {
 		return true;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -204,7 +204,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are there an opponent in the new coordinates.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -216,7 +216,13 @@ public class Chessboard implements Serializable {
 		if (gamepiece.getPlayer().getId() != possibleEnemy.getPlayer().getId()) return true;
 		return false;
 	}
-	
+	/**
+	 * Method tests diagonal movements of the pawn.
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isPawnMovingDiagonally(Gamepiece gamepiece, int newX, int newY) {
 		return gamepiece instanceof Pawn
 			&& ((gamepiece.isMovementNortheast(newX, newY))
@@ -225,7 +231,9 @@ public class Chessboard implements Serializable {
 			|| (gamepiece.isMovementSouthwest(newX, newY)));
 	}
 	/**
-	 * 
+	 * Method tests is the tile empty and if there is an opponent and is the gamepiece pawn.
+	 * If the gamepiece is pawn it can remove opponent from tile if pawn rules allow it.
+	 * If the gamepiece is not pawn it can remove the opponent right away.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -259,7 +267,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -272,7 +280,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -285,7 +293,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -298,7 +306,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -311,7 +319,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -326,7 +334,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -341,7 +349,7 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/**
-	 * 
+	 * Method tests are the new coordinates blocked.
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
@@ -355,7 +363,13 @@ public class Chessboard implements Serializable {
 		}
 		return false;
 	}
-	
+	/**
+	 * Method tests are the new coordinates blocked.
+	 * @param gamepiece
+	 * @param newX
+	 * @param newY
+	 * @return boolean
+	 */
 	private boolean isSouthEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
 		for (int i = gamepiece.getY() - 1; i > newY; i--) {
 			int moveCounter = 1;
@@ -365,7 +379,8 @@ public class Chessboard implements Serializable {
 		return false;
 	}
 	/** 	
-	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
+	 * Loops through the gamepieces' ArrayList (which includes every gamepiece) 
+	 * and checks if any gamepiece coordinates matches with the coordinates in the parameter.
 	 * returns the found gamepiece, if not found then return null
 	 * @param x
 	 * @param y
@@ -379,11 +394,21 @@ public class Chessboard implements Serializable {
 		}
 		return null;
 	}
-	
+	/**
+	 * Method tests is the tile empty.
+	 * @param tileX
+	 * @param tileY
+	 * @return boolean
+	 */
 	private boolean isTileEmpty(int tileX, int tileY) {
 		return findGamepiece(tileX, tileY) == null;
 	}
-	
+	/**
+	 * Checks the gamepieces' ArrayList if there are the same coordinates than the parameter coordinates.
+	 * If the coordinates are the same it will remove object from the list.
+	 * @param x
+	 * @param y
+	 */
 	public void deleteGamepiece(int x, int y) {
 		for (int i = 0; i < gamepieces.size(); i++) {
 			if (gamepieces.get(i).getX() == x && gamepieces.get(i).getY() == y) {
@@ -394,19 +419,26 @@ public class Chessboard implements Serializable {
 			}
 		}
 	}
-	
+	/**
+	 * Method deletes the ArrayList.
+	 */
 	public void deleteAllGamepieces() {
 		for (Gamepiece gamepiece : gamepieces) {
 			gamepieces.remove(gamepiece);
 		}
 	}
-	
+	/**
+	 * Method tests is the gamepiece a king.
+	 * @param gamepiece
+	 * @return
+	 */
 	private boolean isGamepieceKing(Gamepiece gamepiece) {
 		return gamepiece instanceof King;
 	}
 	
 	/**		Method startNewGame
-	 * 
+	 * Method starts a new game and creates objects for the players and the gamepieces.
+	 * Method adds the gamepieces to the chessboard.
 	 */
 	public void startNewGame() {
 		Player player1 = new Player(1);
@@ -486,7 +518,10 @@ public class Chessboard implements Serializable {
 	public void save() {
 		saveGame(gamepieces);
 	}
-	
+	/**
+	 * Method gets a parameter from the driver class and uses the startNewGame or load methods.
+	 * @param a
+	 */
 	public void newGame(int a) {
 		if (a == 1) {
 			startNewGame();
@@ -499,7 +534,11 @@ public class Chessboard implements Serializable {
 	public void load() {
 		gamepieces = loadGame();
 	}
-	
+	/**
+	 * Method uses a serializable interface to save the gampieces from the ArrayList to file.
+	 * Method has an IOException.
+	 * @param object
+	 */
 	public static void saveGame(ArrayList<Gamepiece> object) {
 		try {
 			FileOutputStream fos = new FileOutputStream("Test.ser");
@@ -514,7 +553,11 @@ public class Chessboard implements Serializable {
 			ioe.printStackTrace();
 		}
 	}
-	
+	/**
+	 * Method uses a serializable interface to load the gamepieces from the file.
+	 * Method has an IOException and a ClassNotFoundException. 
+	 * @return object
+	 */
 	public static ArrayList<Gamepiece> loadGame() {
 		ArrayList<Gamepiece> object = new ArrayList<>();
 		try {

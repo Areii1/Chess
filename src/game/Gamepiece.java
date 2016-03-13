@@ -133,11 +133,9 @@ public class Gamepiece implements Serializable {
 	/**		Method isSideways
 	 * returns true if horizontal movement is detected, but no vertical movement is present, returns false if not.
 	 * Useful for Pawn and Rook class.
-	 * @param x
 	 * @param newX
-	 * @param y
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementWestOrEast(int newX, int newY) {
 		return x - newX != 0 && y == newY;
@@ -146,11 +144,9 @@ public class Gamepiece implements Serializable {
 	/**		Method isXAndYChanged
 	 * returns true if both vertical or horizontal movement is present, returns false if not.
 	 * Useful for Bishop class.
-	 * @param x
 	 * @param newX
-	 * @param y
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isXAndYChanged(int newX, int newY) {
 		return x - newX != 0 && y - newY != 0;
@@ -160,11 +156,9 @@ public class Gamepiece implements Serializable {
 	/**		Method isXAndYEvenChange
 	 * returns true if the movement is diagonal, returns false if not.
 	 * Useful for Bishop class.
-	 * @param x
 	 * @param newX
-	 * @param y
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isXAndYEvenChange(int newX, int newY) {
 		return (x - newX == y - newY) || (x - newX == -(y - newY));
@@ -176,7 +170,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return 
+	 * @return boolean
 	 */
 	protected boolean isMovementNortheast(int newX, int newY) {
 		if (newY - y == newX - x && (newY - y > 0)) return true;
@@ -189,7 +183,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementSouthwest(int newX, int newY) {
 		if (newY - y == newX - x && (newY - y < 0)) return true;
@@ -202,7 +196,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementNorthwest(int newX, int newY) {
 		if ((newY - y) + (newX - x) == 0 && (newY - y > 0)) return true;
@@ -215,7 +209,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementSoutheast(int newX, int newY) {
 		if ((newY - y) + (newX - x) == 0 && (newY - y < 0)) return true;
@@ -230,7 +224,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return bolean
 	 */
 	protected boolean isMovementNorth(int newX, int newY) {
 		if ((((newY - y) > 0) && ((newX - x) == 0))) {
@@ -247,7 +241,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementSouth(int newX, int newY) {
 		if ((((newY - y) < 0) && ((newX - x) == 0))) {
@@ -263,7 +257,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementWest(int newX, int newY) {
 		if ((((newY - y) == 0) && ((newX - x) < 0))) {
@@ -280,7 +274,7 @@ public class Gamepiece implements Serializable {
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	protected boolean isMovementEast(int newX, int newY) {
 		if ((((newY - y) == 0) && ((newX - x) > 0))) {
@@ -291,12 +285,10 @@ public class Gamepiece implements Serializable {
 	
 	
 	/**		Method isMovement
-	 * 
-	 * Useful for knight class
 	 * @param gamepiece
 	 * @param newX
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	
 	protected boolean isMovementTwoNorthOneEast(int newX, int newY) {
@@ -338,10 +330,6 @@ public class Gamepiece implements Serializable {
 		if (((newY - y) == -1) && ((newX - x) == -2)) return true;
 		return false;
 	}
-	
-	//
-	
-	
 	
 	protected boolean isMovementOneNorth(int newX, int newY) {
 		if ((newY - y == 1) && ((newX - x) == 0)) return true;
