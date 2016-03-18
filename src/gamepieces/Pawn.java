@@ -16,12 +16,11 @@ public class Pawn extends Gamepiece {
 	
 	
 	/**		Method isRetardMove
-	 * returns true if an illegal move is made, pawn can not move sideways, backwards etc. Returns false if it is a legal move. 
-	 * @param x
+	 * Returns true if an illegal move is made.
+	 * Returns false if it is a legal move.
 	 * @param newX
-	 * @param y
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isRetardMove(int newX, int newY) {
 		if (player.getId() == 1) {

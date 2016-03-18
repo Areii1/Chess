@@ -14,7 +14,8 @@ public class Bishop extends Gamepiece {
 	}
 	
 	/**		Method isRetardMove
-	 * returns true if an illegal move was made, a bishop can only move diagonally. Returns false if the move was legal. 
+	 * returns true if an illegal move was made. 
+	 * Returns false if the move was legal. 
 	 * @param x
 	 * @param newX
 	 * @param y

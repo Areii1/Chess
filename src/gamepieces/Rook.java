@@ -16,12 +16,11 @@ public class Rook extends Gamepiece {
 	}
 	
 	/**		Method isRetardMove
-	 * returns true if an illegal move was made, a rook can only move horizontally and vertically. Returns false if the move was legal.
-	 * @param x
+	 * Returns true if an illegal move is made.
+	 * Returns false if it is a legal move.
 	 * @param newX
-	 * @param y
 	 * @param newY
-	 * @return
+	 * @return boolean
 	 */
 	public boolean isRetardMove(int newX, int newY) {
 		return isXAndYChanged(newX, newY);
