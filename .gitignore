@@ -76,3 +76,7 @@ local.properties
 
 # Code Recommenders
 .recommenders/
+
+
+# Chessboard specific
+Test.ser
