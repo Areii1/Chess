@@ -1,19 +1,19 @@
 package userinterface;
 
+import game.Chessboard;
+import game.Gamepiece;
 import javafx.application.*;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.stage.*;
 import javafx.scene.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.geometry.Insets;
 
 public class UIchessboard extends Application {
 	
 	Scene scene;
 	TilePane grid = new TilePane();
+	Chessboard chessboard = new Chessboard();
 	
 	public static void main(String[] arguments) {
 		launch(arguments);
@@ -23,52 +23,51 @@ public class UIchessboard extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setTitle("Chessboard");
 		
+		chessboard.startNewGame();
+		
 		renderChessboard();
 		
 		grid.setPadding(new Insets(10, 10, 10, 10));
 		grid.setPrefColumns(8);
 		grid.setPrefRows(8);		
 
-		scene = new Scene(grid, 410, 410, Color.GRAY);
+		scene = new Scene(grid, 660, 660, Color.GRAY);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
 	}
 	
 	private void renderChessboard() {
-		for (int i = 0; i < 8; i++) {
-			if (i % 2 == 0) {
-				renderRow(true);
+		for (int rowIndex = 0; rowIndex < 8; rowIndex++) {
+			if (rowIndex % 2 == 0) {
+				renderRow(true, rowIndex);
 			}
 			else {
-				renderRow(false);
+				renderRow(false, rowIndex);
 			}
 		}
 	}
 	
-	private void renderRow(boolean startWithWhite) {
+	private void renderRow(boolean startWithWhite, int rowIndex) {
 		int counter = 1;
+		boolean isWhite;
 		if (startWithWhite == true) {
 			counter = 0;
 		}
-		for (int i = 0; i < 8; i++) {	
+		for (int columnIndex = 0; columnIndex < 8; columnIndex++) {
 			if (counter % 2 == 0) {
-				grid.getChildren().add(createTile(true));
+				isWhite = true;
+				Gamepiece gamepiece = chessboard.findGamepiece(columnIndex + 1, rowIndex + 1);
+				ChessTile whiteTile = new ChessTile(isWhite, gamepiece);
+				grid.getChildren().add(whiteTile);
 			}
 			else {
-				grid.getChildren().add(createTile(false));
+				isWhite = false;
+				Gamepiece gamepiece = chessboard.findGamepiece(columnIndex + 1, rowIndex + 1);
+				ChessTile blackTile = new ChessTile(isWhite, gamepiece);
+				grid.getChildren().add(blackTile);
 			}
 			counter++;
-		}
-	}
-	
-	
-	private Rectangle createTile(boolean isWhite) {
-		if (isWhite) {
-			return new Rectangle(50, 50, Color.WHITE);
-		}
-		else { 
-			return new Rectangle(50, 50, Color.BLACK);
 		}
 	}
 }
