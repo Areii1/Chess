@@ -1,16 +1,29 @@
 package userinterface;
 
 import game.Gamepiece;
-import gamepieces.*;
+import gamepieces.Bishop;
+import gamepieces.King;
+import gamepieces.Knight;
+import gamepieces.Pawn;
+import gamepieces.Queen;
+import gamepieces.Rook;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 
 public class ChessTile extends StackPane {
-	Rectangle tile;
+	private Rectangle tile;
+	private Gamepiece chesspiece;
+	private int tileX;
+	private int tileY;
 	
+
+
 	private Image blackPawn = new Image("/chessicons/black_pawn.png");
 	private Image blackRook = new Image("/chessicons/black_rook.png");
 	private Image blackKnight = new Image("/chessicons/black_knight.png");
@@ -24,8 +37,11 @@ public class ChessTile extends StackPane {
 	private Image whiteBishop = new Image("/chessicons/white_bishop.png");
 	private Image whiteKing = new Image("/chessicons/white_king.png");
 
-
-	public ChessTile(boolean isWhite, Gamepiece gamepiece) {				
+	public ChessTile(boolean isWhite, Gamepiece gamepiece, int columnIndex, int rowIndex) {	
+		chesspiece = gamepiece;
+		tileX = columnIndex;
+		tileY = rowIndex;
+		
 		if (isWhite) {
 			tile = new Rectangle(80, 80, Color.WHITE);
 			drawIcon(gamepiece);
@@ -36,6 +52,27 @@ public class ChessTile extends StackPane {
 			drawIcon(gamepiece);
 			getChildren().addAll(tile);
 		}
+		
+		setOnMouseClicked(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent t) {
+				if (t.getButton() == MouseButton.SECONDARY) {
+					System.out.println("tile: " + tileX + "," + tileY);
+					UIchessboard.chosenTileValues(tileX, tileY);
+					UIchessboard.moveUIGamepiece();
+				}
+				else {
+					if (chesspiece != null) {
+						int x = chesspiece.getX();
+						int y = chesspiece.getY();
+						tile.setStroke(Color.RED);
+						System.out.println("gamepiece: " + chesspiece.getX() + ", " + chesspiece.getY());
+						UIchessboard.chosenGamepieceValues(x, y);
+					}
+				}	
+				
+			}
+		});
 	}
 	
 	private void drawIcon(Gamepiece gamepiece) {
@@ -81,3 +118,4 @@ public class ChessTile extends StackPane {
 		}
 	}
 }
+	
