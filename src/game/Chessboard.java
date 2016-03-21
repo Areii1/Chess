@@ -162,7 +162,7 @@ public class Chessboard implements Serializable {
 	 * @return boolean
 	 */
 	private boolean isBishopMovementBlocked(Piece piece, int newX, int newY) {
-		if ((piece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(piece, newX, newY)) 
+		if 	((piece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(piece, newX, newY)) 
 			|| (piece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(piece, newX, newY)) 
 			|| (piece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(piece, newX, newY) 
 			|| (piece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(piece, newX, newY)))) return false;
@@ -331,8 +331,8 @@ public class Chessboard implements Serializable {
 	 * @return boolean
 	 */
 	private boolean isNorthEastMovementBlocked(Piece piece, int newX, int newY) {
+		int moveCounter = 1;
 		for (int i = piece.getY() + 1; i < newY; i++) {
-			int moveCounter = 1;
 			if (tileHasPiece(piece.getX() + moveCounter, i)) return true;
 			moveCounter++;
 		}
@@ -346,8 +346,8 @@ public class Chessboard implements Serializable {
 	 * @return boolean
 	 */
 	private boolean isNorthWestMovementBlocked(Piece piece, int newX, int newY) {
+		int moveCounter = 1;
 		for (int i = piece.getY() + 1; i < newY; i++) {
-			int moveCounter = 1;
 			if (tileHasPiece(piece.getX() - moveCounter, i)) return true;
 			moveCounter++;
 		}
@@ -361,8 +361,8 @@ public class Chessboard implements Serializable {
 	 * @return boolean
 	 */
 	private boolean isSouthWestMovementBlocked(Piece piece, int newX, int newY) {
+		int moveCounter = 1;
 		for (int i = piece.getY() - 1; i > newY; i--) {
-			int moveCounter = 1;
 			if (tileHasPiece(piece.getX() - moveCounter, i)) return true;
 			moveCounter++;
 		}
@@ -376,8 +376,8 @@ public class Chessboard implements Serializable {
 	 * @return boolean
 	 */
 	private boolean isSouthEastMovementBlocked(Piece piece, int newX, int newY) {
+		int moveCounter = 1;
 		for (int i = piece.getY() - 1; i > newY; i--) {
-			int moveCounter = 1;
 			if (tileHasPiece(piece.getX() + moveCounter, i)) return true;
 			moveCounter++;
 		}

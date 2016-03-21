@@ -47,15 +47,16 @@ public class UIChessboard extends Application {
 				uiBoard.getChildren().addAll(tile, uiPiece);
 			}
 		}
+		if (chessApp.isGameOver()) {
+			Stage primaryStage = (Stage) uiBoard.getScene().getWindow();
+			primaryStage.close();
+		}
 	}
 	
 	public static void moveUIPiece(int newX, int newY) {
 		chessApp.movePiece(chosenPieceX, chosenPieceY, newX, newY);
 		renderChessboard();
-		if (chessApp.isGameOver() == true) {
-			Stage primaryStage = (Stage) uiBoard.getScene().getWindow();
-			primaryStage.close();
-		}
+		
 	}
 	
 	public static void choosePieceCoordinates(int x, int y) {
