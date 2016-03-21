@@ -249,7 +249,13 @@ public class Chessboard implements Serializable {
 		}
 		else if (hasTileOpponent(piece, newX, newY)) {
 			if (piece instanceof Pawn) {
-				if (!piece.isMovementOneOrTwoNorth(newX, newY) && !piece.isMovementOneOrTwoSouth(newX, newY)) {
+				if (!piece.isMovementOneOrTwoNorth(newX, newY) 
+					&& !piece.isMovementOneOrTwoSouth(newX, newY)
+					&& (!(((piece.getPlayer().getId() == 1 && piece.isMovementOneSouthOneEast(newX, newY)) 
+					|| (piece.getPlayer().getId() == 1 && piece.isMovementOneSouthOneWest(newX, newY)))
+					|| ((piece.getPlayer().getId() == 2 && piece.isMovementOneNorthOneEast(newX, newY)) 
+					|| (piece.getPlayer().getId() == 2 && piece.isMovementOneNorthOneWest(newX, newY)))))) {
+					
 					deletePiece(newX, newY);
 					piece.move(newX, newY);
 					render();

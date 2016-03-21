@@ -389,24 +389,80 @@ public class Piece implements Serializable {
 		return newX - x == 0 && newY - y > 2;
 	}
 	
-	protected boolean isMovementOverOneNorthOneEast(int newX, int newY) {
+	protected boolean isMovementOverOneNorthOverOneEast(int newX, int newY) {
 		if (newY - y > 1 && newX - x > 1) return true;
 		return false;
 	}
 	
-	protected boolean isMovementOverOneNorthOneWest(int newX, int newY) {
+	protected boolean isMovementOverOneNorthOverOneWest(int newX, int newY) {
 		if (newY - y > 1 && newX - x < -1) return true;
 		return false;
 	}
 	
-	protected boolean isMovementOverOneSouthOneEast(int newX, int newY) {
+	protected boolean isMovementOverOneSouthOverOneEast(int newX, int newY) {
 		if (newY - y < -1 && newX - x > 1) return true;
 		return false;
 	}
 	
-	protected boolean isMovementOverOneSouthOneWest(int newX, int newY) {
+	protected boolean isMovementOverOneSouthOverOneWest(int newX, int newY) {
 		if (newY - y < -1 && newX - x < -1) return true;
 		return false;
 	}
+	
+	
+	
+	
+	protected boolean isMovementOneNorthOverOneEast(int newX, int newY) {
+		if (newY - y == 1 && newX - x > 1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOneNorthOverOneWest(int newX, int newY) {
+		if (newY - y == 1 && newX - x < -1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOneSouthOverOneEast(int newX, int newY) {
+		if (newY - y == -1 && newX - x > 1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOneSouthOverOneWest(int newX, int newY) {
+		if (newY - y == -1 && newX - x < -1) return true;
+		return false;
+	}
+	
+	
+	
+	protected boolean isMovementOverOneNorthOneEast(int newX, int newY) {
+		if (newY - y > 1 && newX - x == 1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOverOneNorthOneWest(int newX, int newY) {
+		if (newY - y > 1 && newX - x == -1) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOverOneSouthOneEast(int newX, int newY) {
+		if (newY - y < -1 && newX - x == 1) return true;
+		return false;
+	}
 
+	protected boolean isMovementOverOneSouthOneWest(int newX, int newY) {
+		if (newY - y < -1 && newX - x == -1) return true;
+		return false;
+	}
+	
+	
+	protected boolean isMovementOverOneNorthWhenNotAtStartPlayer1(int newX, int newY) {
+		if (newY - y > 1 && y != 2) return true;
+		return false;
+	}
+	
+	protected boolean isMovementOverOneSouthWhenNotAtStartPlayer2(int newX, int newY) {
+		if (newY - y < -1 && y != 7) return true;
+		return false;
+	}
+	
 }

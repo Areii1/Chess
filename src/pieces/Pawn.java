@@ -28,16 +28,46 @@ public class Pawn extends Piece {
 					|| isMovementSouth(newX, newY)
 					|| isMovementWestOrEast(newX, newY)
 					|| isNorthMovementOverTwo(newX, newY)
+					
+					|| isMovementOverOneNorthOverOneEast(newX, newY)
+					|| isMovementOverOneNorthOverOneWest(newX, newY)
+					|| isMovementOneNorthOverOneEast(newX, newY)
+					|| isMovementOneNorthOverOneWest(newX, newY)
 					|| isMovementOverOneNorthOneEast(newX, newY)
-					|| isMovementOverOneNorthOneWest(newX, newY);
+					|| isMovementOverOneNorthOneWest(newX, newY)
+					
+					|| isSouthMovementOverTwo(newX, newY)
+					|| isMovementOverOneSouthOverOneEast(newX, newY)
+					|| isMovementOverOneSouthOverOneWest(newX, newY)
+					|| isMovementOneSouthOverOneEast(newX, newY)
+					|| isMovementOneSouthOverOneWest(newX, newY)
+					|| isMovementOverOneSouthOneEast(newX, newY)
+					|| isMovementOverOneSouthOneWest(newX, newY)
+					
+					|| isMovementOverOneNorthWhenNotAtStartPlayer1(newX, newY);
 		}
 		else {
 			return isAtTheEndPlayer2()
 					|| isMovementNorth(newX, newY)
 					|| isMovementWestOrEast(newX, newY)
 					|| isSouthMovementOverTwo(newX, newY)
+					
+					|| isMovementOverOneSouthOverOneEast(newX, newY)
+					|| isMovementOverOneSouthOverOneWest(newX, newY)
+					|| isMovementOneSouthOverOneEast(newX, newY)
+					|| isMovementOneSouthOverOneWest(newX, newY)
 					|| isMovementOverOneSouthOneEast(newX, newY)
-					|| isMovementOverOneSouthOneWest(newX, newY);
+					|| isMovementOverOneSouthOneWest(newX, newY)
+					
+					|| isNorthMovementOverTwo(newX, newY)
+					|| isMovementOverOneNorthOverOneEast(newX, newY)
+					|| isMovementOverOneNorthOverOneWest(newX, newY)
+					|| isMovementOneNorthOverOneEast(newX, newY)
+					|| isMovementOneNorthOverOneWest(newX, newY)
+					|| isMovementOverOneNorthOneEast(newX, newY)
+					|| isMovementOverOneNorthOneWest(newX, newY)
+					
+					|| isMovementOverOneSouthWhenNotAtStartPlayer2(newX, newY);
 		} 
 
 	}

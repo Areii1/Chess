@@ -5,7 +5,6 @@ import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
 import pieces.Bishop;
@@ -58,7 +57,6 @@ public class UIPiece extends Rectangle {
 					UIChessboard.moveUIPiece(pieceX, pieceY);
 				}
 			}
-			
 		});
 	}
 	
@@ -105,5 +103,4 @@ public class UIPiece extends Rectangle {
 		}
 		return null;
 	}
-	
 }
