@@ -314,4 +314,20 @@ public class Pawntest {
 		
 		assertEquals(newPawn, oldPawn);
 	}
+	
+	@Test
+	public void canNotCaptureOneNorthOneWestPlayer2() {
+		Piece oldPawn = chessboard.findPiece(2, 7);
+		chessboard.deletePiece(1, 7);
+		chessboard.deletePiece(1, 8);
+		chessboard.deletePiece(1, 2);
+		
+		chessboard.movePiece(1, 1, 1, 8);
+		chessboard.movePiece(2, 7, 1, 8);
+		
+		newPawn = chessboard.findPiece(2, 7);
+		
+		assertEquals(newPawn, oldPawn);
+	}
+	
 }
