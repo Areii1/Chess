@@ -17,6 +17,8 @@ public class UIChessboard extends Application {
 	private static int chosenPieceX;
 	private static int chosenPieceY;
 	
+	private static int turnCounter = 0;
+	
 	public static void main(String[] arguments) {
 		launch(arguments);
 	}
@@ -51,13 +53,20 @@ public class UIChessboard extends Application {
 			Stage primaryStage = (Stage) uiBoard.getScene().getWindow();
 			primaryStage.close();
 		}
-	}
+		}
 	
 	public static void moveUIPiece(int newX, int newY) {
-		chessApp.movePiece(chosenPieceX, chosenPieceY, newX, newY);
-		renderChessboard();
-		
+		if (chessApp.findPiece(chosenPieceX, chosenPieceY) != null 
+			&& ((chessApp.findPiece(chosenPieceX, chosenPieceY).getPlayer().getId() == 1 && (turnCounter % 2 == 0))
+			||  (chessApp.findPiece(chosenPieceX, chosenPieceY)).getPlayer().getId() == 2 && (turnCounter % 2 == 1))) {
+			
+			if (chessApp.movePiece(chosenPieceX, chosenPieceY, newX, newY)) {
+				renderChessboard();
+				turnCounter++;
+			}
+		}
 	}
+
 	
 	public static void choosePieceCoordinates(int x, int y) {
 		chosenPieceX = x;
