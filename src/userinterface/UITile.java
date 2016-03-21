@@ -41,7 +41,7 @@ public class UITile extends Rectangle {
 	}
 	
 	public void highlight() {
-		setFill(Color.LIGHTPINK);
+		setFill(Color.FUCHSIA);
 	}
 	
 	public void unHighlight() {

@@ -31,7 +31,7 @@ public class UIChessboard extends Application {
 		uiBoard.setPadding(new Insets(10, 10, 10, 10));
 		uiBoard.setPrefSize(800, 800);
 	
-		scene = new Scene(uiBoard, Color.GRAY);
+		scene = new Scene(uiBoard, Color.WHITE);
 		primaryStage.setScene(scene);
 		primaryStage.setResizable(false);
 		primaryStage.show();
@@ -52,6 +52,10 @@ public class UIChessboard extends Application {
 	public static void moveUIPiece(int newX, int newY) {
 		chessApp.movePiece(chosenPieceX, chosenPieceY, newX, newY);
 		renderChessboard();
+		if (chessApp.isGameOver() == true) {
+			Stage primaryStage = (Stage) uiBoard.getScene().getWindow();
+			primaryStage.close();
+		}
 	}
 	
 	public static void choosePieceCoordinates(int x, int y) {
