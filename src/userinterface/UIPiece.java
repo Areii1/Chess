@@ -46,12 +46,11 @@ public class UIPiece extends Rectangle {
 		}
 
 		setOnMouseClicked(new EventHandler<MouseEvent>() {
+			
 			@Override
 			public void handle(MouseEvent t) {
 				if (t.getButton() == MouseButton.PRIMARY) {
 					if (chessPiece != null) {
-						setStroke(Color.RED);
-						setStrokeWidth(3);
 						UIChessboard.choosePieceCoordinates(pieceX, pieceY);
 					}
 				}
@@ -59,6 +58,7 @@ public class UIPiece extends Rectangle {
 					UIChessboard.moveUIPiece(pieceX, pieceY);
 				}
 			}
+			
 		});
 	}
 	
@@ -105,4 +105,5 @@ public class UIPiece extends Rectangle {
 		}
 		return null;
 	}
+	
 }

@@ -15,7 +15,7 @@ public class UIChessboard extends Application {
 	private static Chessboard chessApp = new Chessboard();
 
 	private static int chosenPieceX;
-	private static int chosePieceY;
+	private static int chosenPieceY;
 	
 	public static void main(String[] arguments) {
 		launch(arguments);
@@ -37,7 +37,7 @@ public class UIChessboard extends Application {
 		primaryStage.show();
 	}
 	
-	private static void renderChessboard() {
+	public static void renderChessboard() {
 		uiBoard.getChildren().clear();
 		for (int y = 8; y > 0; y--) {
 			for (int x = 1; x < 9; x++) {
@@ -50,12 +50,28 @@ public class UIChessboard extends Application {
 	}
 	
 	public static void moveUIPiece(int newX, int newY) {
-		chessApp.movePiece(chosenPieceX, chosePieceY, newX, newY);
+		chessApp.movePiece(chosenPieceX, chosenPieceY, newX, newY);
 		renderChessboard();
 	}
 	
 	public static void choosePieceCoordinates(int x, int y) {
 		chosenPieceX = x;
-		chosePieceY = y;
+		chosenPieceY = y;
+		highlightTile();
+	}
+	
+	private static void highlightTile() {
+		for (Object child : uiBoard.getChildren()) {
+			if (child instanceof UITile) {
+				UITile tile = (UITile) child;
+				if (tile.getTileX() == chosenPieceX 
+					&& (tile.getTileY() == chosenPieceY)) {
+					tile.highlight();
+				}
+				else {
+					tile.unHighlight();
+				}
+			}
+		}
 	}
 }

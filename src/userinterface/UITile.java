@@ -19,10 +19,12 @@ import pieces.Rook;
 public class UITile extends Rectangle {
 	private int tileX;
 	private int tileY;
+	private boolean isWhite;
 	
 	public UITile(boolean isWhite, Piece piece, int x, int y) {
 		tileX = x;
 		tileY = y;
+		this.isWhite = isWhite;
 		
 		setWidth(80);
 		setHeight(80);
@@ -37,6 +39,22 @@ public class UITile extends Rectangle {
 				}
 			}
 		});
+	}
+
+	public int getTileX() {
+		return tileX;
+	}
+
+	public int getTileY() {
+		return tileY;
+	}
+	
+	public void highlight() {
+		setFill(Color.LIGHTPINK);
+	}
+	
+	public void unHighlight() {
+		setFill(isWhite ? Color.AQUAMARINE : Color.DARKGREEN);
 	}
 }
 	
