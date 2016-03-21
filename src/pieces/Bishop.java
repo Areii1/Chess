@@ -1,8 +1,8 @@
-package gamepieces;
+package pieces;
 
 import game.*;
 
-public class Bishop extends Gamepiece {
+public class Bishop extends Piece {
 	/**		CONSTRUCTOR
 	 * Constructor for a Bishop object, gives the bishop an (x,y) coordinate and assigns its player.
 	 * @param x

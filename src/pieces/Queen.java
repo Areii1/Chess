@@ -1,8 +1,8 @@
-package gamepieces;
+package pieces;
 
 import game.*;
 
-public class Queen extends Gamepiece  {
+public class Queen extends Piece  {
 	
 	public Queen(int x, int y, Player player, char type) {
 		super(x, y, player, type);

@@ -5,13 +5,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import game.Chessboard;
-import game.Gamepiece;
+import game.Piece;
 
 public class Rooktest {
 
 	private Chessboard chessboard;
 	
-	private Gamepiece rook;
+	private Piece rook;
 	
 	@Before
 	public void init() {
@@ -22,10 +22,10 @@ public class Rooktest {
 	
 	@Test
 	public void canMoveTwoNorth() {
-		chessboard.deleteGamepiece(1, 2);
-		chessboard.moveGamepiece(1, 1, 1, 3);
+		chessboard.deletePiece(1, 2);
+		chessboard.movePiece(1, 1, 1, 3);
 		
-		rook = chessboard.findGamepiece(1, 3);
+		rook = chessboard.findPiece(1, 3);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(3, rook.getY());
@@ -34,10 +34,10 @@ public class Rooktest {
 	
 	@Test
 	public void canMoveTwoSouth() {
-		chessboard.deleteGamepiece(1, 7);
-		chessboard.moveGamepiece(1, 8, 1, 6);
+		chessboard.deletePiece(1, 7);
+		chessboard.movePiece(1, 8, 1, 6);
 		
-		rook = chessboard.findGamepiece(1, 6);
+		rook = chessboard.findPiece(1, 6);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(6, rook.getY());
@@ -46,17 +46,17 @@ public class Rooktest {
 	
 	@Test
 	public void canMoveSixEast() {
-		chessboard.deleteGamepiece(2, 1);
-		chessboard.deleteGamepiece(3, 1);
-		chessboard.deleteGamepiece(4, 1);
-		chessboard.deleteGamepiece(5, 1);
-		chessboard.deleteGamepiece(6, 1);
-		chessboard.deleteGamepiece(7, 1);
-		chessboard.deleteGamepiece(8, 1);
+		chessboard.deletePiece(2, 1);
+		chessboard.deletePiece(3, 1);
+		chessboard.deletePiece(4, 1);
+		chessboard.deletePiece(5, 1);
+		chessboard.deletePiece(6, 1);
+		chessboard.deletePiece(7, 1);
+		chessboard.deletePiece(8, 1);
 		
-		chessboard.moveGamepiece(1, 1, 7, 1);
+		chessboard.movePiece(1, 1, 7, 1);
 		
-		rook = chessboard.findGamepiece(7, 1);
+		rook = chessboard.findPiece(7, 1);
 		
 		assertEquals(7, rook.getX());
 		assertEquals(1, rook.getY());
@@ -65,17 +65,17 @@ public class Rooktest {
 	
 	@Test
 	public void canMoveSixWest() {
-		chessboard.deleteGamepiece(1, 1);
-		chessboard.deleteGamepiece(2, 1);
-		chessboard.deleteGamepiece(3, 1);
-		chessboard.deleteGamepiece(4, 1);
-		chessboard.deleteGamepiece(5, 1);
-		chessboard.deleteGamepiece(6, 1);
-		chessboard.deleteGamepiece(7, 1);
+		chessboard.deletePiece(1, 1);
+		chessboard.deletePiece(2, 1);
+		chessboard.deletePiece(3, 1);
+		chessboard.deletePiece(4, 1);
+		chessboard.deletePiece(5, 1);
+		chessboard.deletePiece(6, 1);
+		chessboard.deletePiece(7, 1);
 		
-		chessboard.moveGamepiece(8, 1, 2, 1);
+		chessboard.movePiece(8, 1, 2, 1);
 		
-		rook = chessboard.findGamepiece(2, 1);
+		rook = chessboard.findPiece(2, 1);
 		
 		assertEquals(2, rook.getX());
 		assertEquals(1, rook.getY());
@@ -84,16 +84,16 @@ public class Rooktest {
 	
 	@Test
 	public void canNotMoveSixWestWhenBlocked() {
-		chessboard.deleteGamepiece(1, 1);
-		chessboard.deleteGamepiece(2, 1);
-		chessboard.deleteGamepiece(3, 1);
-		chessboard.deleteGamepiece(4, 1);
-		chessboard.deleteGamepiece(6, 1);
-		chessboard.deleteGamepiece(7, 1);
+		chessboard.deletePiece(1, 1);
+		chessboard.deletePiece(2, 1);
+		chessboard.deletePiece(3, 1);
+		chessboard.deletePiece(4, 1);
+		chessboard.deletePiece(6, 1);
+		chessboard.deletePiece(7, 1);
 		
-		chessboard.moveGamepiece(8, 1, 2, 1);
+		chessboard.movePiece(8, 1, 2, 1);
 		
-		rook = chessboard.findGamepiece(8, 1);
+		rook = chessboard.findPiece(8, 1);
 		
 		assertEquals(8, rook.getX());
 		assertEquals(1, rook.getY());
@@ -102,16 +102,16 @@ public class Rooktest {
 	
 	@Test
 	public void canNotMoveSixEastWhenBlocked() {
-		chessboard.deleteGamepiece(3, 1);
-		chessboard.deleteGamepiece(4, 1);
-		chessboard.deleteGamepiece(5, 1);
-		chessboard.deleteGamepiece(6, 1);
-		chessboard.deleteGamepiece(7, 1);
-		chessboard.deleteGamepiece(8, 1);
+		chessboard.deletePiece(3, 1);
+		chessboard.deletePiece(4, 1);
+		chessboard.deletePiece(5, 1);
+		chessboard.deletePiece(6, 1);
+		chessboard.deletePiece(7, 1);
+		chessboard.deletePiece(8, 1);
 		
-		chessboard.moveGamepiece(1, 1, 7, 1);
+		chessboard.movePiece(1, 1, 7, 1);
 		
-		rook = chessboard.findGamepiece(1, 1);
+		rook = chessboard.findPiece(1, 1);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(1, rook.getY());
@@ -120,9 +120,9 @@ public class Rooktest {
 	
 	@Test
 	public void canNotMoveFourNorthWhenBlocked() {
-		chessboard.moveGamepiece(1, 1, 1, 4);
+		chessboard.movePiece(1, 1, 1, 4);
 		
-		rook = chessboard.findGamepiece(1, 1);
+		rook = chessboard.findPiece(1, 1);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(1, rook.getY());
@@ -131,9 +131,9 @@ public class Rooktest {
 	
 	@Test
 	public void canNotMoveFourSouthWhenBlocked() {
-		chessboard.moveGamepiece(1, 8, 1, 5);
+		chessboard.movePiece(1, 8, 1, 5);
 		
-		rook = chessboard.findGamepiece(1, 8);
+		rook = chessboard.findPiece(1, 8);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(8, rook.getY());
@@ -142,14 +142,14 @@ public class Rooktest {
 	
 	@Test
 	public void canNotMoveDiagonally() {
-		chessboard.deleteGamepiece(2, 1);
-		chessboard.deleteGamepiece(2, 2);
-		chessboard.deleteGamepiece(2, 3);
-		chessboard.deleteGamepiece(2, 4);
+		chessboard.deletePiece(2, 1);
+		chessboard.deletePiece(2, 2);
+		chessboard.deletePiece(2, 3);
+		chessboard.deletePiece(2, 4);
 		
-		chessboard.moveGamepiece(1, 1, 8, 8);
+		chessboard.movePiece(1, 1, 8, 8);
 		
-		rook = chessboard.findGamepiece(1, 1);
+		rook = chessboard.findPiece(1, 1);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(1, rook.getY());
@@ -158,26 +158,26 @@ public class Rooktest {
 	
 	@Test
 	public void canNotSkipColumn() {
-		chessboard.deleteGamepiece(2, 1);
-		chessboard.deleteGamepiece(2, 2);
-		chessboard.deleteGamepiece(2, 3);
-		chessboard.deleteGamepiece(2, 4);
+		chessboard.deletePiece(2, 1);
+		chessboard.deletePiece(2, 2);
+		chessboard.deletePiece(2, 3);
+		chessboard.deletePiece(2, 4);
 		
-		chessboard.moveGamepiece(1, 1, 2, 4);
+		chessboard.movePiece(1, 1, 2, 4);
 		
-		rook = chessboard.findGamepiece(1, 1);
+		rook = chessboard.findPiece(1, 1);
 		
 		//No assertequals??
 	}
 	
 	@Test
 	public void canPlayer1RookCaptureGamepiece() {
-		chessboard.deleteGamepiece(1, 2);
-		chessboard.deleteGamepiece(1, 7);
+		chessboard.deletePiece(1, 2);
+		chessboard.deletePiece(1, 7);
 		
-		chessboard.moveGamepiece(1, 1, 1, 8);
+		chessboard.movePiece(1, 1, 1, 8);
 		
-		rook = chessboard.findGamepiece(1, 8);
+		rook = chessboard.findPiece(1, 8);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(8, rook.getY());
@@ -185,12 +185,12 @@ public class Rooktest {
 	
 	@Test
 	public void canPlayer2RookCaptureGamepiece() {
-		chessboard.deleteGamepiece(1, 2);
-		chessboard.deleteGamepiece(1, 7);
+		chessboard.deletePiece(1, 2);
+		chessboard.deletePiece(1, 7);
 		
-		chessboard.moveGamepiece(1, 8, 1, 1);
+		chessboard.movePiece(1, 8, 1, 1);
 		
-		rook = chessboard.findGamepiece(1, 1);
+		rook = chessboard.findPiece(1, 1);
 		
 		assertEquals(1, rook.getX());
 		assertEquals(1, rook.getY());

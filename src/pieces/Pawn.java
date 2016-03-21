@@ -1,8 +1,8 @@
-package gamepieces;
+package pieces;
 
 import game.*;
 
-public class Pawn extends Gamepiece {
+public class Pawn extends Piece {
 	
 	/**		CONSTRUCTOR
 	 * Constructor for a Pawn object, gives the pawn an (x,y) coordinate and defines the player.

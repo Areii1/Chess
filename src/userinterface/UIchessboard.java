@@ -1,7 +1,7 @@
 package userinterface;
 
 import game.Chessboard;
-import game.Gamepiece;
+import game.Piece;
 import javafx.application.*;
 import javafx.stage.*;
 import javafx.scene.*;
@@ -43,41 +43,17 @@ public class UIchessboard extends Application {
 	}
 	
 	private static void renderChessboard() {
-		for (int rowIndex = 8; rowIndex > 0; rowIndex--) {
-			if (rowIndex % 2 == 0) {
-				renderRow(true, rowIndex);
+		for (int y = 8; y > 0; y--) {
+			for (int x = 1; x < 9; x++) {
+				Piece gamepiece = chessboard.findPiece(x, y);
+				Tile tile = new Tile((x + y) % 2 == 0, gamepiece, x, y);
+				grid.getChildren().add(tile);
 			}
-			else {
-				renderRow(false, rowIndex);
-			}
-		}
-	}
-	
-	private static void renderRow(boolean startWithWhite, int rowIndex) {
-		int counter = 1;
-		boolean isWhite;
-		if (startWithWhite == true) {
-			counter = 0;
-		}
-		for (int columnIndex = 0; columnIndex < 8; columnIndex++) {
-			if (counter % 2 == 0) {
-				isWhite = true;
-				Gamepiece gamepiece = chessboard.findGamepiece(columnIndex + 1, rowIndex);
-				ChessTile whiteTile = new ChessTile(isWhite, gamepiece, columnIndex + 1, rowIndex);
-				grid.getChildren().add(whiteTile);
-			}
-			else {
-				isWhite = false;
-				Gamepiece gamepiece = chessboard.findGamepiece(columnIndex + 1, rowIndex);
-				ChessTile blackTile = new ChessTile(isWhite, gamepiece, columnIndex + 1, rowIndex);
-				grid.getChildren().add(blackTile);
-			}
-			counter++;
 		}
 	}
 	
 	public static void moveUIGamepiece() {
-		chessboard.moveGamepiece(currentPrimaryX, currentPrimaryY, currentSecondaryX, currentSecondaryY);
+		chessboard.movePiece(currentPrimaryX, currentPrimaryY, currentSecondaryX, currentSecondaryY);
 		System.out.println("moved");
 		grid.getChildren().clear();
 		

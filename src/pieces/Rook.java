@@ -1,8 +1,8 @@
-package gamepieces;
+package pieces;
 
 import game.*;
 
-public class Rook extends Gamepiece {
+public class Rook extends Piece {
 	
 	
 	/**		CONSTRUCTOR

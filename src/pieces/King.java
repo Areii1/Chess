@@ -1,9 +1,9 @@
-package gamepieces;
+package pieces;
 
 import game.*;
 
 
-public class King extends Gamepiece {
+public class King extends Piece {
 	
 	/**		Constructor
 	 * Constructs a new King object.

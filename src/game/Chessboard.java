@@ -9,8 +9,7 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
-import gamepieces.*;
+import pieces.*;
 
 
 public class Chessboard implements Serializable {
@@ -19,13 +18,13 @@ public class Chessboard implements Serializable {
 	
 	private boolean gameOver;
 	
-	ArrayList<Gamepiece> gamepieces;
+	ArrayList<Piece> pieces;
 
 	/** 	
-	 * Default constructor for Chessboard class, creates an empty ArrayList of Gamepiece type objects.
+	 * Default constructor for Chessboard class, creates an empty ArrayList of piece type objects.
 	 */
 	public Chessboard() {
-		gamepieces = new ArrayList<Gamepiece>();
+		pieces = new ArrayList<Piece>();
 		gameOver = false;
 	}
 	
@@ -47,7 +46,7 @@ public class Chessboard implements Serializable {
 			System.out.print(rowCounter + "  |");
 			rowCounter--;
 			for (int x = 1; x <= 8; x++) {
-				System.out.print(" " + renderGamepiece(x, y) + " ");
+				System.out.print(" " + renderPiece(x, y) + " ");
 			}
 			System.out.println("");
 		}
@@ -57,147 +56,147 @@ public class Chessboard implements Serializable {
 	}
 	
 	/**		
-	 * adds a gamepiece to gamepieces ArrayList
-	 * @param gamepiece
+	 * adds a piece to pieces ArrayList
+	 * @param piece
 	 */
-	public void addToBoard(Gamepiece gamepiece) {
-		gamepieces.add(gamepiece);
+	public void addToBoard(Piece piece) {
+		pieces.add(piece);
 	}
 	
 	/**		
-	 * If the given (x,y) coordinate matches, any of the gamepieces (x,y) coordinates it prints out the type of the gamepiece on the board (for example 'A').
+	 * If the given (x,y) coordinate matches, any of the pieces (x,y) coordinates it prints out the type of the piece on the board (for example 'A').
 	 * @param x
 	 * @param y
 	 * @return char
 	 */
-	private char renderGamepiece(int x, int y) {
-		for (Gamepiece gamepiece : gamepieces) {
-			if (gamepiece.getX() == x && gamepiece.getY() == y) {
-				return gamepiece.getType();
+	private char renderPiece(int x, int y) {
+		for (Piece piece : pieces) {
+			if (piece.getX() == x && piece.getY() == y) {
+				return piece.getType();
 			}
 		}
 		return 'o';
 	}
 	
 	/**		
-	 * Changes the (x,y) coordinate of a gamepiece to a new coordinate (x,y), if and only if there are no existing gamepieces on that new coordinate
-	 * or on the path to that new coordinate. The condition varies between gamepieces (a rook moves with a different path than a bishop for example).
-	 * @param gamepieceX
+	 * Changes the (x,y) coordinate of a piece to a new coordinate (x,y), if and only if there are no existing pieces on that new coordinate
+	 * or on the path to that new coordinate. The condition varies between pieces (a rook moves with a different path than a bishop for example).
+	 * @param pieceX
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	public boolean moveGamepiece(int gamepieceX, int gamepieceY, int newX, int newY) {
-		Gamepiece gamepiece = findGamepiece(gamepieceX, gamepieceY);
+	public boolean movePiece(int pieceX, int pieceY, int newX, int newY) {
+		Piece piece = findPiece(pieceX, pieceY);
 		
-		if (gamepiece instanceof Pawn) {
-			Pawn pawn = (Pawn) gamepiece;
+		if (piece instanceof Pawn) {
+			Pawn pawn = (Pawn) piece;
 			if (!pawn.isRetardMove(newX, newY) && !isPawnMovementBlocked(pawn, newX, newY)) {
 				return captureOrIgnoreOrMove(pawn, newX, newY);
 			}
 		}
-		else if (gamepiece instanceof Rook) {
-			Rook rook = (Rook) gamepiece;
+		else if (piece instanceof Rook) {
+			Rook rook = (Rook) piece;
 			if (!rook.isRetardMove(newX, newY) && !isRookMovementBlocked(rook, newX, newY)) {
 				return captureOrIgnoreOrMove(rook, newX, newY);
 			}
 		}
-		else if (gamepiece instanceof Bishop) {
-			Bishop bishop = (Bishop) gamepiece;
+		else if (piece instanceof Bishop) {
+			Bishop bishop = (Bishop) piece;
 			if (!bishop.isRetardMove(newX, newY) && !isBishopMovementBlocked(bishop, newX, newY)) {
 				return captureOrIgnoreOrMove(bishop, newX, newY);
 			}
 		}
-		else if (gamepiece instanceof Knight) {
-			Knight knight = (Knight) gamepiece;
+		else if (piece instanceof Knight) {
+			Knight knight = (Knight) piece;
 			if (!knight.isRetardMove(newX, newY)) {
-				return captureOrIgnoreOrMove(gamepiece, newX, newY);
+				return captureOrIgnoreOrMove(piece, newX, newY);
 			}
 		}
-		else if (gamepiece instanceof Queen) {
-			Queen queen = (Queen) gamepiece;
-			if (!queen.isRetardMove(newX, newY) && !isQueenMovementBlocked(gamepiece, newX, newY)) {
-				return captureOrIgnoreOrMove(gamepiece, newX, newY);
+		else if (piece instanceof Queen) {
+			Queen queen = (Queen) piece;
+			if (!queen.isRetardMove(newX, newY) && !isQueenMovementBlocked(piece, newX, newY)) {
+				return captureOrIgnoreOrMove(piece, newX, newY);
 			}
 		}
-		else if (gamepiece instanceof King) {
-			King king = (King) gamepiece;
+		else if (piece instanceof King) {
+			King king = (King) piece;
 			if (!king.isRetardMove(newX, newY)) {
-				return captureOrIgnoreOrMove(gamepiece, newX, newY);
+				return captureOrIgnoreOrMove(piece, newX, newY);
 			}
 		}
 		return false;
 	}
 	/** 
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isPawnMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		if (!gamepiece.isMovementNorth(newX, newY) && !gamepiece.isMovementSouth(newX, newY)) return false;
-		if ((gamepiece.isMovementOneOrTwoNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY))
-			|| (gamepiece.isMovementOneOrTwoSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY))) return false;
+	private boolean isPawnMovementBlocked(Piece piece, int newX, int newY) {
+		if (!piece.isMovementNorth(newX, newY) && !piece.isMovementSouth(newX, newY)) return false;
+		if ((piece.isMovementOneOrTwoNorth(newX, newY) && !isNorthMovementBlocked(piece, newX, newY))
+			|| (piece.isMovementOneOrTwoSouth(newX, newY) && !isSouthMovementBlocked(piece, newX, newY))) return false;
 		return true;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isRookMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		if ((gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return false;
+	private boolean isRookMovementBlocked(Piece piece, int newX, int newY) {
+		if ((piece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementEast(newX, newY) && !isEastMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementWest(newX, newY) && !isWestMovementBlocked(piece, newX, newY))) return false;
 		return true;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isBishopMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		if ((gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY) 
-			|| (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)))) return false;
+	private boolean isBishopMovementBlocked(Piece piece, int newX, int newY) {
+		if ((piece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(piece, newX, newY) 
+			|| (piece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(piece, newX, newY)))) return false;
 		return true;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isQueenMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		if (gamepiece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(gamepiece, newX, newY) 
-			|| (gamepiece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementEast(newX, newY) && !isEastMovementBlocked(gamepiece, newX, newY)) 
-			|| (gamepiece.isMovementWest(newX, newY) && !isWestMovementBlocked(gamepiece, newX, newY))) return false;
+	private boolean isQueenMovementBlocked(Piece piece, int newX, int newY) {
+		if (piece.isMovementNortheast(newX, newY) && !isNorthEastMovementBlocked(piece, newX, newY) 
+			|| (piece.isMovementSouthwest(newX, newY) && !isSouthWestMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementNorthwest(newX, newY) && !isNorthWestMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementSoutheast(newX, newY) && !isSouthEastMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementNorth(newX, newY) && !isNorthMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementSouth(newX, newY) && !isSouthMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementEast(newX, newY) && !isEastMovementBlocked(piece, newX, newY)) 
+			|| (piece.isMovementWest(newX, newY) && !isWestMovementBlocked(piece, newX, newY))) return false;
 		return true;
 	}
 	
-	/**		Method tileHasGamepiece
-	 * Loops through the gamepieces ArraList (which includes every gamepiece) and checks if any gamepiece's coordinate matches the parameter coordinate.
+	/**		Method tileHaspiece
+	 * Loops through the pieces ArraList (which includes every piece) and checks if any piece's coordinate matches the parameter coordinate.
 	 * returns true if any coordinates match, returns false if none match.
 	 * @param x
 	 * @param y
 	 * @return boolean
 	 */
-	private boolean tileHasGamepiece(int x, int y) {
-		for (Gamepiece gamepiece : gamepieces) {
-			if (gamepiece.getX() == x && gamepiece.getY() == y) {
+	private boolean tileHasPiece(int x, int y) {
+		for (Piece piece : pieces) {
+			if (piece.getX() == x && piece.getY() == y) {
 				return true;
 			}
 		}
@@ -205,61 +204,61 @@ public class Chessboard implements Serializable {
 	}
 	/**
 	 * Method tests are there an opponent in the new coordinates.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean hasTileOpponent(Gamepiece gamepiece, int newX, int newY) {
-		Gamepiece possibleEnemy = findGamepiece(newX, newY);
+	private boolean hasTileOpponent(Piece piece, int newX, int newY) {
+		Piece possibleEnemy = findPiece(newX, newY);
 		
-		if (gamepiece.getPlayer().getId() != possibleEnemy.getPlayer().getId()) return true;
+		if (piece.getPlayer().getId() != possibleEnemy.getPlayer().getId()) return true;
 		return false;
 	}
 	/**
 	 * Method tests diagonal movements of the pawn.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isPawnMovingDiagonally(Gamepiece gamepiece, int newX, int newY) {
-		return gamepiece instanceof Pawn
-			&& ((gamepiece.isMovementNortheast(newX, newY))
-			|| (gamepiece.isMovementNorthwest(newX, newY))
-			|| (gamepiece.isMovementSoutheast(newX, newY))
-			|| (gamepiece.isMovementSouthwest(newX, newY)));
+	private boolean isPawnMovingDiagonally(Piece piece, int newX, int newY) {
+		return piece instanceof Pawn
+			&& ((piece.isMovementNortheast(newX, newY))
+			|| (piece.isMovementNorthwest(newX, newY))
+			|| (piece.isMovementSoutheast(newX, newY))
+			|| (piece.isMovementSouthwest(newX, newY)));
 	}
 	/**
-	 * Method tests is the tile empty and if there is an opponent and is the gamepiece pawn.
-	 * If the gamepiece is pawn it can remove opponent from tile if pawn rules allow it.
-	 * If the gamepiece is not pawn it can remove the opponent right away.
-	 * @param gamepiece
+	 * Method tests is the tile empty and if there is an opponent and is the piece pawn.
+	 * If the piece is pawn it can remove opponent from tile if pawn rules allow it.
+	 * If the piece is not pawn it can remove the opponent right away.
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean captureOrIgnoreOrMove(Gamepiece gamepiece, int newX, int newY) {
+	private boolean captureOrIgnoreOrMove(Piece piece, int newX, int newY) {
 		if (isTileEmpty(newX, newY)) {
-			if (isPawnMovingDiagonally(gamepiece, newX, newY)) {
+			if (isPawnMovingDiagonally(piece, newX, newY)) {
 				return false;
 			}
-			gamepiece.move(newX, newY);
+			piece.move(newX, newY);
 			render();
 			return true;
 		}
-		else if (hasTileOpponent(gamepiece, newX, newY)) {
-			if (gamepiece instanceof Pawn) {
-				if (!gamepiece.isMovementOneOrTwoNorth(newX, newY) && !gamepiece.isMovementOneOrTwoSouth(newX, newY)) {
-					deleteGamepiece(newX, newY);
-					gamepiece.move(newX, newY);
+		else if (hasTileOpponent(piece, newX, newY)) {
+			if (piece instanceof Pawn) {
+				if (!piece.isMovementOneOrTwoNorth(newX, newY) && !piece.isMovementOneOrTwoSouth(newX, newY)) {
+					deletePiece(newX, newY);
+					piece.move(newX, newY);
 					render();
 					return true;
 				}
 			}
 			else {
-				deleteGamepiece(newX, newY);
-				gamepiece.move(newX, newY);
+				deletePiece(newX, newY);
+				piece.move(newX, newY);
 				render();
 				return true;
 			}
@@ -268,128 +267,128 @@ public class Chessboard implements Serializable {
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isNorthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getY() + 1; i < newY; i++) { 
-			if (tileHasGamepiece(newX, i)) return true;
+	private boolean isNorthMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getY() + 1; i < newY; i++) { 
+			if (tileHasPiece(newX, i)) return true;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isSouthMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getY() - 1; i > newY; i--) {
-			if (tileHasGamepiece(newX, i)) return true;
+	private boolean isSouthMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getY() - 1; i > newY; i--) {
+			if (tileHasPiece(newX, i)) return true;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getX() - 1; i > newX; i--) {
-			if (tileHasGamepiece(i, newY)) return true;
+	private boolean isWestMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getX() - 1; i > newX; i--) {
+			if (tileHasPiece(i, newY)) return true;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getX() + 1; i < newX; i++) {
-			if (tileHasGamepiece(i, newY)) return true;
+	private boolean isEastMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getX() + 1; i < newX; i++) {
+			if (tileHasPiece(i, newY)) return true;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isNorthEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getY() + 1; i < newY; i++) {
+	private boolean isNorthEastMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getY() + 1; i < newY; i++) {
 			int moveCounter = 1;
-			if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return true;
+			if (tileHasPiece(piece.getX() + moveCounter, i)) return true;
 			moveCounter++;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isNorthWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getY() + 1; i < newY; i++) {
+	private boolean isNorthWestMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getY() + 1; i < newY; i++) {
 			int moveCounter = 1;
-			if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return true;
+			if (tileHasPiece(piece.getX() - moveCounter, i)) return true;
 			moveCounter++;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isSouthWestMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getY() - 1; i > newY; i--) {
+	private boolean isSouthWestMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getY() - 1; i > newY; i--) {
 			int moveCounter = 1;
-			if (tileHasGamepiece(gamepiece.getX() - moveCounter, i)) return true;
+			if (tileHasPiece(piece.getX() - moveCounter, i)) return true;
 			moveCounter++;
 		}
 		return false;
 	}
 	/**
 	 * Method tests are the new coordinates blocked.
-	 * @param gamepiece
+	 * @param piece
 	 * @param newX
 	 * @param newY
 	 * @return boolean
 	 */
-	private boolean isSouthEastMovementBlocked(Gamepiece gamepiece, int newX, int newY) {
-		for (int i = gamepiece.getY() - 1; i > newY; i--) {
+	private boolean isSouthEastMovementBlocked(Piece piece, int newX, int newY) {
+		for (int i = piece.getY() - 1; i > newY; i--) {
 			int moveCounter = 1;
-			if (tileHasGamepiece(gamepiece.getX() + moveCounter, i)) return true;
+			if (tileHasPiece(piece.getX() + moveCounter, i)) return true;
 			moveCounter++;
 		}
 		return false;
 	}
 	/** 	
-	 * Loops through the gamepieces' ArrayList (which includes every gamepiece) 
-	 * and checks if any gamepiece coordinates matches with the coordinates in the parameter.
-	 * returns the found gamepiece, if not found then return null
+	 * Loops through the pieces' ArrayList (which includes every piece) 
+	 * and checks if any piece coordinates matches with the coordinates in the parameter.
+	 * returns the found piece, if not found then return null
 	 * @param x
 	 * @param y
 	 * @return
 	 */
-	public Gamepiece findGamepiece(int x, int y) {
-		for (Gamepiece gamepiece : gamepieces) {
-			if (gamepiece.getX() == x && gamepiece.getY() == y) {
-				return gamepiece;
+	public Piece findPiece(int x, int y) {
+		for (Piece piece : pieces) {
+			if (piece.getX() == x && piece.getY() == y) {
+				return piece;
 			}
 		}
 		return null;
@@ -401,44 +400,44 @@ public class Chessboard implements Serializable {
 	 * @return boolean
 	 */
 	private boolean isTileEmpty(int tileX, int tileY) {
-		return findGamepiece(tileX, tileY) == null;
+		return findPiece(tileX, tileY) == null;
 	}
 	/**
-	 * Checks the gamepieces' ArrayList if there are the same coordinates than the parameter coordinates.
+	 * Checks the pieces' ArrayList if there are the same coordinates than the parameter coordinates.
 	 * If the coordinates are the same it will remove object from the list.
 	 * @param x
 	 * @param y
 	 */
-	public void deleteGamepiece(int x, int y) {
-		for (int i = 0; i < gamepieces.size(); i++) {
-			if (gamepieces.get(i).getX() == x && gamepieces.get(i).getY() == y) {
-				if (isGamepieceKing(gamepieces.get(i))) {
+	public void deletePiece(int x, int y) {
+		for (int i = 0; i < pieces.size(); i++) {
+			if (pieces.get(i).getX() == x && pieces.get(i).getY() == y) {
+				if (isPieceKing(pieces.get(i))) {
 					gameOver = true;
 				}
-				gamepieces.remove(i);
+				pieces.remove(i);
 			}
 		}
 	}
 	/**
 	 * Method deletes the ArrayList.
 	 */
-	public void deleteAllGamepieces() {
-		for (Gamepiece gamepiece : gamepieces) {
-			gamepieces.remove(gamepiece);
+	public void deleteAllPieces() {
+		for (Piece piece : pieces) {
+			pieces.remove(piece);
 		}
 	}
 	/**
-	 * Method tests is the gamepiece a king.
-	 * @param gamepiece
+	 * Method tests is the piece a king.
+	 * @param piece
 	 * @return
 	 */
-	private boolean isGamepieceKing(Gamepiece gamepiece) {
-		return gamepiece instanceof King;
+	private boolean isPieceKing(Piece piece) {
+		return piece instanceof King;
 	}
 	
 	/**		Method startNewGame
-	 * Method starts a new game and creates objects for the players and the gamepieces.
-	 * Method adds the gamepieces to the chessboard.
+	 * Method starts a new game and creates objects for the players and the pieces.
+	 * Method adds the pieces to the chessboard.
 	 */
 	public void startNewGame() {
 		Player player1 = new Player(1);
@@ -516,7 +515,7 @@ public class Chessboard implements Serializable {
 	}
 	
 	public void save() {
-		saveGame(gamepieces);
+		saveGame(pieces);
 	}
 	/**
 	 * Method gets a parameter from the driver class and uses the startNewGame or load methods.
@@ -532,14 +531,14 @@ public class Chessboard implements Serializable {
 	}
 	
 	public void load() {
-		gamepieces = loadGame();
+		pieces = loadGame();
 	}
 	/**
-	 * Method uses a serializable interface to save the gampieces from the ArrayList to file.
+	 * Method uses a serializable interface to save the pieces from the ArrayList to file.
 	 * Method has an IOException.
 	 * @param object
 	 */
-	public static void saveGame(ArrayList<Gamepiece> object) {
+	public static void saveGame(ArrayList<Piece> object) {
 		try {
 			FileOutputStream fos = new FileOutputStream("Test.ser");
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
@@ -554,16 +553,16 @@ public class Chessboard implements Serializable {
 		}
 	}
 	/**
-	 * Method uses a serializable interface to load the gamepieces from the file.
+	 * Method uses a serializable interface to load the pieces from the file.
 	 * Method has an IOException and a ClassNotFoundException. 
 	 * @return object
 	 */
-	public static ArrayList<Gamepiece> loadGame() {
-		ArrayList<Gamepiece> object = new ArrayList<>();
+	public static ArrayList<Piece> loadGame() {
+		ArrayList<Piece> object = new ArrayList<>();
 		try {
 			FileInputStream fis = new FileInputStream("Test.ser");
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			object = (ArrayList<Gamepiece>) ois.readObject();
+			object = (ArrayList<Piece>) ois.readObject();
 			ois.close();
 			fis.close();
 			return object;

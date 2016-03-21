@@ -2,7 +2,7 @@ package game;
 
 import java.io.Serializable;
 
-public class Gamepiece implements Serializable {
+public class Piece implements Serializable {
 	/**
 	 * 
 	 */
@@ -22,7 +22,7 @@ public class Gamepiece implements Serializable {
 	 * @param player
 	 * @param type
 	 */
-	public Gamepiece(int x, int y, Player player, char type) {
+	public Piece(int x, int y, Player player, char type) {
 		this.y = y;
 		this.x = x;
 		this.player = player;

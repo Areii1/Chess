@@ -1,12 +1,6 @@
 package userinterface;
 
-import game.Gamepiece;
-import gamepieces.Bishop;
-import gamepieces.King;
-import gamepieces.Knight;
-import gamepieces.Pawn;
-import gamepieces.Queen;
-import gamepieces.Rook;
+import game.Piece;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.MouseButton;
@@ -15,10 +9,16 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Rectangle;
+import pieces.Bishop;
+import pieces.King;
+import pieces.Knight;
+import pieces.Pawn;
+import pieces.Queen;
+import pieces.Rook;
 
-public class ChessTile extends StackPane {
+public class Tile extends StackPane {
 	private Rectangle tile;
-	private Gamepiece chesspiece;
+	private Piece chesspiece;
 	private int tileX;
 	private int tileY;
 	
@@ -37,7 +37,7 @@ public class ChessTile extends StackPane {
 	private Image whiteBishop = new Image("/chessicons/white_bishop.png");
 	private Image whiteKing = new Image("/chessicons/white_king.png");
 
-	public ChessTile(boolean isWhite, Gamepiece gamepiece, int columnIndex, int rowIndex) {	
+	public Tile(boolean isWhite, Piece gamepiece, int columnIndex, int rowIndex) {	
 		chesspiece = gamepiece;
 		tileX = columnIndex;
 		tileY = rowIndex;
@@ -75,7 +75,7 @@ public class ChessTile extends StackPane {
 		});
 	}
 	
-	private void drawIcon(Gamepiece gamepiece) {
+	private void drawIcon(Piece gamepiece) {
 		if (gamepiece != null && gamepiece.getPlayer().getId() == 1) {
 			if (gamepiece instanceof Pawn) {
 				tile.setFill(new ImagePattern(whitePawn));

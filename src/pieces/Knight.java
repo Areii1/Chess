@@ -1,9 +1,9 @@
-package gamepieces;
+package pieces;
 
 import game.*;
 
 
-public class Knight extends Gamepiece {
+public class Knight extends Piece {
 	
 	/**		CONSTRUCTOR
 	 * Constructor for a Knight object, gives the Knight a (x,y) coordinate and assigns its player.
